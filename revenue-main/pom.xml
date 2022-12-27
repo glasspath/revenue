@@ -1,0 +1,129 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>revenue-main</artifactId>
+
+	<parent>
+		<groupId>org.glasspath.revenue</groupId>
+		<artifactId>revenue</artifactId>
+        <version>0.0.1</version>
+	</parent>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.glasspath.revenue</groupId>
+			<artifactId>revenue-core</artifactId>
+			<version>${revision}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glasspath.common</groupId>
+			<artifactId>common-swing-core</artifactId>
+			<version>${common.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glasspath.common</groupId>
+			<artifactId>common-xml</artifactId>
+			<version>${common.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glasspath.aerialist</groupId>
+			<artifactId>aerialist-main</artifactId>
+			<version>${aerialist.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glasspath.communique</groupId>
+			<artifactId>communique-main</artifactId>
+			<version>${communique.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>fr.opensagres.xdocreport</groupId>
+		    <artifactId>fr.opensagres.xdocreport.document</artifactId>
+		    <version>2.0.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>fr.opensagres.xdocreport</groupId>
+		    <artifactId>fr.opensagres.xdocreport.document.docx</artifactId>
+		    <version>2.0.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>fr.opensagres.xdocreport</groupId>
+		    <artifactId>fr.opensagres.xdocreport.template.velocity</artifactId>
+		    <version>2.0.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>fr.opensagres.xdocreport</groupId>
+		    <artifactId>fr.opensagres.xdocreport.document.odt</artifactId>
+		    <version>2.0.3</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.opencsv</groupId>
+		    <artifactId>opencsv</artifactId>
+		    <version>5.5.2</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.jxmapviewer</groupId>
+		    <artifactId>jxmapviewer2</artifactId>
+		    <version>2.5</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.jmdns</groupId>
+		    <artifactId>jmdns</artifactId>
+		    <version>3.5.7</version>
+		</dependency>
+
+		<!--
+		<dependency>
+			<groupId>org.wickedsource.docx-stamper</groupId>
+			<artifactId>docx-stamper</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jgit</groupId>
+			<artifactId>org.eclipse.jgit</artifactId>
+			<version>6.0.0.202111291000-r</version>
+		</dependency>
+		<dependency>
+            <groupId>org.docx4j</groupId>
+			<artifactId>docx4j-JAXB-ReferenceImpl</artifactId>
+			<version>11.3.2</version>
+		</dependency>
+		-->
+
+	</dependencies>
+
+	<build>
+
+		<finalName>${artifactId}</finalName>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${jdk.desktop.source.version}</source>
+					<target>${jdk.desktop.target.version}</target>
+					<!--
+					<release>10</release>
+					-->
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>
