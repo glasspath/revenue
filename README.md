@@ -1,3 +1,5 @@
+> **_NOTE:_** The first release is on the way, [click here](https://github.com/orgs/glasspath/projects/2) to follow the progress.
+
 # Glasspath - Revenue
 
 Invoicing & more, available for MacOS, Windows & Linux.
