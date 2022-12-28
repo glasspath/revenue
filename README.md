@@ -3,9 +3,8 @@
 # Glasspath - Revenue
 
 Invoicing & more, available for MacOS, Windows & Linux.
-<p align="center">
-<img width="1519" alt="revenue-preview" src="https://user-images.githubusercontent.com/16516303/209685917-d39c55ee-1056-448e-8ba6-a3e16f724022.png">
-</p>
+![preview-light](https://user-images.githubusercontent.com/16516303/209685428-644ea61e-a47a-40d2-bc39-1467b5e53466.png#gh-light-mode-only)
+![preview-dark](https://user-images.githubusercontent.com/16516303/209837527-9b3bc452-f1f5-4986-8c95-bbfda2acea45.png#gh-dark-mode-only)
 
 ## Mobile App
 
