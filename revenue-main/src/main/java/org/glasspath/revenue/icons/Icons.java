@@ -139,6 +139,7 @@ public class Icons {
 	public static final SvgIcon receiptOutlineWhiteLarge = new SvgIcon(22, 0, getSvg("receipt-outline.svg"));
 	public static final SvgIcon redo = new SvgIcon(getSvg("redo.svg"));
 	public static final SvgIcon refreshBlueLarge = new SvgIcon(22, 0, getSvg("refresh.svg"));
+	public static final SvgIcon share = new SvgIcon(getSvg("share.svg"));
 	public static final SvgIcon sortAscending = new SvgIcon(getSvg("sort-ascending.svg"));
 	public static final SvgIcon sortDescending = new SvgIcon(getSvg("sort-descending.svg"));
 	public static final SvgIcon sortCalendarAscending = new SvgIcon(getSvg("sort-calendar-ascending.svg"));
