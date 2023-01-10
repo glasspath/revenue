@@ -104,6 +104,7 @@ public class Icons {
 	public static final SvgIcon downloadXLarge = new SvgIcon(getSvg("download.svg"));
 	public static final SvgIcon emailArrowRight = new SvgIcon(getSvg("email-arrow-right.svg"));
 	public static final SvgIcon emailArrowRightOutline = new SvgIcon(getSvg("email-arrow-right-outline.svg"));
+	public static final SvgIcon emailOutlineGreenLarge = new SvgIcon(22, 0, getSvg("email-outline.svg"));
 	public static final SvgIcon fileDelimitedOutline = new SvgIcon(getSvg("file-delimited-outline.svg"));
 	public static final SvgIcon fileDocumentOutline = new SvgIcon(getSvg("file-document-outline.svg"));
 	public static final SvgIcon fileDocumentOutlineBlueLarge = new SvgIcon(22, 0, getSvg("file-document-outline.svg"));
@@ -119,9 +120,9 @@ public class Icons {
 	public static final SvgIcon fileReplaceOutlinePurpleXXLarge = new SvgIcon(56, 0, getSvg("file-replace-outline.svg"));
 	public static final SvgIcon folderOutline = new SvgIcon(getSvg("folder-outline.svg"));
 	public static final SvgIcon hammerScrewdriver = new SvgIcon(getSvg("hammer-screwdriver.svg"));
+	public static final SvgIcon hammerScrewdriverBlueXLarge = new SvgIcon(36, 0, getSvg("hammer-screwdriver.svg"));
 	public static final SvgIcon hammerScrewdriverLarge = new SvgIcon(22, 0, getSvg("hammer-screwdriver.svg"));
 	public static final SvgIcon hammerScrewdriverWhiteLarge = new SvgIcon(22, 0, getSvg("hammer-screwdriver.svg"));
-	public static final SvgIcon hammerScrewdriverBlueXLarge = new SvgIcon(36, 0, getSvg("hammer-screwdriver.svg"));
 	public static final SvgIcon magnify = new SvgIcon(getSvg("magnify.svg"));
 	public static final SvgIcon map = new SvgIcon(getSvg("map.svg"));
 	public static final SvgIcon mapXLarge = new SvgIcon(36, 0, getSvg("map.svg"));
@@ -192,6 +193,7 @@ public class Icons {
 		currencyUsdLarge.setColorFilter(SvgIcon.BLUE);
 		currencyUsdWhiteLarge.setColorFilter(SvgIcon.WHITE);
 		currencyUsdBlueXLarge.setColorFilter(SvgIcon.BLUE);
+		emailOutlineGreenLarge.setColorFilter(SvgIcon.GREEN);
 		fileDocumentOutlineBlueLarge.setColorFilter(SvgIcon.BLUE);
 		fileDocumentOutlineGreen.setColorFilter(SvgIcon.GREEN);
 		fileDocumentOutlineGreenLarge.setColorFilter(SvgIcon.GREEN);
@@ -204,9 +206,9 @@ public class Icons {
 		fileReplaceOutlineGreenXXLarge.setColorFilter(SvgIcon.GREEN);
 		fileReplaceOutlinePurpleXXLarge.setColorFilter(SvgIcon.PURPLE);
 		hammerScrewdriver.setColorFilter(SvgIcon.BLUE);
+		hammerScrewdriverBlueXLarge.setColorFilter(SvgIcon.BLUE);
 		hammerScrewdriverLarge.setColorFilter(SvgIcon.BLUE);
 		hammerScrewdriverWhiteLarge.setColorFilter(SvgIcon.WHITE);
-		hammerScrewdriverBlueXLarge.setColorFilter(SvgIcon.BLUE);
 		map.setColorFilter(SvgIcon.YELLOW);
 		mapXLarge.setColorFilter(SvgIcon.YELLOW);
 		percentBox.setColorFilter(SvgIcon.RED);
