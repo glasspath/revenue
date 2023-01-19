@@ -1,5 +1,3 @@
-defaultTemplateName=factuur template 1.docx
-
 invoicelines=factuurregels
 invoicelines.description=factuurregels.omschrijving
 invoicelines.quantity=factuurregels.aantal
