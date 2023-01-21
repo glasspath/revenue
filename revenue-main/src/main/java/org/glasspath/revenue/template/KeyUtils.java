@@ -36,12 +36,12 @@ public class KeyUtils {
 	public static final Key DATE_FROM = new Key("date_from");
 	public static final Key DATE_TO = new Key("date_to");
 	public static final Key HOUR = new Key("hour");
+	public static final Key INVOICE = new Key("invoice");
 	public static final Key NUMBER = new Key("number");
 	public static final Key PROJECT = new Key("project");
 	public static final Key RATE = new Key("rate");
 	public static final Key TIME_FROM = new Key("time_from");
 	public static final Key TIME_TO = new Key("time_to");
-	public static final Key INVOICE = new Key("invoice");
 
 	protected KeyUtils() {
 
