@@ -24,6 +24,8 @@ package org.glasspath.revenue.template;
 
 import java.util.ResourceBundle;
 
+import org.glasspath.aerialist.Field.FieldType;
+
 @SuppressWarnings("nls")
 public class KeyUtils {
 
@@ -77,6 +79,7 @@ public class KeyUtils {
 	public static final Key PERIOD = new Key("Period");
 	public static final Key PO_BOX = new Key("Po_box");
 	public static final Key POSTAL_CODE = new Key("PostalCode");
+	public static final Key PREVIEW_IMAGE = new Key("PreviewImage");
 	public static final Key PRICE = new Key("Price");
 	public static final Key PROJECT = new Key("Project");
 
@@ -94,6 +97,7 @@ public class KeyUtils {
 	public static final Key TELEPHONE = new Key("Telephone");
 	public static final Key TIME = new Key("Time");
 	public static final Key TIME_FROM = new Key("TimeFrom");
+	public static final Key TIME_SHEET = new Key("TimeSheet");
 	public static final Key TIME_TO = new Key("TimeTo");
 	public static final Key TOTAL = new Key("Total");
 	public static final Key TOTAL_EXCL = new Key("TotalExcl");
@@ -176,8 +180,20 @@ public class KeyUtils {
 		return key(VAT_RATE, key);
 	}
 
+	public static String timeSheetKey(Key key) {
+		return key(TIME_SHEET, key);
+	}
+
+	public static String timeSheetTotalKey(Key key) {
+		return key(TIME_SHEET, TOTAL, key);
+	}
+
+	public static String totalKey(Key key) {
+		return key(TOTAL, key);
+	}
+
 	public static String tKey(String key) {
-		return "t:" + key;
+		return FieldType.TEMPLATE.getIdentifier() + key;
 	}
 
 	public static String key(Key key1, Key key2) {
