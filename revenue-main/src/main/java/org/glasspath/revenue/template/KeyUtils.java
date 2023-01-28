@@ -61,6 +61,7 @@ public class KeyUtils {
 	public static final Key EXPENSES = new Key("Expenses");
 
 	public static final Key FAX = new Key("Fax");
+	public static final Key FORMATTED_NUMBER = new Key("FormattedNumber");
 	public static final Key FROM = new Key("From");
 
 	public static final Key HOUR = new Key("Hour");
