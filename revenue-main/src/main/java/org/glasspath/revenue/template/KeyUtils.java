@@ -59,6 +59,7 @@ public class KeyUtils {
 	public static final Key EMAIL = new Key("Email");
 	public static final Key EXPENSE = new Key("Expense");
 	public static final Key EXPENSES = new Key("Expenses");
+	public static final Key EXPENSES_VAT_RATE = new Key("ExpensesVatRate");
 
 	public static final Key FAX = new Key("Fax");
 	public static final Key FORMATTED_NUMBER = new Key("FormattedNumber");
@@ -69,6 +70,7 @@ public class KeyUtils {
 
 	public static final Key INVOICE = new Key("Invoice");
 	public static final Key INVOICES = new Key("Invoices");
+	public static final Key INVOICES_VAT_RATE = new Key("InvoicesVatRate");
 	public static final Key INVOICE_LINE = new Key("InvoiceLine");
 
 	public static final Key MILEAGE = new Key("Mileage");
@@ -85,9 +87,11 @@ public class KeyUtils {
 	public static final Key PROJECT = new Key("Project");
 
 	public static final Key QUANTITY = new Key("Quantity");
+	public static final Key QUOTE = new Key("Quote");
 
 	public static final Key RATE = new Key("Rate");
 	public static final Key REFERENCE = new Key("Reference");
+	public static final Key REPORT = new Key("Report");
 	public static final Key ROUTE = new Key("Route");
 
 	public static final Key STATE = new Key("State");
@@ -100,10 +104,13 @@ public class KeyUtils {
 	public static final Key TIME_FROM = new Key("TimeFrom");
 	public static final Key TIME_SHEET = new Key("TimeSheet");
 	public static final Key TIME_TO = new Key("TimeTo");
+	public static final Key TO = new Key("To");
 	public static final Key TOTAL = new Key("Total");
 	public static final Key TOTAL_EXCL = new Key("TotalExcl");
+	public static final Key TOTAL_FOR_INVOICE = new Key("TotalForInvoice");
 	public static final Key TOTAL_INCL = new Key("TotalIncl");
 
+	public static final Key VALID_UNTIL_DATE = new Key("ValidUntilDate");
 	public static final Key VAT = new Key("Vat");
 	public static final Key VAT_NUMBER = new Key("VatNumber");
 	public static final Key VAT_RATE = new Key("VatRate");
@@ -161,12 +168,40 @@ public class KeyUtils {
 		return key(HOUR, key);
 	}
 
+	public static String hoursKey(Key key) {
+		return key(HOURS, key);
+	}
+
 	public static String mileageKey(Key key) {
 		return key(MILEAGE, key);
 	}
 
+	public static String mileagesKey(Key key) {
+		return key(MILEAGES, key);
+	}
+
 	public static String callKey(Key key) {
 		return key(CALL, key);
+	}
+
+	public static String callsKey(Key key) {
+		return key(CALLS, key);
+	}
+
+	public static String quoteKey(Key key) {
+		return key(QUOTE, key);
+	}
+
+	public static String expenseKey(Key key) {
+		return key(EXPENSE, key);
+	}
+
+	public static String expensesKey(Key key) {
+		return key(EXPENSES, key);
+	}
+
+	public static String expensesVatRateKey(Key key) {
+		return key(EXPENSES_VAT_RATE, key);
 	}
 
 	public static String invoiceKey(Key key) {
@@ -177,8 +212,20 @@ public class KeyUtils {
 		return key(INVOICE_LINE, key);
 	}
 
+	public static String invoicesKey(Key key) {
+		return key(INVOICES, key);
+	}
+
+	public static String invoicesVatRateKey(Key key) {
+		return key(INVOICES_VAT_RATE, key);
+	}
+
 	public static String vatRateKey(Key key) {
 		return key(VAT_RATE, key);
+	}
+
+	public static String reportKey(Key key) {
+		return key(REPORT, key);
 	}
 
 	public static String timeSheetKey(Key key) {
