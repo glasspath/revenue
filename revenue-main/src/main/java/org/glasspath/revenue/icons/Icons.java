@@ -107,6 +107,7 @@ public class Icons {
 	public static final SvgIcon emailOutlineGreenLarge = new SvgIcon(22, 0, getSvg("email-outline.svg"));
 	public static final SvgIcon fileDelimitedOutline = new SvgIcon(getSvg("file-delimited-outline.svg"));
 	public static final SvgIcon fileDocumentOutline = new SvgIcon(getSvg("file-document-outline.svg"));
+	public static final SvgIcon fileDocumentOutlineBlue = new SvgIcon(getSvg("file-document-outline.svg"));
 	public static final SvgIcon fileDocumentOutlineBlueLarge = new SvgIcon(22, 0, getSvg("file-document-outline.svg"));
 	public static final SvgIcon fileDocumentOutlineGreen = new SvgIcon(getSvg("file-document-outline.svg"));
 	public static final SvgIcon fileDocumentOutlineGreenLarge = new SvgIcon(22, 0, getSvg("file-document-outline.svg"));
@@ -194,6 +195,7 @@ public class Icons {
 		currencyUsdWhiteLarge.setColorFilter(SvgIcon.WHITE);
 		currencyUsdBlueXLarge.setColorFilter(SvgIcon.BLUE);
 		emailOutlineGreenLarge.setColorFilter(SvgIcon.GREEN);
+		fileDocumentOutlineBlue.setColorFilter(SvgIcon.BLUE);
 		fileDocumentOutlineBlueLarge.setColorFilter(SvgIcon.BLUE);
 		fileDocumentOutlineGreen.setColorFilter(SvgIcon.GREEN);
 		fileDocumentOutlineGreenLarge.setColorFilter(SvgIcon.GREEN);

@@ -42,6 +42,7 @@ public class KeyUtils {
 
 	public static final Key CALL = new Key("Call");
 	public static final Key CALLS = new Key("Calls");
+	public static final Key CALLS_INCLUDED = new Key("CallsIncluded");
 	public static final Key CITY = new Key("City");
 	public static final Key CLIENT = new Key("Client");
 	public static final Key COMMENTS = new Key("Comments");
@@ -59,6 +60,7 @@ public class KeyUtils {
 	public static final Key EMAIL = new Key("Email");
 	public static final Key EXPENSE = new Key("Expense");
 	public static final Key EXPENSES = new Key("Expenses");
+	public static final Key EXPENSES_INCLUDED = new Key("ExpensesIncluded");
 	public static final Key EXPENSES_VAT_RATE = new Key("ExpensesVatRate");
 
 	public static final Key FAX = new Key("Fax");
@@ -67,13 +69,16 @@ public class KeyUtils {
 
 	public static final Key HOUR = new Key("Hour");
 	public static final Key HOURS = new Key("Hours");
+	public static final Key HOURS_INCLUDED = new Key("HoursIncluded");
 
 	public static final Key INVOICE = new Key("Invoice");
 	public static final Key INVOICES = new Key("Invoices");
+	public static final Key INVOICES_INCLUDED = new Key("InvoicesIncluded");
 	public static final Key INVOICES_VAT_RATE = new Key("InvoicesVatRate");
 	public static final Key INVOICE_LINE = new Key("InvoiceLine");
 
 	public static final Key MILEAGE = new Key("Mileage");
+	public static final Key MILEAGE_INCLUDED = new Key("MileageIncluded");
 	public static final Key MILEAGES = new Key("Mileages");
 
 	public static final Key NAME = new Key("Name");
@@ -88,6 +93,7 @@ public class KeyUtils {
 
 	public static final Key QUANTITY = new Key("Quantity");
 	public static final Key QUOTE = new Key("Quote");
+	public static final Key QUOTES_INCLUDED = new Key("QuotesIncluded");
 
 	public static final Key RATE = new Key("Rate");
 	public static final Key REFERENCE = new Key("Reference");
