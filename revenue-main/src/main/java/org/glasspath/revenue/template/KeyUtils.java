@@ -80,12 +80,13 @@ public class KeyUtils {
 	public static final Key MILEAGE = new Key("Mileage");
 	public static final Key MILEAGE_INCLUDED = new Key("MileageIncluded");
 	public static final Key MILEAGES = new Key("Mileages");
+	public static final Key MY_COMPANY = new Key("MyCompany");
 
 	public static final Key NAME = new Key("Name");
 	public static final Key NUMBER = new Key("Number");
 
 	public static final Key PERIOD = new Key("Period");
-	public static final Key PO_BOX = new Key("Po_box");
+	public static final Key PO_BOX = new Key("PoBox");
 	public static final Key POSTAL_CODE = new Key("PostalCode");
 	public static final Key PREVIEW_IMAGE = new Key("PreviewImage");
 	public static final Key PRICE = new Key("Price");
@@ -156,6 +157,18 @@ public class KeyUtils {
 
 		return key.description;
 
+	}
+
+	public static String myCompanyKey(Key key) {
+		return key(MY_COMPANY, key);
+	}
+
+	public static String myCompanyAddress1Key(Key key) {
+		return key(MY_COMPANY, ADDRESS_1, key);
+	}
+
+	public static String myCompanyAddress2Key(Key key) {
+		return key(MY_COMPANY, ADDRESS_2, key);
 	}
 
 	public static String clientKey(Key key) {
