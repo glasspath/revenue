@@ -111,8 +111,9 @@ public class Icons {
 	public static final SvgIcon fileDocumentOutlineBlueLarge = new SvgIcon(22, 0, getSvg("file-document-outline.svg"));
 	public static final SvgIcon fileDocumentOutlineGreen = new SvgIcon(getSvg("file-document-outline.svg"));
 	public static final SvgIcon fileDocumentOutlineGreenLarge = new SvgIcon(22, 0, getSvg("file-document-outline.svg"));
-	public static final SvgIcon fileDocumentOutlineWhiteLarge = new SvgIcon(22, 0, getSvg("file-document-outline.svg"));
 	public static final SvgIcon fileDocumentOutlineGreenXLarge = new SvgIcon(36, 0, getSvg("file-document-outline.svg"));
+	public static final SvgIcon fileDocumentOutlineLarge = new SvgIcon(22, 0, getSvg("file-document-outline.svg"));
+	public static final SvgIcon fileDocumentOutlineWhiteLarge = new SvgIcon(22, 0, getSvg("file-document-outline.svg"));
 	public static final SvgIcon fileContrast = new SvgIcon(getSvg("file.svg"));
 	public static final SvgIcon fileGreen = new SvgIcon(getSvg("file.svg"));
 	public static final SvgIcon fileOutlineContrast = new SvgIcon(getSvg("file-outline.svg"));
