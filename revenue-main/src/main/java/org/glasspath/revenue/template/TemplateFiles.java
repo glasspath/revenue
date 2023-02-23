@@ -35,6 +35,7 @@ import org.glasspath.aerialist.Aerialist;
 import org.glasspath.aerialist.XDoc;
 import org.glasspath.aerialist.editor.DocumentEditorContext;
 import org.glasspath.aerialist.editor.DocumentEditorPanel;
+import org.glasspath.common.Common;
 import org.glasspath.common.os.OsUtils;
 import org.glasspath.common.os.preferences.BasicFilePreferences;
 import org.glasspath.common.swing.DesktopUtils;
@@ -48,6 +49,7 @@ import org.glasspath.revenue.icons.Icons;
 import org.glasspath.revenue.template.invoice.InvoiceTemplateUtils;
 import org.glasspath.revenue.template.report.ReportTemplateUtils;
 import org.glasspath.revenue.template.timesheet.TimeSheetTemplateUtils;
+import org.glasspath.revenue.template.word.WordUtils;
 
 public class TemplateFiles {
 
@@ -137,8 +139,18 @@ public class TemplateFiles {
 	public static int getFileType(File file) {
 
 		if (file != null) {
+			return getFileType(file.getName());
+		}
 
-			String fileName = file.getName().toLowerCase();
+		return FILE_TYPE_UNKNOWN;
+
+	}
+
+	public static int getFileType(String fileName) {
+
+		if (fileName != null) {
+
+			fileName = fileName.toLowerCase();
 			if (fileName.endsWith("." + XDoc.DOCUMENT_EXTENSION)) { //$NON-NLS-1$
 				return FILE_TYPE_GPDX;
 			} else if (fileName.endsWith("." + XDoc.EMAIL_EXTENSION)) { //$NON-NLS-1$
@@ -179,8 +191,16 @@ public class TemplateFiles {
 	}
 
 	public static Icon getTemplateIcon(File file) {
+		return getTemplateIcon(getFileType(file));
+	}
 
-		switch (getFileType(file)) {
+	public static Icon getTemplateIcon(String fileName) {
+		return getTemplateIcon(getFileType(fileName));
+	}
+
+	public static Icon getTemplateIcon(int fileType) {
+
+		switch (fileType) {
 
 		case FILE_TYPE_GPDX:
 			return Icons.fileDocumentOutlineGreenLarge;
@@ -195,24 +215,38 @@ public class TemplateFiles {
 
 	}
 
-	public static void editTemplate(FrameContext context, Category selectedCategory, File file) {
+	public static void editDocument(FrameContext context, Category category, File file) {
 
 		switch (getFileType(file)) {
 
 		case FILE_TYPE_GPDX:
-			editAerialistDocument(context, selectedCategory, file);
+			editAerialistDocument(context, category, file);
 			break;
 
 		case FILE_TYPE_GPEX:
-			editCommuniqueDocument(context, selectedCategory, file);
+			editCommuniqueEmail(context, category, file);
 			break;
 
 		case FILE_TYPE_DOCX:
-			DesktopUtils.open(file);
+
+			try {
+
+				// First try using COM (docx documents might not be associated with Word)
+				WordUtils.open(file.getAbsolutePath());
+
+			} catch (Exception e) {
+
+				Common.LOGGER.error("Exception while opening word document: " + file.getAbsolutePath(), e); //$NON-NLS-1$
+
+				// Try the default way
+				DesktopUtils.open(file, context.getFrame(), "Document could not be opened", "The document could not be opened..");
+
+			}
+
 			break;
 
 		case FILE_TYPE_ODT:
-			DesktopUtils.open(file);
+			DesktopUtils.open(file, context.getFrame(), "Document could not be opened", "The document could not be opened..");
 			break;
 
 		default:
@@ -257,7 +291,7 @@ public class TemplateFiles {
 
 	}
 
-	public static void editCommuniqueDocument(FrameContext context, Category category, File file) {
+	public static void editCommuniqueEmail(FrameContext context, Category category, File file) {
 
 		EmailEditorContext editorContext = new EmailEditorContext() {
 
@@ -291,6 +325,7 @@ public class TemplateFiles {
 
 		if (template != null && template.exists()) {
 
+			// TODO: Add extension instead of replacing
 			File templatePrefs = OsUtils.getFileWithOtherExtension(template, TEMPLATE_PREFERENCES_EXTENSION);
 			if (templatePrefs != null && templatePrefs.exists()) {
 
