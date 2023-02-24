@@ -66,6 +66,9 @@ public class TemplateFiles {
 	public static final FileFilter DOCUMENT_TEMPLATE_FILE_FILTER = OsUtils.createExtensionsFileFilter(
 			Arrays.asList(XDoc.DOCUMENT_EXTENSION, WORD_DOCUMENT_EXTENSION, OPEN_OFFICE_DOCUMENT_EXTENSION));
 
+	public static final FileFilter DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER = OsUtils.createExtensionsFileFilter(
+			Arrays.asList(XDoc.DOCUMENT_EXTENSION));
+
 	public static final FileFilter EMAIL_TEMPLATE_FILE_FILTER = OsUtils.createExtensionsFileFilter(Arrays.asList(XDoc.EMAIL_EXTENSION));
 
 	public static final List<String> LINKED_FILE_EXTENSIONS = Arrays.asList(TEMPLATE_PREFERENCES_EXTENSION);
@@ -77,9 +80,9 @@ public class TemplateFiles {
 	public static final String REPORT_EMAIL_TEMPLATES_DIR = "templates/email/report"; //$NON-NLS-1$
 	public static final String TIME_SHEET_EMAIL_TEMPLATES_DIR = "templates/email/timesheet"; //$NON-NLS-1$
 
-	public static final Category INVOICE_TEMPLATES = new Category("Invoice templates", DOCUMENT_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS);
-	public static final Category REPORT_TEMPLATES = new Category("Report templates", DOCUMENT_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS);
-	public static final Category TIME_SHEET_TEMPLATES = new Category("Time sheet templates", DOCUMENT_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS);
+	public static final Category INVOICE_TEMPLATES = new Category("Invoice templates", DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS);
+	public static final Category REPORT_TEMPLATES = new Category("Report templates", DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS);
+	public static final Category TIME_SHEET_TEMPLATES = new Category("Time sheet templates", DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS);
 	public static final Category INVOICE_EMAIL_TEMPLATES = new Category("Invoice email templates", EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS);
 	public static final Category REPORT_EMAIL_TEMPLATES = new Category("Report email templates", EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS);
 	public static final Category TIME_SHEET_EMAIL_TEMPLATES = new Category("Time sheet email templates", EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS);
