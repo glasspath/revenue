@@ -101,8 +101,7 @@ public class TemplateManagerDialog extends FileManagerDialog {
 
 			if (selectedFile != null) {
 
-				// TODO: Add extension instead of replacing
-				File templatePreferencesFile = OsUtils.getFileWithOtherExtension(selectedFile, TemplateFiles.TEMPLATE_PREFERENCES_EXTENSION);
+				File templatePreferencesFile = OsUtils.getFileByAddingExtension(selectedFile, TemplateFiles.TEMPLATE_PREFERENCES_EXTENSION);
 				PreferencesProvider templateProvider = new PreferencesProvider(new BasicFilePreferences(templatePreferencesFile));
 
 				optionsComponent = getOptionsComponent(selectedCategory, templateProvider, new ActionListener() {

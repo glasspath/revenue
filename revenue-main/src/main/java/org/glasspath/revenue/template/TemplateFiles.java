@@ -318,8 +318,7 @@ public class TemplateFiles {
 
 		if (template != null && template.exists()) {
 
-			// TODO: Add extension instead of replacing
-			File templatePrefs = OsUtils.getFileWithOtherExtension(template, TEMPLATE_PREFERENCES_EXTENSION);
+			File templatePrefs = OsUtils.getFileByAddingExtension(template, TEMPLATE_PREFERENCES_EXTENSION);
 			if (templatePrefs != null && templatePrefs.exists()) {
 
 				BasicFilePreferences preferences = new BasicFilePreferences(templatePrefs);
