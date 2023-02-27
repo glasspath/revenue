@@ -218,16 +218,16 @@ public class TemplateFiles {
 
 	}
 
-	public static void editDocument(FrameContext context, Category category, File file) {
+	public static void editDocument(FrameContext context, IAbout about, Category category, File file) {
 
 		switch (getFileType(file)) {
 
 		case FILE_TYPE_GPDX:
-			editAerialistDocument(context, category, file);
+			editAerialistDocument(about, category, file);
 			break;
 
 		case FILE_TYPE_GPEX:
-			editCommuniqueEmail(context, category, file);
+			editCommuniqueEmail(about, category, file);
 			break;
 
 		case FILE_TYPE_DOCX:
@@ -259,7 +259,7 @@ public class TemplateFiles {
 
 	}
 
-	public static void editAerialistDocument(FrameContext context, Category category, File file) {
+	public static void editAerialistDocument(IAbout about, Category category, File file) {
 
 		DocumentEditorContext editorContext = new DocumentEditorContext() {
 
@@ -283,18 +283,13 @@ public class TemplateFiles {
 			editorContext.setTemplateMetadata(TimeSheetTemplateUtils.createTimeSheetTemplateMetadata());
 		}
 
-		if (context instanceof IAbout) {
-			editorContext.setAbout((IAbout) context);
-		}
+		editorContext.setAbout(about);
 
-		// TODO
-		Aerialist.TEMP_TEST_STANDALONE = false;
-		Aerialist.APPLICATION_CLASS = context.getClass();
 		new Aerialist(editorContext, null, file.getAbsolutePath());
 
 	}
 
-	public static void editCommuniqueEmail(FrameContext context, Category category, File file) {
+	public static void editCommuniqueEmail(IAbout about, Category category, File file) {
 
 		EmailEditorContext editorContext = new EmailEditorContext() {
 
@@ -313,13 +308,8 @@ public class TemplateFiles {
 			editorContext.setTemplateMetadata(TimeSheetTemplateUtils.createTimeSheetTemplateMetadata());
 		}
 
-		if (context instanceof IAbout) {
-			editorContext.setAbout((IAbout) context);
-		}
+		editorContext.setAbout(about);
 
-		// TODO
-		Communique.TEMP_TEST_STANDALONE = false;
-		Communique.APPLICATION_CLASS = context.getClass();
 		new Communique(editorContext, null, file.getAbsolutePath());
 
 	}

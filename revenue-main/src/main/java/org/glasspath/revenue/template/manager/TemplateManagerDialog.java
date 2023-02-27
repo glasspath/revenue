@@ -42,6 +42,7 @@ import org.glasspath.common.os.OsUtils;
 import org.glasspath.common.os.preferences.BasicFilePreferences;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.FrameContext;
+import org.glasspath.common.swing.dialog.AboutDialog.IAbout;
 import org.glasspath.common.swing.file.manager.FileManagerDialog;
 import org.glasspath.revenue.template.TemplateFiles;
 import org.glasspath.revenue.template.manager.CompanyOptionsPanel.CompanyNamesProvider;
@@ -49,17 +50,19 @@ import org.glasspath.revenue.template.manager.CompanyOptionsPanel.CompanyNamesPr
 public class TemplateManagerDialog extends FileManagerDialog {
 
 	protected final FrameContext context;
+	protected final IAbout about;
 	protected final CompanyNamesProvider companyNamesProvider;
 
-	public TemplateManagerDialog(FrameContext context, CompanyNamesProvider companyNamesProvider) {
-		this(context, companyNamesProvider, null);
+	public TemplateManagerDialog(FrameContext context, IAbout about, CompanyNamesProvider companyNamesProvider) {
+		this(context, about, companyNamesProvider, null);
 	}
 
-	public TemplateManagerDialog(FrameContext context, CompanyNamesProvider companyNamesProvider, Category selectedCategory) {
+	public TemplateManagerDialog(FrameContext context, IAbout about, CompanyNamesProvider companyNamesProvider, Category selectedCategory) {
 
 		super(context);
 
 		this.context = context;
+		this.about = about;
 		this.companyNamesProvider = companyNamesProvider;
 
 		setTitle("Template Manager");
@@ -187,7 +190,7 @@ public class TemplateManagerDialog extends FileManagerDialog {
 
 	@Override
 	protected void editFile(Category selectedCategory, File file) {
-		TemplateFiles.editDocument(context, selectedCategory, file);
+		TemplateFiles.editDocument(context, about, selectedCategory, file);
 	}
 
 }
