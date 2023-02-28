@@ -232,18 +232,26 @@ public class TemplateFiles {
 
 		case FILE_TYPE_DOCX:
 
-			try {
+			boolean documentOpened = false;
 
-				// First try using COM (docx documents might not be associated with Word)
-				WordUtils.open(file.getAbsolutePath());
+			// First try using COM (docx documents might not be associated with Word)
+			if (OsUtils.PLATFORM_WINDOWS) {
 
-			} catch (Exception e) {
+				try {
 
-				Common.LOGGER.error("Exception while opening word document: " + file.getAbsolutePath(), e); //$NON-NLS-1$
+					WordUtils.open(file.getAbsolutePath());
 
-				// Try the default way
+					documentOpened = true;
+
+				} catch (Exception e) {
+					Common.LOGGER.error("Exception while opening word document: " + file.getAbsolutePath(), e); //$NON-NLS-1$
+				}
+
+			}
+
+			// Try the default way
+			if (!documentOpened) {
 				DesktopUtils.open(file, context.getFrame(), "Document could not be opened", "The document could not be opened..");
-
 			}
 
 			break;
