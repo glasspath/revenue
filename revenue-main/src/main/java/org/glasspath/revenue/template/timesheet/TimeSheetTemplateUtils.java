@@ -299,6 +299,9 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 		metadata.addFieldAsList(totalKey(MILEAGE));
 		metadata.addFieldAsList(totalKey(CALLS));
 
+		// XDocReport doesn't support dot in image key
+		metadata.addFieldAsImage(timeSheetKey(PREVIEW_IMAGE).replace(".", ""));
+
 		TemplateUtils.addHourXDocMetadata(metadata);
 		TemplateUtils.addMileageXDocMetadata(metadata);
 		TemplateUtils.addCallXDocMetadata(metadata);
