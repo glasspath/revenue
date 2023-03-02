@@ -141,6 +141,7 @@ public class FieldFormatPanel extends JPanel {
 			"#.###" //$NON-NLS-1$
 	};
 	public static final int DEFAULT_DECIMAL_FORMAT = 2;
+	public static final int DEFAULT_INTEGER_DECIMAL_FORMAT = 5;
 	public static final float DECIMAL_FORMAT_SAMPLE_1 = 100.0F;
 	public static final float DECIMAL_FORMAT_SAMPLE_2 = 12.3456F;
 
@@ -173,11 +174,15 @@ public class FieldFormatPanel extends JPanel {
 	public static final Pref AMOUNT_FORMAT = new Pref("amountFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref AMOUNT_APPEND_TEXT = new Pref("amountAppendText", ""); //$NON-NLS-1$ //$NON-NLS-2$
 
+	public static final Pref QUANTITY_PREPEND_TEXT = new Pref("quantityPrependText", ""); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final Pref QUANTITY_FORMAT = new Pref("quantityFormat", DEFAULT_INTEGER_DECIMAL_FORMAT); //$NON-NLS-1$
+	public static final Pref QUANTITY_APPEND_TEXT = new Pref("quantityAppendText", ""); //$NON-NLS-1$ //$NON-NLS-2$
+
 	public FieldFormatPanel(PreferencesProvider provider) {
 
 		GridBagLayout layout = new GridBagLayout();
-		layout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1 };
-		layout.rowHeights = new int[] { 20, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 5 };
+		layout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1 };
+		layout.rowHeights = new int[] { 20, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 3, 23, 5 };
 		layout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0 };
 		layout.columnWidths = new int[] { 7, 140, 5, 75, 3, 50, 3, 75, 7 };
 		setLayout(layout);
@@ -240,6 +245,11 @@ public class FieldFormatPanel extends JPanel {
 		add(PreferencesUtils.createTextField(provider, AMOUNT_PREPEND_TEXT, JTextField.RIGHT), new GridBagConstraints(3, 19, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		add(PreferencesUtils.createComboBox(provider, AMOUNT_FORMAT, DECIMAL_FORMATS, new DecimalFormatListCellRenderer(provider)), new GridBagConstraints(5, 19, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		add(PreferencesUtils.createTextField(provider, AMOUNT_APPEND_TEXT), new GridBagConstraints(7, 19, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+
+		add(new JLabel(Resources.getString("Quantity")), new GridBagConstraints(1, 21, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
+		add(PreferencesUtils.createTextField(provider, QUANTITY_PREPEND_TEXT, JTextField.RIGHT), new GridBagConstraints(3, 21, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		add(PreferencesUtils.createComboBox(provider, QUANTITY_FORMAT, DECIMAL_FORMATS, new DecimalFormatListCellRenderer(provider)), new GridBagConstraints(5, 21, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		add(PreferencesUtils.createTextField(provider, QUANTITY_APPEND_TEXT), new GridBagConstraints(7, 21, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 
 	}
 
