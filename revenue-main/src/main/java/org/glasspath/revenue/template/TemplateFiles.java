@@ -239,7 +239,7 @@ public class TemplateFiles {
 
 				try {
 
-					WordUtils.open(file.getAbsolutePath());
+					WordUtils.open(file);
 
 					documentOpened = true;
 

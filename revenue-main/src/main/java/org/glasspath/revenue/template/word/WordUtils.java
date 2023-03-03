@@ -22,6 +22,8 @@
  */
 package org.glasspath.revenue.template.word;
 
+import java.io.File;
+
 import org.glasspath.revenue.template.word.Word.ActiveDocument;
 import org.glasspath.revenue.template.word.Word.Application;
 import org.glasspath.revenue.template.word.Word.Documents;
@@ -35,86 +37,94 @@ public class WordUtils {
 
 	}
 
-	public static void open(String filePath) throws Exception {
+	public static void open(File docxFile) throws Exception {
 
-		boolean inited = false;
+		if (docxFile != null && docxFile.exists()) {
 
-		try {
+			boolean inited = false;
 
-			Ole32.INSTANCE.CoInitializeEx(Pointer.NULL, Ole32.COINIT_MULTITHREADED);
+			try {
 
-			inited = true;
+				Ole32.INSTANCE.CoInitializeEx(Pointer.NULL, Ole32.COINIT_MULTITHREADED);
 
-			Word word = new Word();
+				inited = true;
 
-			Application app = word.getApplication();
-			if (app != null) {
+				Word word = new Word();
 
-				word.setVisible(true);
+				Application app = word.getApplication();
+				if (app != null) {
 
-				Documents documents = app.getDocuments();
-				if (documents != null) {
-					documents.open(filePath);
+					word.setVisible(true);
+
+					Documents documents = app.getDocuments();
+					if (documents != null) {
+						documents.open(docxFile.getAbsolutePath());
+					}
+
+				} else {
+					// TODO?
 				}
 
-			} else {
-				// TODO?
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				if (inited) {
+					Ole32.INSTANCE.CoUninitialize();
+				}
 			}
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (inited) {
-				Ole32.INSTANCE.CoUninitialize();
-			}
 		}
 
 	}
 
-	public static void exportToPdf(String filePath, String pdfPath) throws Exception {
+	public static void exportToPdf(File docxFile, File pdfFile) throws Exception {
 
-		boolean inited = false;
+		if (docxFile != null && docxFile.exists() && pdfFile != null) {
 
-		try {
+			boolean inited = false;
 
-			Ole32.INSTANCE.CoInitializeEx(Pointer.NULL, Ole32.COINIT_MULTITHREADED);
+			try {
 
-			inited = true;
+				Ole32.INSTANCE.CoInitializeEx(Pointer.NULL, Ole32.COINIT_MULTITHREADED);
 
-			Word word = new Word();
+				inited = true;
 
-			Application app = word.getApplication();
-			if (app != null) {
+				Word word = new Word();
 
-				word.setVisible(false);
+				Application app = word.getApplication();
+				if (app != null) {
 
-				Documents documents = app.getDocuments();
-				if (documents != null) {
+					word.setVisible(false);
 
-					documents.open(filePath);
+					Documents documents = app.getDocuments();
+					if (documents != null) {
 
-					ActiveDocument activeDocument = word.getActiveDocument();
-					if (activeDocument != null) {
+						documents.open(docxFile.getAbsolutePath());
 
-						activeDocument.saveAs(pdfPath, Word.FILE_TYPE_PDF);
-						activeDocument.close(false);
+						ActiveDocument activeDocument = word.getActiveDocument();
+						if (activeDocument != null) {
+
+							activeDocument.saveAs(pdfFile.getAbsolutePath(), Word.FILE_TYPE_PDF);
+							activeDocument.close(false);
+
+						}
 
 					}
 
+					word.quit();
+
+				} else {
+					// TODO?
 				}
 
-				word.quit();
-
-			} else {
-				// TODO?
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				if (inited) {
+					Ole32.INSTANCE.CoUninitialize();
+				}
 			}
 
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			if (inited) {
-				Ole32.INSTANCE.CoUninitialize();
-			}
 		}
 
 	}
