@@ -56,6 +56,7 @@ import javax.swing.event.DocumentListener;
 
 import org.glasspath.common.locale.LocaleUtils;
 import org.glasspath.common.locale.LocaleUtils.LanguageTag;
+import org.glasspath.common.os.OsUtils;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.color.ColorUtils;
 import org.glasspath.common.swing.file.chooser.FileChooser;
@@ -75,6 +76,7 @@ public class FirstLaunchFrame {
 
 	private final Listener listener;
 	private final Preferences preferences;
+	private final File applicationDir;
 	private final JFrame frame;
 	private final ContentPanel contentPanel;
 	private final JLabel statusLabel;
@@ -83,11 +85,14 @@ public class FirstLaunchFrame {
 
 	private int action = ACTION_DEFAULT;
 
-	public FirstLaunchFrame(Class<?> preferencesClass, Listener listener) {
+	public FirstLaunchFrame(Class<?> applicationClass, Listener listener) {
 
 		this.listener = listener;
 
-		preferences = Preferences.userNodeForPackage(preferencesClass);
+		preferences = Preferences.userNodeForPackage(applicationClass);
+
+		// TODO: Check for null? (should not be possible)
+		applicationDir = OsUtils.getApplicationJarFile(applicationClass).getParentFile();
 
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -194,6 +199,8 @@ public class FirstLaunchFrame {
 			}
 		});
 
+		validateInput();
+
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
@@ -208,7 +215,7 @@ public class FirstLaunchFrame {
 			contentPanel.projectLocationTextField.setBackground(ColorUtils.INVALID_INPUT_BACKGROUND);
 		}
 
-		boolean projecNameValid = ProjectUtils.isValidNameForNewProject(contentPanel.projectLocationTextField.getText(), contentPanel.projectNameTextField.getText());
+		boolean projecNameValid = ProjectUtils.getDirFileForNewProject(contentPanel.projectLocationTextField.getText(), contentPanel.projectNameTextField.getText()) != null;
 		if (projecNameValid) {
 			contentPanel.projectNameTextField.setBackground(contentPanel.defaultFieldBackground);
 		} else {
@@ -268,7 +275,7 @@ public class FirstLaunchFrame {
 			@Override
 			public void run() {
 
-				File projectDir = ProjectUtils.createNewProject(contentPanel.projectLocationTextField.getText(), contentPanel.projectNameTextField.getText());
+				File projectDir = ProjectUtils.createNewProject(contentPanel.projectLocationTextField.getText(), contentPanel.projectNameTextField.getText(), applicationDir);
 
 				// TODO: Check if project was successfully created? For now we prefer
 				// to launch Revenue (will show a message if project cannot be opened)

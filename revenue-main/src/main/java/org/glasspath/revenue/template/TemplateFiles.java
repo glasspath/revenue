@@ -45,6 +45,7 @@ import org.glasspath.common.swing.file.manager.FileManagerDialog.Category;
 import org.glasspath.communique.Communique;
 import org.glasspath.communique.editor.EmailEditorContext;
 import org.glasspath.communique.editor.EmailEditorPanel;
+import org.glasspath.revenue.ProjectUtils;
 import org.glasspath.revenue.icons.Icons;
 import org.glasspath.revenue.template.invoice.InvoiceTemplateUtils;
 import org.glasspath.revenue.template.report.ReportTemplateUtils;
@@ -73,13 +74,6 @@ public class TemplateFiles {
 
 	public static final List<String> LINKED_FILE_EXTENSIONS = Arrays.asList(TEMPLATE_PREFERENCES_EXTENSION);
 
-	public static final String INVOICE_TEMPLATES_DIR = "templates/invoice"; //$NON-NLS-1$
-	public static final String REPORT_TEMPLATES_DIR = "templates/report"; //$NON-NLS-1$
-	public static final String TIME_SHEET_TEMPLATES_DIR = "templates/timesheet"; //$NON-NLS-1$
-	public static final String INVOICE_EMAIL_TEMPLATES_DIR = "templates/email/invoice"; //$NON-NLS-1$
-	public static final String REPORT_EMAIL_TEMPLATES_DIR = "templates/email/report"; //$NON-NLS-1$
-	public static final String TIME_SHEET_EMAIL_TEMPLATES_DIR = "templates/email/timesheet"; //$NON-NLS-1$
-
 	public static final Category INVOICE_TEMPLATES = new Category("Invoice templates", DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS);
 	public static final Category REPORT_TEMPLATES = new Category("Report templates", DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS);
 	public static final Category TIME_SHEET_TEMPLATES = new Category("Time sheet templates", DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS);
@@ -95,12 +89,12 @@ public class TemplateFiles {
 
 		if (applicationDir != null) {
 
-			INVOICE_TEMPLATES.setSourceDirectory(new File(applicationDir, INVOICE_TEMPLATES_DIR));
-			REPORT_TEMPLATES.setSourceDirectory(new File(applicationDir, REPORT_TEMPLATES_DIR));
-			TIME_SHEET_TEMPLATES.setSourceDirectory(new File(applicationDir, TIME_SHEET_TEMPLATES_DIR));
-			INVOICE_EMAIL_TEMPLATES.setSourceDirectory(new File(applicationDir, INVOICE_EMAIL_TEMPLATES_DIR));
-			REPORT_EMAIL_TEMPLATES.setSourceDirectory(new File(applicationDir, REPORT_EMAIL_TEMPLATES_DIR));
-			TIME_SHEET_EMAIL_TEMPLATES.setSourceDirectory(new File(applicationDir, TIME_SHEET_EMAIL_TEMPLATES_DIR));
+			INVOICE_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.INVOICE_TEMPLATES_DIR));
+			REPORT_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.REPORT_TEMPLATES_DIR));
+			TIME_SHEET_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.TIME_SHEET_TEMPLATES_DIR));
+			INVOICE_EMAIL_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.INVOICE_EMAIL_TEMPLATES_DIR));
+			REPORT_EMAIL_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.REPORT_EMAIL_TEMPLATES_DIR));
+			TIME_SHEET_EMAIL_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.TIME_SHEET_EMAIL_TEMPLATES_DIR));
 
 		} else {
 
@@ -119,12 +113,12 @@ public class TemplateFiles {
 
 		if (projectDir != null) {
 
-			INVOICE_TEMPLATES.setDirectory(new File(projectDir, INVOICE_TEMPLATES_DIR));
-			REPORT_TEMPLATES.setDirectory(new File(projectDir, REPORT_TEMPLATES_DIR));
-			TIME_SHEET_TEMPLATES.setDirectory(new File(projectDir, TIME_SHEET_TEMPLATES_DIR));
-			INVOICE_EMAIL_TEMPLATES.setDirectory(new File(projectDir, INVOICE_EMAIL_TEMPLATES_DIR));
-			REPORT_EMAIL_TEMPLATES.setDirectory(new File(projectDir, REPORT_EMAIL_TEMPLATES_DIR));
-			TIME_SHEET_EMAIL_TEMPLATES.setDirectory(new File(projectDir, TIME_SHEET_EMAIL_TEMPLATES_DIR));
+			INVOICE_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.INVOICE_TEMPLATES_DIR));
+			REPORT_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.REPORT_TEMPLATES_DIR));
+			TIME_SHEET_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.TIME_SHEET_TEMPLATES_DIR));
+			INVOICE_EMAIL_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.INVOICE_EMAIL_TEMPLATES_DIR));
+			REPORT_EMAIL_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.REPORT_EMAIL_TEMPLATES_DIR));
+			TIME_SHEET_EMAIL_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.TIME_SHEET_EMAIL_TEMPLATES_DIR));
 
 		} else {
 
