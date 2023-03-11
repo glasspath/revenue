@@ -29,6 +29,8 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.glasspath.common.os.preferences.BoolPref;
+import org.glasspath.common.os.preferences.IntPref;
 import org.glasspath.common.os.preferences.Pref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.preferences.PreferencesUtils;
@@ -43,13 +45,13 @@ public class TimeSheetTemplateOptionsPanel extends JPanel {
 			Resources.getString("DateTimeDecsending") //$NON-NLS-1$
 	};
 
-	public static final Pref SORTING = new Pref("sorting", SORTING_DATE_TIME_ASCENDING); //$NON-NLS-1$
+	public static final IntPref SORTING = new IntPref("sorting", SORTING_DATE_TIME_ASCENDING); //$NON-NLS-1$
 
 	public static final Pref UNSPECIFIED_PROJECTS = new Pref("unspecifiedProjects", "No project specified"); //$NON-NLS-1$
 
-	public static final Pref INCLUDE_HOURS = new Pref("includeHours", true); //$NON-NLS-1$
-	public static final Pref INCLUDE_MILEAGE = new Pref("includeMileage", true); //$NON-NLS-1$
-	public static final Pref INCLUDE_CALLS = new Pref("includeCalls", false); //$NON-NLS-1$
+	public static final BoolPref INCLUDE_HOURS = new BoolPref("includeHours", true); //$NON-NLS-1$
+	public static final BoolPref INCLUDE_MILEAGE = new BoolPref("includeMileage", true); //$NON-NLS-1$
+	public static final BoolPref INCLUDE_CALLS = new BoolPref("includeCalls", false); //$NON-NLS-1$
 
 	public TimeSheetTemplateOptionsPanel(PreferencesProvider provider) {
 

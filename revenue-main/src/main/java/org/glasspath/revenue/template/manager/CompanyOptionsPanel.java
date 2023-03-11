@@ -34,7 +34,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import org.glasspath.common.os.preferences.Pref;
+import org.glasspath.common.os.preferences.IntPref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.preferences.PreferencesUtils;
 import org.glasspath.revenue.icons.Icons;
@@ -42,7 +42,7 @@ import org.glasspath.revenue.resources.Resources;
 
 public class CompanyOptionsPanel extends JPanel {
 
-	public static final Pref COMPANY_INDEX = new Pref("company", 0); //$NON-NLS-1$
+	public static final IntPref COMPANY_INDEX = new IntPref("company", 0); //$NON-NLS-1$
 
 	private final PreferencesProvider preferencesProvider;
 	private final CompanyNamesProvider companyNamesProvider;

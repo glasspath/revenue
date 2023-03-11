@@ -112,7 +112,7 @@ public class TemplateManagerDialog extends FileManagerDialog {
 					}
 				});
 
-				templateProvider.setEnabled(OptionsPanelsHeader.TEMPLATE_SPECIFIC_OPTIONS_ENABLED.getBoolean(templateProvider.getPreferences()));
+				templateProvider.setEnabled(OptionsPanelsHeader.TEMPLATE_SPECIFIC_OPTIONS_ENABLED.get(templateProvider.getPreferences()));
 
 			}
 

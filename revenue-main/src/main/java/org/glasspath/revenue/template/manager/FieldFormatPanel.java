@@ -46,6 +46,7 @@ import org.glasspath.common.Common;
 import org.glasspath.common.date.DateUtils;
 import org.glasspath.common.format.FormatUtils;
 import org.glasspath.common.locale.LocaleUtils;
+import org.glasspath.common.os.preferences.IntPref;
 import org.glasspath.common.os.preferences.Pref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.preferences.LanguagePreferenceComboBox;
@@ -146,36 +147,36 @@ public class FieldFormatPanel extends JPanel {
 	public static final float DECIMAL_FORMAT_SAMPLE_2 = 12.3456F;
 
 	public static final Pref LANGUAGE = new Pref("language", ""); //$NON-NLS-1$ //$NON-NLS-2$
-	public static final Pref DATE_FORMAT = new Pref("dateFormat", DEFAULT_DATE_FORMAT); //$NON-NLS-1$
-	public static final Pref TIME_FORMAT = new Pref("timeFormat", DEFAULT_TIME_FORMAT); //$NON-NLS-1$
-	public static final Pref DECIMAL_FORMAT_SYMBOLS = new Pref("decimalFormatSymbols", DEFAULT_DECIMAL_FORMAT_SYMBOLS); //$NON-NLS-1$
+	public static final IntPref DATE_FORMAT = new IntPref("dateFormat", DEFAULT_DATE_FORMAT); //$NON-NLS-1$
+	public static final IntPref TIME_FORMAT = new IntPref("timeFormat", DEFAULT_TIME_FORMAT); //$NON-NLS-1$
+	public static final IntPref DECIMAL_FORMAT_SYMBOLS = new IntPref("decimalFormatSymbols", DEFAULT_DECIMAL_FORMAT_SYMBOLS); //$NON-NLS-1$
 
 	public static final Pref HOUR_TOTAL_PREPEND_TEXT = new Pref("hourTotalPrependText", ""); //$NON-NLS-1$ //$NON-NLS-2$
-	public static final Pref HOUR_TOTAL_FORMAT = new Pref("hourTotalFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
+	public static final IntPref HOUR_TOTAL_FORMAT = new IntPref("hourTotalFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref HOUR_TOTAL_APPEND_TEXT = new Pref("hourTotalAppendText", Resources.getString("spaceHour")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public static final Pref HOUR_RATE_PREPEND_TEXT = new Pref("hourRatePrependText", FormatUtils.CURRENCY_SYMBOL); //$NON-NLS-1$
-	public static final Pref HOUR_RATE_FORMAT = new Pref("hourRateFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
+	public static final IntPref HOUR_RATE_FORMAT = new IntPref("hourRateFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref HOUR_RATE_APPEND_TEXT = new Pref("hourRateAppendText", Resources.getString("slashHour")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public static final Pref MILEAGE_TOTAL_PREPEND_TEXT = new Pref("mileageTotalPrependText", ""); //$NON-NLS-1$ //$NON-NLS-2$
-	public static final Pref MILEAGE_TOTAL_FORMAT = new Pref("mileageTotalFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
+	public static final IntPref MILEAGE_TOTAL_FORMAT = new IntPref("mileageTotalFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref MILEAGE_TOTAL_APPEND_TEXT = new Pref("mileageTotalAppendText", Resources.getString("spaceKm")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public static final Pref MILEAGE_RATE_PREPEND_TEXT = new Pref("mileageRatePrependText", FormatUtils.CURRENCY_SYMBOL); //$NON-NLS-1$
-	public static final Pref MILEAGE_RATE_FORMAT = new Pref("mileageRateFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
+	public static final IntPref MILEAGE_RATE_FORMAT = new IntPref("mileageRateFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref MILEAGE_RATE_APPEND_TEXT = new Pref("mileageRateAppendText", Resources.getString("slashKm")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public static final Pref VAT_RATE_PREPEND_TEXT = new Pref("vatRatePrependText", ""); //$NON-NLS-1$ //$NON-NLS-2$
-	public static final Pref VAT_RATE_FORMAT = new Pref("vatRateFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
+	public static final IntPref VAT_RATE_FORMAT = new IntPref("vatRateFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref VAT_RATE_APPEND_TEXT = new Pref("vatRateAppendText", "%"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public static final Pref AMOUNT_PREPEND_TEXT = new Pref("amountPrependText", FormatUtils.CURRENCY_SYMBOL); //$NON-NLS-1$
-	public static final Pref AMOUNT_FORMAT = new Pref("amountFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
+	public static final IntPref AMOUNT_FORMAT = new IntPref("amountFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref AMOUNT_APPEND_TEXT = new Pref("amountAppendText", ""); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public static final Pref QUANTITY_PREPEND_TEXT = new Pref("quantityPrependText", ""); //$NON-NLS-1$ //$NON-NLS-2$
-	public static final Pref QUANTITY_FORMAT = new Pref("quantityFormat", DEFAULT_INTEGER_DECIMAL_FORMAT); //$NON-NLS-1$
+	public static final IntPref QUANTITY_FORMAT = new IntPref("quantityFormat", DEFAULT_INTEGER_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref QUANTITY_APPEND_TEXT = new Pref("quantityAppendText", ""); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public FieldFormatPanel(PreferencesProvider provider) {
@@ -187,7 +188,7 @@ public class FieldFormatPanel extends JPanel {
 		layout.columnWidths = new int[] { 7, 140, 5, 75, 3, 50, 3, 75, 7 };
 		setLayout(layout);
 
-		LanguagePreferenceComboBox languageComboBox = new LanguagePreferenceComboBox(provider, LANGUAGE.getKey(), LANGUAGE.getDefaultStringValue());
+		LanguagePreferenceComboBox languageComboBox = new LanguagePreferenceComboBox(provider, LANGUAGE.key, LANGUAGE.defaultValue);
 		add(new JLabel(Resources.getString("Language")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(languageComboBox, new GridBagConstraints(3, 1, 5, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); // $NON-NLS-1$
 		languageComboBox.addActionListener(new ActionListener() {
@@ -258,7 +259,7 @@ public class FieldFormatPanel extends JPanel {
 	}
 
 	public static String getDateFormat(Preferences preferences) {
-		int index = DATE_FORMAT.getInt(preferences);
+		int index = DATE_FORMAT.get(preferences);
 		if (index >= 0 && index < DATE_FORMATS.length) {
 			return DATE_FORMATS[index];
 		} else {
@@ -267,7 +268,7 @@ public class FieldFormatPanel extends JPanel {
 	}
 
 	public static String getTimeFormat(Preferences preferences) {
-		int index = TIME_FORMAT.getInt(preferences);
+		int index = TIME_FORMAT.get(preferences);
 		if (index >= 0 && index < TIME_FORMATS.length) {
 			return TIME_FORMATS[index];
 		} else {
@@ -275,9 +276,9 @@ public class FieldFormatPanel extends JPanel {
 		}
 	}
 
-	public static DecimalFormat getDecimalFormat(Pref pref, Preferences preferences) {
+	public static DecimalFormat getDecimalFormat(IntPref pref, Preferences preferences) {
 
-		int index = pref.getInt(preferences);
+		int index = pref.get(preferences);
 		if (index >= 0 && index < DECIMAL_FORMATS.length) {
 			return getDecimalFormat(DECIMAL_FORMATS[index], preferences);
 		} else {
@@ -292,7 +293,7 @@ public class FieldFormatPanel extends JPanel {
 
 			DecimalFormat decimalFormat = new DecimalFormat(format);
 
-			int index = DECIMAL_FORMAT_SYMBOLS.getInt(preferences);
+			int index = DECIMAL_FORMAT_SYMBOLS.get(preferences);
 
 			DecimalFormatSymbols decimalSymbols = new DecimalFormatSymbols();
 

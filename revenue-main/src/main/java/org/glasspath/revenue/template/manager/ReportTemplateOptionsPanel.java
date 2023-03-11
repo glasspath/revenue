@@ -29,6 +29,8 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.glasspath.common.os.preferences.BoolPref;
+import org.glasspath.common.os.preferences.IntPref;
 import org.glasspath.common.os.preferences.Pref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.preferences.PreferencesUtils;
@@ -68,21 +70,21 @@ public class ReportTemplateOptionsPanel extends JPanel {
 			Resources.getString("DateTimeDecsending") //$NON-NLS-1$
 	};
 
-	public static final Pref HOUR_GROUPING = new Pref("hourGrouping", GROUP_HOURS_BY_RATE_AND_CLIENT_AND_PROJECT); //$NON-NLS-1$
-	public static final Pref MILEAGE_GROUPING = new Pref("mileageGrouping", GROUP_MILEAGES_BY_RATE_AND_CLIENT_AND_PROJECT); //$NON-NLS-1$
-	public static final Pref CALL_GROUPING = new Pref("callGrouping", GROUP_CALLS_BY_RATE_AND_COMPANY); //$NON-NLS-1$
+	public static final IntPref HOUR_GROUPING = new IntPref("hourGrouping", GROUP_HOURS_BY_RATE_AND_CLIENT_AND_PROJECT); //$NON-NLS-1$
+	public static final IntPref MILEAGE_GROUPING = new IntPref("mileageGrouping", GROUP_MILEAGES_BY_RATE_AND_CLIENT_AND_PROJECT); //$NON-NLS-1$
+	public static final IntPref CALL_GROUPING = new IntPref("callGrouping", GROUP_CALLS_BY_RATE_AND_COMPANY); //$NON-NLS-1$
 
-	public static final Pref SORTING = new Pref("sorting", SORTING_DATE_TIME_ASCENDING); //$NON-NLS-1$
+	public static final IntPref SORTING = new IntPref("sorting", SORTING_DATE_TIME_ASCENDING); //$NON-NLS-1$
 
 	public static final Pref UNSPECIFIED_CLIENTS = new Pref("unspecifiedClients", "No client specified"); //$NON-NLS-1$
 	public static final Pref UNSPECIFIED_COMPANIES = new Pref("unspecifiedCompanies", "No company specified"); //$NON-NLS-1$
 	public static final Pref UNSPECIFIED_PROJECTS = new Pref("unspecifiedProjects", "No project specified"); //$NON-NLS-1$
-	public static final Pref INCLUDE_INVOICES = new Pref("includeInvoices", true); //$NON-NLS-1$
-	public static final Pref INCLUDE_EXPENSES = new Pref("includeExpenses", true); //$NON-NLS-1$
-	public static final Pref INCLUDE_QUOTES = new Pref("includeQuotes", true); //$NON-NLS-1$
-	public static final Pref INCLUDE_HOURS = new Pref("includeHours", true); //$NON-NLS-1$
-	public static final Pref INCLUDE_MILEAGE = new Pref("includeMileage", true); //$NON-NLS-1$
-	public static final Pref INCLUDE_CALLS = new Pref("includeCalls", true); //$NON-NLS-1$
+	public static final BoolPref INCLUDE_INVOICES = new BoolPref("includeInvoices", true); //$NON-NLS-1$
+	public static final BoolPref INCLUDE_EXPENSES = new BoolPref("includeExpenses", true); //$NON-NLS-1$
+	public static final BoolPref INCLUDE_QUOTES = new BoolPref("includeQuotes", true); //$NON-NLS-1$
+	public static final BoolPref INCLUDE_HOURS = new BoolPref("includeHours", true); //$NON-NLS-1$
+	public static final BoolPref INCLUDE_MILEAGE = new BoolPref("includeMileage", true); //$NON-NLS-1$
+	public static final BoolPref INCLUDE_CALLS = new BoolPref("includeCalls", true); //$NON-NLS-1$
 
 	public ReportTemplateOptionsPanel(PreferencesProvider provider) {
 

@@ -29,6 +29,8 @@ import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.glasspath.common.os.preferences.BoolPref;
+import org.glasspath.common.os.preferences.IntPref;
 import org.glasspath.common.os.preferences.Pref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.preferences.PreferencesUtils;
@@ -77,22 +79,22 @@ public class InvoiceTemplateOptionsPanel extends JPanel {
 			Resources.getString("DateTimeDecsending") //$NON-NLS-1$
 	};
 
-	public static final Pref HOUR_GROUPING = new Pref("hourGrouping", GROUP_HOURS_BY_RATE); //$NON-NLS-1$
+	public static final IntPref HOUR_GROUPING = new IntPref("hourGrouping", GROUP_HOURS_BY_RATE); //$NON-NLS-1$
 	public static final Pref HOUR_PREPEND_TEXT = new Pref("hourPrependText", Resources.getString("Hours") + " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-	public static final Pref EMPTY_LINE_AFTER_HOURS = new Pref("emptyLineAfterHours", false); //$NON-NLS-1$
+	public static final BoolPref EMPTY_LINE_AFTER_HOURS = new BoolPref("emptyLineAfterHours", false); //$NON-NLS-1$
 
-	public static final Pref MILEAGE_GROUPING = new Pref("mileageGrouping", GROUP_MILEAGES_BY_RATE); //$NON-NLS-1$
+	public static final IntPref MILEAGE_GROUPING = new IntPref("mileageGrouping", GROUP_MILEAGES_BY_RATE); //$NON-NLS-1$
 	public static final Pref MILEAGE_PREPEND_TEXT = new Pref("mileagePrependText", Resources.getString("MileageExpenditures") + " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-	public static final Pref EMPTY_LINE_AFTER_MILEAGES = new Pref("emptyLineAfterMileages", false); //$NON-NLS-1$
+	public static final BoolPref EMPTY_LINE_AFTER_MILEAGES = new BoolPref("emptyLineAfterMileages", false); //$NON-NLS-1$
 
-	public static final Pref CALL_GROUPING = new Pref("callGrouping", GROUP_CALLS_BY_RATE); //$NON-NLS-1$
+	public static final IntPref CALL_GROUPING = new IntPref("callGrouping", GROUP_CALLS_BY_RATE); //$NON-NLS-1$
 	public static final Pref CALL_PREPEND_TEXT = new Pref("callPrependText", Resources.getString("CallExpenditure") + " "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-	public static final Pref EMPTY_LINE_AFTER_CALLS = new Pref("emptyLineAfterCalls", false); //$NON-NLS-1$
+	public static final BoolPref EMPTY_LINE_AFTER_CALLS = new BoolPref("emptyLineAfterCalls", false); //$NON-NLS-1$
 
-	public static final Pref CUSTOM_INVOICE_LINES_POSITION = new Pref("customInvoiceLinesPosition", CUSTOM_INVOICE_LINE_POSITION_BOTTOM); //$NON-NLS-1$
-	public static final Pref EMPTY_LINE_AFTER_CUSTOM_INVOICE_LINES = new Pref("emptyLineAfterCustomInvoiceLines", false); //$NON-NLS-1$
+	public static final IntPref CUSTOM_INVOICE_LINES_POSITION = new IntPref("customInvoiceLinesPosition", CUSTOM_INVOICE_LINE_POSITION_BOTTOM); //$NON-NLS-1$
+	public static final BoolPref EMPTY_LINE_AFTER_CUSTOM_INVOICE_LINES = new BoolPref("emptyLineAfterCustomInvoiceLines", false); //$NON-NLS-1$
 
-	public static final Pref SORTING = new Pref("sorting", SORTING_DATE_TIME_ASCENDING); //$NON-NLS-1$
+	public static final IntPref SORTING = new IntPref("sorting", SORTING_DATE_TIME_ASCENDING); //$NON-NLS-1$
 
 	public InvoiceTemplateOptionsPanel(PreferencesProvider provider) {
 

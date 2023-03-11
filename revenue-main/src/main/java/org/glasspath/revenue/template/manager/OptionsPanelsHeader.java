@@ -36,7 +36,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.glasspath.common.icons.Icons;
-import org.glasspath.common.os.preferences.Pref;
+import org.glasspath.common.os.preferences.BoolPref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.color.ColorUtils;
 import org.glasspath.common.swing.preferences.PreferencesUtils;
@@ -44,7 +44,7 @@ import org.glasspath.common.swing.theme.Theme;
 
 public class OptionsPanelsHeader extends JPanel {
 
-	public static final Pref TEMPLATE_SPECIFIC_OPTIONS_ENABLED = new Pref("enabled", false); //$NON-NLS-1$
+	public static final BoolPref TEMPLATE_SPECIFIC_OPTIONS_ENABLED = new BoolPref("enabled", false); //$NON-NLS-1$
 
 	public OptionsPanelsHeader(PreferencesProvider provider, ActionListener editGlobalOptionsAction) {
 
