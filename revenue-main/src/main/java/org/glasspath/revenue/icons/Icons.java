@@ -89,8 +89,6 @@ public class Icons {
 	public static final SvgIcon chartBoxOutlineWhite = new SvgIcon(getSvg("chart-box-outline.svg"));
 	public static final SvgIcon chartBoxOutlineWhiteLarge = new SvgIcon(22, 0, getSvg("chart-box-outline.svg"));
 	public static final SvgIcon checkBlueXLarge = new SvgIcon(36, 0, getSvg("check.svg"));
-	public static final SvgIcon chevronDown = new SvgIcon(getSvg("chevron-down.svg"));
-	public static final SvgIcon chevronUp = new SvgIcon(getSvg("chevron-up.svg"));
 	public static final SvgIcon close = new SvgIcon(getSvg("close.svg"));
 	public static final SvgIcon closeRed = new SvgIcon(getSvg("close.svg"));
 	public static final SvgIcon cogBoxXLarge = new SvgIcon(36, 0, getSvg("cog-box.svg"));
