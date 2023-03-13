@@ -383,27 +383,32 @@ public class FirstLaunchFrame {
 			String userHomeDir = System.getProperty("user.home"); //$NON-NLS-1$
 			userHomeDir = userHomeDir.replace("\\", "/"); //$NON-NLS-1$ //$NON-NLS-2$
 
-			projectLocationTextField = new JTextField(userHomeDir);
-			projectLocationTextField.setMargin(new Insets(2, 5, 2, 2));
-			projectLocationTextField.setLayout(new BorderLayout());
-
 			JButton browseButton = new JButton();
 			browseButton.setIcon(Icons.folderOutline);
 			browseButton.setBorderPainted(false);
 			browseButton.setFocusable(false);
-			browseButton.setPreferredSize(new Dimension(26, 18));
-			browseButton.addMouseListener(new MouseAdapter() {
+			browseButton.setCursor(Cursor.getDefaultCursor());
 
-				private final Cursor projectLocationTextFieldCursor = projectLocationTextField.getCursor();
+			projectLocationTextField = new JTextField(userHomeDir) {
 
 				@Override
-				public void mouseEntered(MouseEvent e) {
-					projectLocationTextField.setCursor(Cursor.getDefaultCursor());
-				}
+				public void doLayout() {
+					super.doLayout();
 
-				public void mouseExited(MouseEvent e) {
-					projectLocationTextField.setCursor(projectLocationTextFieldCursor);
+					int size = getHeight() - 8;
+					if (size < 10) {
+						size = 10;
+					}
+
+					browseButton.setBounds(getWidth() - (size + 4), 4, size, size);
+
 				}
+			};
+			projectLocationTextField.setMargin(new Insets(2, 5, 2, 32));
+			projectLocationTextField.setLayout(null);
+			projectLocationTextField.add(browseButton);
+
+			browseButton.addMouseListener(new MouseAdapter() {
 
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -415,7 +420,6 @@ public class FirstLaunchFrame {
 
 				}
 			});
-			projectLocationTextField.add(browseButton, BorderLayout.EAST);
 
 			projectPathPanel.add(new JLabel("Project location"), new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 			projectPathPanel.add(projectLocationTextField, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
