@@ -111,7 +111,7 @@ public class GeneralPreferencesPanel extends JPanel {
 						languageTag.startsWith("nl")); //$NON-NLS-1$
 			}
 		};
-		languageComboBox.setAutomaticLocale(Locale.getDefault(), false);
+		languageComboBox.setAutomaticLocale(Locale.getDefault(), true);
 		regionalSettingsPanel.add(new JLabel(Resources.getString("Language")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		regionalSettingsPanel.add(languageComboBox, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		languageComboBox.addActionListener(new ActionListener() {
@@ -176,6 +176,8 @@ public class GeneralPreferencesPanel extends JPanel {
 		previousUnitOfMeasurement = UNIT_OF_MEASUREMENT.get(preferences);
 		previousTheme = THEME.get(preferences);
 
+		selectedLocaleChanged();
+
 	}
 
 	private void selectedLocaleChanged() {
@@ -227,14 +229,39 @@ public class GeneralPreferencesPanel extends JPanel {
 
 	public static void applyRegionalSettings(Preferences preferences) {
 
-		// TODO: This is probably not the best approach..
+		Locale locale = LocaleUtils.getLocaleForTag(LANGUAGE.get(preferences));
+		if (locale == null) {
+			locale = Locale.getDefault();
+		}
 
-		CurrencyCode currencyCode = LocaleUtils.getCurrencyCode(CURRENCY.get(preferences));
+		CurrencyCode currencyCode = null;
+
+		String currency = CURRENCY.get(preferences);
+		if (currency != null && currency.length() > 0) {
+			currencyCode = LocaleUtils.getCurrencyCode(currency);
+		}
+
+		if (currencyCode == null) {
+			currencyCode = LocaleUtils.getCurrencyCodeForLocale(locale);
+		}
+
 		if (currencyCode != null) {
+			// TODO: This is probably not the best approach..
 			FormatUtils.CURRENCY_SYMBOL = currencyCode.symbol;
 		}
 
-		SystemOfUnits systemOfUnits = LocaleUtils.getSystemOfUnits(UNIT_OF_MEASUREMENT.get(preferences));
+		SystemOfUnits systemOfUnits = null;
+
+		String systemOfUnitsCode = UNIT_OF_MEASUREMENT.get(preferences);
+		if (systemOfUnitsCode != null && systemOfUnitsCode.length() > 0) {
+			systemOfUnits = LocaleUtils.getSystemOfUnits(systemOfUnitsCode);
+		}
+
+		if (systemOfUnits == null) {
+			systemOfUnits = LocaleUtils.getSystemOfUnitsForLocale(locale);
+		}
+
+		// TODO: This is probably not the best approach..
 		if (systemOfUnits == SystemOfUnits.IMPERIAL) {
 			FormatUtils.MILEAGE_TYPE = MileageType.MILES;
 			FormatUtils.MILEAGE_UNIT_LOWER_CASE = SystemOfUnits.IMPERIAL.distanceSymbol;
