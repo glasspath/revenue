@@ -37,11 +37,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.glasspath.common.Compare;
-import org.glasspath.common.format.CoreFormatUtils.MileageType;
 import org.glasspath.common.format.FormatUtils;
 import org.glasspath.common.locale.LocaleUtils;
 import org.glasspath.common.locale.LocaleUtils.CurrencyCode;
-import org.glasspath.common.locale.LocaleUtils.LanguageTag;
 import org.glasspath.common.locale.LocaleUtils.SystemOfUnits;
 import org.glasspath.common.os.preferences.BoolPref;
 import org.glasspath.common.os.preferences.Pref;
@@ -111,7 +109,6 @@ public class GeneralPreferencesPanel extends JPanel {
 						languageTag.startsWith("nl")); //$NON-NLS-1$
 			}
 		};
-		languageComboBox.setAutomaticLocale(Locale.getDefault(), true);
 		regionalSettingsPanel.add(new JLabel(Resources.getString("Language")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		regionalSettingsPanel.add(languageComboBox, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		languageComboBox.addActionListener(new ActionListener() {
@@ -184,9 +181,9 @@ public class GeneralPreferencesPanel extends JPanel {
 
 		Locale locale = null;
 
-		LanguageTag languageTag = languageComboBox.getSelectedLanguageTag();
+		String languageTag = languageComboBox.getSelectedLanguageTag();
 		if (languageTag != null) {
-			locale = LocaleUtils.getLocaleForTag(languageTag.tag);
+			locale = LocaleUtils.getLocaleForTag(languageTag);
 		}
 
 		if (locale == null) {
@@ -246,8 +243,7 @@ public class GeneralPreferencesPanel extends JPanel {
 		}
 
 		if (currencyCode != null) {
-			// TODO: This is probably not the best approach..
-			FormatUtils.CURRENCY_SYMBOL = currencyCode.symbol;
+			FormatUtils.setDefaultCurrencySymbol(currencyCode.symbol);
 		}
 
 		SystemOfUnits systemOfUnits = null;
@@ -261,14 +257,7 @@ public class GeneralPreferencesPanel extends JPanel {
 			systemOfUnits = LocaleUtils.getSystemOfUnitsForLocale(locale);
 		}
 
-		// TODO: This is probably not the best approach..
-		if (systemOfUnits == SystemOfUnits.IMPERIAL) {
-			FormatUtils.MILEAGE_TYPE = MileageType.MILES;
-			FormatUtils.MILEAGE_UNIT_LOWER_CASE = SystemOfUnits.IMPERIAL.distanceSymbol;
-		} else {
-			FormatUtils.MILEAGE_TYPE = MileageType.KM;
-			FormatUtils.MILEAGE_UNIT_LOWER_CASE = SystemOfUnits.METRIC.distanceSymbol;
-		}
+		FormatUtils.setDefaultSystemOfUnits(systemOfUnits);
 
 	}
 

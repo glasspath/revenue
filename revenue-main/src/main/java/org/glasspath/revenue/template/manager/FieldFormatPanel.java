@@ -155,23 +155,23 @@ public class FieldFormatPanel extends JPanel {
 	public static final IntPref HOUR_TOTAL_FORMAT = new IntPref("hourTotalFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref HOUR_TOTAL_APPEND_TEXT = new Pref("hourTotalAppendText", Resources.getString("spaceHour")); //$NON-NLS-1$ //$NON-NLS-2$
 
-	public static final Pref HOUR_RATE_PREPEND_TEXT = new Pref("hourRatePrependText", FormatUtils.CURRENCY_SYMBOL); //$NON-NLS-1$
+	public static final Pref HOUR_RATE_PREPEND_TEXT = new Pref("hourRatePrependText", FormatUtils.getDefaultCurrencySymbol()); //$NON-NLS-1$
 	public static final IntPref HOUR_RATE_FORMAT = new IntPref("hourRateFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref HOUR_RATE_APPEND_TEXT = new Pref("hourRateAppendText", Resources.getString("slashHour")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public static final Pref MILEAGE_TOTAL_PREPEND_TEXT = new Pref("mileageTotalPrependText", ""); //$NON-NLS-1$ //$NON-NLS-2$
 	public static final IntPref MILEAGE_TOTAL_FORMAT = new IntPref("mileageTotalFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
-	public static final Pref MILEAGE_TOTAL_APPEND_TEXT = new Pref("mileageTotalAppendText", " " + FormatUtils.MILEAGE_UNIT_LOWER_CASE); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final Pref MILEAGE_TOTAL_APPEND_TEXT = new Pref("mileageTotalAppendText", " " + FormatUtils.getDefaultMileageUnit()); //$NON-NLS-1$ //$NON-NLS-2$
 
-	public static final Pref MILEAGE_RATE_PREPEND_TEXT = new Pref("mileageRatePrependText", FormatUtils.CURRENCY_SYMBOL); //$NON-NLS-1$
+	public static final Pref MILEAGE_RATE_PREPEND_TEXT = new Pref("mileageRatePrependText", FormatUtils.getDefaultCurrencySymbol()); //$NON-NLS-1$
 	public static final IntPref MILEAGE_RATE_FORMAT = new IntPref("mileageRateFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
-	public static final Pref MILEAGE_RATE_APPEND_TEXT = new Pref("mileageRateAppendText", "/" + FormatUtils.MILEAGE_UNIT_LOWER_CASE); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final Pref MILEAGE_RATE_APPEND_TEXT = new Pref("mileageRateAppendText", "/" + FormatUtils.getDefaultMileageUnit()); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public static final Pref VAT_RATE_PREPEND_TEXT = new Pref("vatRatePrependText", ""); //$NON-NLS-1$ //$NON-NLS-2$
 	public static final IntPref VAT_RATE_FORMAT = new IntPref("vatRateFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref VAT_RATE_APPEND_TEXT = new Pref("vatRateAppendText", "%"); //$NON-NLS-1$ //$NON-NLS-2$
 
-	public static final Pref AMOUNT_PREPEND_TEXT = new Pref("amountPrependText", FormatUtils.CURRENCY_SYMBOL); //$NON-NLS-1$
+	public static final Pref AMOUNT_PREPEND_TEXT = new Pref("amountPrependText", FormatUtils.getDefaultCurrencySymbol()); //$NON-NLS-1$
 	public static final IntPref AMOUNT_FORMAT = new IntPref("amountFormat", DEFAULT_DECIMAL_FORMAT); //$NON-NLS-1$
 	public static final Pref AMOUNT_APPEND_TEXT = new Pref("amountAppendText", ""); //$NON-NLS-1$ //$NON-NLS-2$
 

@@ -55,7 +55,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import org.glasspath.common.locale.LocaleUtils;
-import org.glasspath.common.locale.LocaleUtils.LanguageTag;
 import org.glasspath.common.os.OsUtils;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.color.ColorUtils;
@@ -334,7 +333,6 @@ public class FirstLaunchFrame {
 				}
 			};
 			languageComboBox.setBorder(BorderFactory.createCompoundBorder(languageComboBox.getBorder(), BorderFactory.createEmptyBorder(0, 0, 0, 3)));
-			languageComboBox.setAutomaticLocale(Locale.getDefault(), true);
 			languageComboBox.addActionListener(new ActionListener() {
 
 				@Override
@@ -459,9 +457,9 @@ public class FirstLaunchFrame {
 
 			Locale locale = null;
 
-			LanguageTag languageTag = languageComboBox.getSelectedLanguageTag();
+			String languageTag = languageComboBox.getSelectedLanguageTag();
 			if (languageTag != null) {
-				locale = LocaleUtils.getLocaleForTag(languageTag.tag);
+				locale = LocaleUtils.getLocaleForTag(languageTag);
 			}
 
 			if (locale == null) {
