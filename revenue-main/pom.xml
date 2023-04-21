@@ -26,12 +26,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.glasspath.common</groupId>
-			<artifactId>common-xml</artifactId>
-			<version>${common.version}</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.glasspath.aerialist</groupId>
 			<artifactId>aerialist-main</artifactId>
 			<version>${aerialist.version}</version>
