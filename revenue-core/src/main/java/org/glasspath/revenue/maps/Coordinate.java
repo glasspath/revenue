@@ -29,6 +29,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 @SuppressWarnings("nls")
 public class Coordinate {
 
+	public static final double EARTH_RADIUS = 3958.75;
+	public static final float MILES_TO_KILOMETERS_FACTOR = 1.609F;
+
 	@JacksonXmlProperty(isAttribute = true, localName = "date")
 	private long date = 0;
 
@@ -66,10 +69,6 @@ public class Coordinate {
 		this.longitude = longitude;
 	}
 
-	public static float distanceKilometers(Coordinate from, Coordinate to) {
-		return distanceMiles(from, to) * 1.609F;
-	}
-
 	public static float distanceKilometers(List<Coordinate> coordinates) {
 		float total = 0;
 		for (int i = 0; i < coordinates.size() - 1; i++) {
@@ -78,9 +77,19 @@ public class Coordinate {
 		return total;
 	}
 
-	public static float distanceMiles(Coordinate from, Coordinate to) {
+	public static float distanceKilometers(Coordinate from, Coordinate to) {
+		return distanceMiles(from, to) * MILES_TO_KILOMETERS_FACTOR;
+	}
 
-		double earthRadius = 3958.75;
+	public static float distanceMiles(List<Coordinate> coordinates) {
+		float total = 0;
+		for (int i = 0; i < coordinates.size() - 1; i++) {
+			total += Coordinate.distanceMiles(coordinates.get(i), coordinates.get(i + 1));
+		}
+		return total;
+	}
+
+	public static float distanceMiles(Coordinate from, Coordinate to) {
 
 		double dLat = Math.toRadians(to.getLatitude() - from.getLatitude());
 		double dLng = Math.toRadians(to.getLongitude() - from.getLongitude());
@@ -88,7 +97,7 @@ public class Coordinate {
 		double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(Math.toRadians(from.getLatitude())) * Math.cos(Math.toRadians(to.getLatitude())) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
 
 		double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-		Double distance = earthRadius * c;
+		Double distance = EARTH_RADIUS * c;
 
 		return distance.floatValue();
 
