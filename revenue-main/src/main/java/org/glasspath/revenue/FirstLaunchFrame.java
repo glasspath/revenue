@@ -59,6 +59,7 @@ import org.glasspath.common.os.OsUtils;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.color.ColorUtils;
 import org.glasspath.common.swing.file.chooser.FileChooser;
+import org.glasspath.common.swing.preferences.CurrencyAndSymbolPreferenceComboBox;
 import org.glasspath.common.swing.preferences.CurrencyPreferenceComboBox;
 import org.glasspath.common.swing.preferences.LanguagePreferenceComboBox;
 import org.glasspath.common.swing.preferences.UnitOfMeasurementPreferenceComboBox;
@@ -296,7 +297,7 @@ public class FirstLaunchFrame {
 
 		private final ThemeChooserPanel themeChooserPanel;
 		private final LanguagePreferenceComboBox languageComboBox;
-		private final CurrencyPreferenceComboBox currencyComboBox;
+		private final CurrencyAndSymbolPreferenceComboBox currencyComboBox;
 		private final UnitOfMeasurementPreferenceComboBox unitOfMeasurementComboBox;
 		private final JTextField projectLocationTextField;
 		private final JTextField projectNameTextField;
@@ -341,10 +342,10 @@ public class FirstLaunchFrame {
 				}
 			});
 
-			currencyComboBox = new CurrencyPreferenceComboBox(preferencesProvider, "currency", "", false); //$NON-NLS-1$ //$NON-NLS-2$
+			currencyComboBox = new CurrencyAndSymbolPreferenceComboBox(preferencesProvider, "currency", "", "currencySymbol", "", false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			currencyComboBox.setBorder(BorderFactory.createCompoundBorder(currencyComboBox.getBorder(), BorderFactory.createEmptyBorder(0, 0, 0, 3)));
 
-			add(new JLabel("Currency"), new GridBagConstraints(4, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			add(new JLabel("Currency & Symbol"), new GridBagConstraints(4, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 			add(currencyComboBox, new GridBagConstraints(4, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 			unitOfMeasurementComboBox = new UnitOfMeasurementPreferenceComboBox(preferencesProvider, "unitOfMeasurement", "", false); //$NON-NLS-1$ //$NON-NLS-2$

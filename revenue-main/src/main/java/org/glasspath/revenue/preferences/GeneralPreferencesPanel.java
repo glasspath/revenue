@@ -44,6 +44,7 @@ import org.glasspath.common.locale.LocaleUtils.SystemOfUnits;
 import org.glasspath.common.os.preferences.BoolPref;
 import org.glasspath.common.os.preferences.Pref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
+import org.glasspath.common.swing.preferences.CurrencyAndSymbolPreferenceComboBox;
 import org.glasspath.common.swing.preferences.CurrencyPreferenceComboBox;
 import org.glasspath.common.swing.preferences.LanguagePreferenceComboBox;
 import org.glasspath.common.swing.preferences.UnitOfMeasurementPreferenceComboBox;
@@ -54,6 +55,7 @@ public class GeneralPreferencesPanel extends JPanel {
 
 	public static final Pref LANGUAGE = new Pref("language", ""); //$NON-NLS-1$ //$NON-NLS-2$
 	public static final Pref CURRENCY = new Pref("currency", ""); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final Pref CURRENCY_SYMBOL = new Pref("currencySymbol", ""); //$NON-NLS-1$ //$NON-NLS-2$
 	public static final Pref UNIT_OF_MEASUREMENT = new Pref("unitOfMeasurement", ""); //$NON-NLS-1$ //$NON-NLS-2$
 	public static final Pref THEME = new Pref("theme", Theme.THEME_DEFAULT.getId()); //$NON-NLS-1$
 	public static final String[] THEMES_LIST = new String[] {
@@ -65,7 +67,7 @@ public class GeneralPreferencesPanel extends JPanel {
 
 	private final Preferences preferences;
 	private final LanguagePreferenceComboBox languageComboBox;
-	private final CurrencyPreferenceComboBox currencyComboBox;
+	private final CurrencyAndSymbolPreferenceComboBox currencyComboBox;
 	private final UnitOfMeasurementPreferenceComboBox unitOfMeasurementComboBox;
 	private final JComboBox<String> themeComboBox;
 	private final JCheckBox openLastFileAtStartupCheckBox;
@@ -73,6 +75,7 @@ public class GeneralPreferencesPanel extends JPanel {
 
 	private String previousLanguage = LANGUAGE.defaultValue;
 	private String previousCurrency = CURRENCY.defaultValue;
+	private String previousCurrencySymbol = CURRENCY_SYMBOL.defaultValue;
 	private String previousUnitOfMeasurement = UNIT_OF_MEASUREMENT.defaultValue;
 	private String previousTheme = THEME.defaultValue;
 
@@ -119,9 +122,9 @@ public class GeneralPreferencesPanel extends JPanel {
 			}
 		});
 
-		currencyComboBox = new CurrencyPreferenceComboBox(preferencesProvider, CURRENCY.key, CURRENCY.defaultValue, false);
+		currencyComboBox = new CurrencyAndSymbolPreferenceComboBox(preferencesProvider, CURRENCY.key, CURRENCY.defaultValue, CURRENCY_SYMBOL.key, CURRENCY_SYMBOL.defaultValue, false);
 		currencyComboBox.setBorder(BorderFactory.createCompoundBorder(currencyComboBox.getBorder(), BorderFactory.createEmptyBorder(0, 0, 0, 3)));
-		regionalSettingsPanel.add(new JLabel("Currency"), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		regionalSettingsPanel.add(new JLabel("Currency & Symbol"), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		regionalSettingsPanel.add(currencyComboBox, new GridBagConstraints(3, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		unitOfMeasurementComboBox = new UnitOfMeasurementPreferenceComboBox(preferencesProvider, UNIT_OF_MEASUREMENT.key, UNIT_OF_MEASUREMENT.defaultValue, false);
@@ -170,6 +173,7 @@ public class GeneralPreferencesPanel extends JPanel {
 
 		previousLanguage = LANGUAGE.get(preferences);
 		previousCurrency = CURRENCY.get(preferences);
+		previousCurrencySymbol = CURRENCY_SYMBOL.get(preferences);
 		previousUnitOfMeasurement = UNIT_OF_MEASUREMENT.get(preferences);
 		previousTheme = THEME.get(preferences);
 
@@ -214,11 +218,13 @@ public class GeneralPreferencesPanel extends JPanel {
 
 		String newLanguage = LANGUAGE.get(preferences);
 		String newCurrency = CURRENCY.get(preferences);
+		String newCurrencySymbol = CURRENCY_SYMBOL.get(preferences);
 		String newUnitOfMeasurement = UNIT_OF_MEASUREMENT.get(preferences);
 		String newTheme = THEME.get(preferences);
 
 		return !Compare.string(newLanguage, previousLanguage)
 				|| !Compare.string(newCurrency, previousCurrency)
+				|| !Compare.string(newCurrencySymbol, previousCurrencySymbol)
 				|| !Compare.string(newUnitOfMeasurement, previousUnitOfMeasurement)
 				|| !Compare.string(newTheme, previousTheme);
 
@@ -231,19 +237,26 @@ public class GeneralPreferencesPanel extends JPanel {
 			locale = Locale.getDefault();
 		}
 
-		CurrencyCode currencyCode = null;
+		String currencySymbol = CURRENCY_SYMBOL.get(preferences);
+		if (currencySymbol != null && currencySymbol.length() > 0) {
+			FormatUtils.setDefaultCurrencySymbol(currencySymbol);
+		} else {
 
-		String currency = CURRENCY.get(preferences);
-		if (currency != null && currency.length() > 0) {
-			currencyCode = LocaleUtils.getCurrencyCode(currency);
-		}
+			CurrencyCode currencyCode = null;
 
-		if (currencyCode == null) {
-			currencyCode = LocaleUtils.getCurrencyCodeForLocale(locale);
-		}
+			String currency = CURRENCY.get(preferences);
+			if (currency != null && currency.length() > 0) {
+				currencyCode = LocaleUtils.getCurrencyCode(currency);
+			}
 
-		if (currencyCode != null) {
-			FormatUtils.setDefaultCurrencySymbol(currencyCode.symbol);
+			if (currencyCode == null) {
+				currencyCode = LocaleUtils.getCurrencyCodeForLocale(locale);
+			}
+
+			if (currencyCode != null) {
+				FormatUtils.setDefaultCurrencySymbol(currencyCode.symbol);
+			}
+
 		}
 
 		SystemOfUnits systemOfUnits = null;
