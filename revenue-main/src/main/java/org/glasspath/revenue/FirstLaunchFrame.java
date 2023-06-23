@@ -60,7 +60,6 @@ import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.color.ColorUtils;
 import org.glasspath.common.swing.file.chooser.FileChooser;
 import org.glasspath.common.swing.preferences.CurrencyAndSymbolPreferenceComboBox;
-import org.glasspath.common.swing.preferences.CurrencyPreferenceComboBox;
 import org.glasspath.common.swing.preferences.LanguagePreferenceComboBox;
 import org.glasspath.common.swing.preferences.UnitOfMeasurementPreferenceComboBox;
 import org.glasspath.common.swing.resources.Resources;
