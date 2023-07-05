@@ -234,7 +234,7 @@ public class GeneralPreferencesPanel extends JPanel {
 
 		Locale locale = LocaleUtils.getLocaleForTag(LANGUAGE.get(preferences));
 		if (locale == null) {
-			locale = Locale.getDefault();
+			locale = LocaleUtils.getDefaultLocale();
 		}
 
 		String currencySymbol = CURRENCY_SYMBOL.get(preferences);
