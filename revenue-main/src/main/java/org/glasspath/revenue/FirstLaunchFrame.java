@@ -378,8 +378,21 @@ public class FirstLaunchFrame {
 			projectPathPanelLayout.columnWidths = new int[] { 190, 15, 190 };
 			projectPathPanel.setLayout(projectPathPanelLayout);
 
-			String userHomeDir = System.getProperty("user.home"); //$NON-NLS-1$
-			userHomeDir = userHomeDir.replace("\\", "/"); //$NON-NLS-1$ //$NON-NLS-2$
+			// TODO: Move to DesktopUtils/OsUtils
+			String projectDir = System.getProperty("user.home"); //$NON-NLS-1$
+			if (projectDir == null) {
+				// TODO: Determine best default location for each platform
+				projectDir = ""; //$NON-NLS-1$
+			}
+
+			// TODO: Move to DesktopUtils/OsUtils
+			File oneDriveDir = new File(projectDir, "OneDrive"); //$NON-NLS-1$
+			if (oneDriveDir.exists() && oneDriveDir.isDirectory()) {
+				projectDir = oneDriveDir.getAbsolutePath();
+			}
+
+			// TODO: Move to DesktopUtils/OsUtils
+			projectDir = projectDir.replace("\\", "/"); //$NON-NLS-1$ //$NON-NLS-2$
 
 			JButton browseButton = new JButton();
 			browseButton.setIcon(Icons.folderOutline);
@@ -387,7 +400,7 @@ public class FirstLaunchFrame {
 			browseButton.setFocusable(false);
 			browseButton.setCursor(Cursor.getDefaultCursor());
 
-			projectLocationTextField = new JTextField(userHomeDir) {
+			projectLocationTextField = new JTextField(projectDir) {
 
 				@Override
 				public void doLayout() {
