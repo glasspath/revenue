@@ -23,7 +23,11 @@
 package org.glasspath.revenue;
 
 import java.io.File;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import org.glasspath.common.Common;
 import org.glasspath.common.os.OsUtils;
 import org.glasspath.common.xml.XmlUtils;
 
@@ -44,6 +48,8 @@ public class ProjectUtils {
 	public static final String INVOICE_EMAIL_TEMPLATES_DIR = "templates/email/invoice";
 	public static final String REPORT_EMAIL_TEMPLATES_DIR = "templates/email/report";
 	public static final String TIME_SHEET_EMAIL_TEMPLATES_DIR = "templates/email/timesheet";
+	public static final String BACKUP_DIR = "backup";
+	public static final String SYNC_BACKUP_DIR = "backup/sync";
 
 	public static final String[] PROJECT_DIRS = new String[] {
 			INVOICES_DIR,
@@ -57,6 +63,8 @@ public class ProjectUtils {
 			INVOICE_EMAIL_TEMPLATES_DIR,
 			REPORT_EMAIL_TEMPLATES_DIR,
 			TIME_SHEET_EMAIL_TEMPLATES_DIR,
+			BACKUP_DIR,
+			SYNC_BACKUP_DIR
 	};
 
 	private ProjectUtils() {
@@ -158,6 +166,25 @@ public class ProjectUtils {
 
 	public static boolean isValidProject(String contentXmlPath) {
 
+		File projectDir = getProjectDir(contentXmlPath);
+		if (projectDir != null) {
+
+			for (String dir : PROJECT_DIRS) {
+				if (!new File(projectDir, dir).isDirectory()) {
+					return false;
+				}
+			}
+
+			return true;
+
+		}
+
+		return false;
+
+	}
+
+	public static File getProjectDir(String contentXmlPath) {
+
 		// TODO: Should the file always be named content.xml? (for now we allow other names)
 		if (contentXmlPath != null && contentXmlPath.toLowerCase().endsWith(".xml")) {
 
@@ -166,22 +193,36 @@ public class ProjectUtils {
 
 				File projectDir = contentXmlFile.getParentFile();
 				if (projectDir != null && projectDir.isDirectory()) {
-
-					for (String dir : PROJECT_DIRS) {
-						if (!new File(projectDir, dir).isDirectory()) {
-							return false;
-						}
-					}
-
-					return true;
-
+					return projectDir;
 				}
 
 			}
 
 		}
 
-		return false;
+		return null;
+
+	}
+
+	public static void createSyncBackup(String contentXmlPath, String syncDataAsJson) {
+
+		File projectDir = getProjectDir(contentXmlPath);
+		if (projectDir != null) {
+
+			File syncBackupDir = new File(projectDir, SYNC_BACKUP_DIR);
+			if (syncBackupDir.isDirectory()) {
+
+				File syncBackupFile = new File(syncBackupDir, new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date()) + ".json");
+
+				try (PrintWriter printWriter = new PrintWriter(syncBackupFile)) {
+					printWriter.print(syncDataAsJson);
+				} catch (Exception e) {
+					Common.LOGGER.error("Exception while creating sync backup", e);
+				}
+
+			}
+
+		}
 
 	}
 
