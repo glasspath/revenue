@@ -24,7 +24,12 @@ package org.glasspath.revenue;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 
 import org.glasspath.common.Common;
@@ -49,6 +54,7 @@ public class ProjectUtils {
 	public static final String REPORT_EMAIL_TEMPLATES_DIR = "templates/email/report";
 	public static final String TIME_SHEET_EMAIL_TEMPLATES_DIR = "templates/email/timesheet";
 	public static final String BACKUP_DIR = "backup";
+	public static final String PROJECT_BACKUP_DIR = "backup/project";
 	public static final String SYNC_BACKUP_DIR = "backup/sync";
 
 	public static final String[] PROJECT_DIRS = new String[] {
@@ -64,8 +70,12 @@ public class ProjectUtils {
 			REPORT_EMAIL_TEMPLATES_DIR,
 			TIME_SHEET_EMAIL_TEMPLATES_DIR,
 			BACKUP_DIR,
+			PROJECT_BACKUP_DIR,
 			SYNC_BACKUP_DIR
 	};
+
+	public static final DateFormat PROJECT_BACKUP_FILE_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd-HHmmss");
+	public static final DateFormat SYNC_BACKUP_FILE_DATE_FORMAT = new SimpleDateFormat("yyyyMMdd-HHmmss");
 
 	private ProjectUtils() {
 
@@ -204,7 +214,54 @@ public class ProjectUtils {
 
 	}
 
-	public static void createSyncBackup(String contentXmlPath, String syncDataAsJson) {
+	public static void createProjectBackup(String contentXmlPath, int maxProjectBackups) {
+
+		File projectDir = getProjectDir(contentXmlPath);
+		if (projectDir != null) {
+
+			File projectBackupDir = new File(projectDir, PROJECT_BACKUP_DIR);
+			if (projectBackupDir.isDirectory()) {
+
+				OsUtils.copyFile(new File(contentXmlPath), new File(projectBackupDir, PROJECT_BACKUP_FILE_DATE_FORMAT.format(new Date()) + ".xml"));
+
+				try {
+
+					File[] projectBackups = projectBackupDir.listFiles();
+					if (projectBackups != null && projectBackups.length > maxProjectBackups) {
+
+						Arrays.sort(projectBackups, new Comparator<File>() {
+
+							@Override
+							public int compare(File f1, File f2) {
+								try {
+									return PROJECT_BACKUP_FILE_DATE_FORMAT.parse(f2.getName()).compareTo(PROJECT_BACKUP_FILE_DATE_FORMAT.parse(f1.getName()));
+								} catch (ParseException e) {
+									return 0;
+								}
+							}
+						});
+
+						for (int i = maxProjectBackups; i < projectBackups.length; i++) {
+							try {
+								projectBackups[i].delete();
+							} catch (Exception e) {
+								Common.LOGGER.error("Exception while deleting project backup file", e);
+							}
+						}
+
+					}
+
+				} catch (Exception e) {
+					Common.LOGGER.error("Exception while cleaning project backup dir", e);
+				}
+
+			}
+
+		}
+
+	}
+
+	public static void createSyncBackup(String contentXmlPath, String syncDataAsJson, int maxSyncBackups) {
 
 		File projectDir = getProjectDir(contentXmlPath);
 		if (projectDir != null) {
@@ -212,12 +269,43 @@ public class ProjectUtils {
 			File syncBackupDir = new File(projectDir, SYNC_BACKUP_DIR);
 			if (syncBackupDir.isDirectory()) {
 
-				File syncBackupFile = new File(syncBackupDir, new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date()) + ".json");
+				File syncBackupFile = new File(syncBackupDir, SYNC_BACKUP_FILE_DATE_FORMAT.format(new Date()) + ".json");
 
 				try (PrintWriter printWriter = new PrintWriter(syncBackupFile)) {
 					printWriter.print(syncDataAsJson);
 				} catch (Exception e) {
 					Common.LOGGER.error("Exception while creating sync backup", e);
+				}
+
+				try {
+
+					File[] syncBackups = syncBackupDir.listFiles();
+					if (syncBackups != null && syncBackups.length > maxSyncBackups) {
+
+						Arrays.sort(syncBackups, new Comparator<File>() {
+
+							@Override
+							public int compare(File f1, File f2) {
+								try {
+									return SYNC_BACKUP_FILE_DATE_FORMAT.parse(f2.getName()).compareTo(SYNC_BACKUP_FILE_DATE_FORMAT.parse(f1.getName()));
+								} catch (ParseException e) {
+									return 0;
+								}
+							}
+						});
+
+						for (int i = maxSyncBackups; i < syncBackups.length; i++) {
+							try {
+								syncBackups[i].delete();
+							} catch (Exception e) {
+								Common.LOGGER.error("Exception while deleting sync backup file", e);
+							}
+						}
+
+					}
+
+				} catch (Exception e) {
+					Common.LOGGER.error("Exception while cleaning sync backup dir", e);
 				}
 
 			}
