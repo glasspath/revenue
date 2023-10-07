@@ -31,7 +31,6 @@ import java.util.Locale;
 import java.util.prefs.Preferences;
 
 import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -41,11 +40,9 @@ import org.glasspath.common.format.FormatUtils;
 import org.glasspath.common.locale.LocaleUtils;
 import org.glasspath.common.locale.LocaleUtils.CurrencyCode;
 import org.glasspath.common.locale.LocaleUtils.SystemOfUnits;
-import org.glasspath.common.os.preferences.BoolPref;
 import org.glasspath.common.os.preferences.Pref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.preferences.CurrencyAndSymbolPreferenceComboBox;
-import org.glasspath.common.swing.preferences.CurrencyPreferenceComboBox;
 import org.glasspath.common.swing.preferences.LanguagePreferenceComboBox;
 import org.glasspath.common.swing.preferences.UnitOfMeasurementPreferenceComboBox;
 import org.glasspath.common.swing.theme.Theme;
@@ -62,16 +59,12 @@ public class GeneralPreferencesPanel extends JPanel {
 			"Light",
 			"Dark"
 	};
-	public static final BoolPref OPEN_LAST_FILE = new BoolPref("openLastFileAtStartup", true); //$NON-NLS-1$
-	public static final BoolPref CREATE_BACKUP = new BoolPref("createBackupOnOpen", true); //$NON-NLS-1$
 
 	private final Preferences preferences;
 	private final LanguagePreferenceComboBox languageComboBox;
 	private final CurrencyAndSymbolPreferenceComboBox currencyComboBox;
 	private final UnitOfMeasurementPreferenceComboBox unitOfMeasurementComboBox;
 	private final JComboBox<String> themeComboBox;
-	private final JCheckBox openLastFileAtStartupCheckBox;
-	private final JCheckBox backupOnOpenCheckBox;
 
 	private String previousLanguage = LANGUAGE.defaultValue;
 	private String previousCurrency = CURRENCY.defaultValue;
@@ -86,8 +79,8 @@ public class GeneralPreferencesPanel extends JPanel {
 		PreferencesProvider preferencesProvider = new PreferencesProvider(preferences);
 
 		GridBagLayout layout = new GridBagLayout();
-		layout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1 };
-		layout.rowHeights = new int[] { 25, 5, 25, 5, 25, 5, 25, 5 };
+		layout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.1 };
+		layout.rowHeights = new int[] { 25, 5, 25, 5, 25, 5 };
 		layout.columnWeights = new double[] { 0.1 };
 		layout.columnWidths = new int[] { 250 };
 		setLayout(layout);
@@ -150,27 +143,6 @@ public class GeneralPreferencesPanel extends JPanel {
 			themeComboBox.setSelectedIndex(1);
 		}
 
-		JPanel startupPanel = new JPanel();
-		add(startupPanel, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-
-		GridBagLayout startupPanelLayout = new GridBagLayout();
-		startupPanelLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
-		startupPanelLayout.rowHeights = new int[] { 7, 23, 5, 23, 7 };
-		startupPanelLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.1, 0.0 };
-		startupPanelLayout.columnWidths = new int[] { 7, 150, 5, 250, 7 };
-		startupPanel.setLayout(startupPanelLayout);
-		startupPanel.setBorder(BorderFactory.createTitledBorder("Startup"));
-
-		openLastFileAtStartupCheckBox = new JCheckBox(Resources.getString("OpenLastFileAtStartup")); //$NON-NLS-1$
-		openLastFileAtStartupCheckBox.setSelected(OPEN_LAST_FILE.get(preferences));
-		startupPanel.add(new JLabel("Load project"), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-		startupPanel.add(openLastFileAtStartupCheckBox, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-
-		backupOnOpenCheckBox = new JCheckBox(Resources.getString("CreateBackupWhenFileOpened")); //$NON-NLS-1$
-		backupOnOpenCheckBox.setSelected(CREATE_BACKUP.get(preferences));
-		startupPanel.add(new JLabel("Create backup"), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-		startupPanel.add(backupOnOpenCheckBox, new GridBagConstraints(3, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-
 		previousLanguage = LANGUAGE.get(preferences);
 		previousCurrency = CURRENCY.get(preferences);
 		previousCurrencySymbol = CURRENCY_SYMBOL.get(preferences);
@@ -210,9 +182,6 @@ public class GeneralPreferencesPanel extends JPanel {
 		} else {
 			preferences.remove(THEME.key);
 		}
-
-		OPEN_LAST_FILE.put(preferences, openLastFileAtStartupCheckBox.isSelected());
-		CREATE_BACKUP.put(preferences, backupOnOpenCheckBox.isSelected());
 
 		applyRegionalSettings(preferences);
 
