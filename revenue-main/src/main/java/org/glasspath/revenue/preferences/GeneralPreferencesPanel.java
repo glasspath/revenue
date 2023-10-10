@@ -199,34 +199,35 @@ public class GeneralPreferencesPanel extends JPanel {
 
 	}
 
-	public static void applyRegionalSettings(Preferences preferences) {
+	public static Locale getLocale(Preferences preferences) {
 
 		Locale locale = LocaleUtils.getLocaleForTag(LANGUAGE.get(preferences));
 		if (locale == null) {
 			locale = LocaleUtils.getDefaultLocale();
 		}
 
-		String currencySymbol = CURRENCY_SYMBOL.get(preferences);
-		if (currencySymbol != null && currencySymbol.length() > 0) {
-			FormatUtils.setDefaultCurrencySymbol(currencySymbol);
-		} else {
+		return locale;
 
-			CurrencyCode currencyCode = null;
+	}
 
-			String currency = CURRENCY.get(preferences);
-			if (currency != null && currency.length() > 0) {
-				currencyCode = LocaleUtils.getCurrencyCode(currency);
-			}
+	public static CurrencyCode getCurrencyCode(Preferences preferences, Locale locale) {
 
-			if (currencyCode == null) {
-				currencyCode = LocaleUtils.getCurrencyCodeForLocale(locale);
-			}
+		CurrencyCode currencyCode = null;
 
-			if (currencyCode != null) {
-				FormatUtils.setDefaultCurrencySymbol(currencyCode.symbol);
-			}
-
+		String currency = CURRENCY.get(preferences);
+		if (currency != null && currency.length() > 0) {
+			currencyCode = LocaleUtils.getCurrencyCode(currency);
 		}
+
+		if (currencyCode == null) {
+			currencyCode = LocaleUtils.getCurrencyCodeForLocale(locale);
+		}
+
+		return currencyCode;
+
+	}
+
+	public static SystemOfUnits getSystemOfUnits(Preferences preferences, Locale locale) {
 
 		SystemOfUnits systemOfUnits = null;
 
@@ -239,7 +240,27 @@ public class GeneralPreferencesPanel extends JPanel {
 			systemOfUnits = LocaleUtils.getSystemOfUnitsForLocale(locale);
 		}
 
-		FormatUtils.setDefaultSystemOfUnits(systemOfUnits);
+		return systemOfUnits;
+
+	}
+
+	public static void applyRegionalSettings(Preferences preferences) {
+
+		Locale locale = getLocale(preferences);
+
+		String currencySymbol = CURRENCY_SYMBOL.get(preferences);
+		if (currencySymbol != null && currencySymbol.length() > 0) {
+			FormatUtils.setDefaultCurrencySymbol(currencySymbol);
+		} else {
+
+			CurrencyCode currencyCode = getCurrencyCode(preferences, locale);
+			if (currencyCode != null) {
+				FormatUtils.setDefaultCurrencySymbol(currencyCode.symbol);
+			}
+
+		}
+
+		FormatUtils.setDefaultSystemOfUnits(getSystemOfUnits(preferences, locale));
 
 	}
 
