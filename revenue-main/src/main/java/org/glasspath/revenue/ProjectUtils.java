@@ -227,7 +227,7 @@ public class ProjectUtils {
 				try {
 
 					File[] projectBackups = projectBackupDir.listFiles();
-					if (projectBackups != null && projectBackups.length > maxProjectBackups) {
+					if (projectBackups != null && projectBackups.length > 0 && projectBackups.length > maxProjectBackups) {
 
 						Arrays.sort(projectBackups, new Comparator<File>() {
 
@@ -280,7 +280,7 @@ public class ProjectUtils {
 				try {
 
 					File[] syncBackups = syncBackupDir.listFiles();
-					if (syncBackups != null && syncBackups.length > maxSyncBackups) {
+					if (syncBackups != null && syncBackups.length > 0 && syncBackups.length > maxSyncBackups) {
 
 						Arrays.sort(syncBackups, new Comparator<File>() {
 
@@ -311,6 +311,47 @@ public class ProjectUtils {
 			}
 
 		}
+
+	}
+
+	public static Date getOldestSyncBackupDate(String contentXmlPath) {
+
+		File projectDir = getProjectDir(contentXmlPath);
+		if (projectDir != null) {
+
+			File syncBackupDir = new File(projectDir, SYNC_BACKUP_DIR);
+			if (syncBackupDir.isDirectory()) {
+
+				try {
+
+					File[] syncBackups = syncBackupDir.listFiles();
+					if (syncBackups != null && syncBackups.length > 0) {
+
+						Arrays.sort(syncBackups, new Comparator<File>() {
+
+							@Override
+							public int compare(File f1, File f2) {
+								try {
+									return SYNC_BACKUP_FILE_DATE_FORMAT.parse(f2.getName()).compareTo(SYNC_BACKUP_FILE_DATE_FORMAT.parse(f1.getName()));
+								} catch (ParseException e) {
+									return 0;
+								}
+							}
+						});
+
+						return SYNC_BACKUP_FILE_DATE_FORMAT.parse(syncBackups[syncBackups.length - 1].getName());
+
+					}
+
+				} catch (Exception e) {
+					Common.LOGGER.error("Exception while cleaning sync backup dir", e);
+				}
+
+			}
+
+		}
+
+		return null;
 
 	}
 
