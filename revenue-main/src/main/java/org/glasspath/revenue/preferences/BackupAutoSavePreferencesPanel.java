@@ -38,6 +38,7 @@ import javax.swing.SpinnerNumberModel;
 
 import org.glasspath.common.os.preferences.BoolPref;
 import org.glasspath.common.os.preferences.IntPref;
+import org.glasspath.revenue.resources.Resources;
 
 public class BackupAutoSavePreferencesPanel extends JPanel {
 
@@ -80,14 +81,14 @@ public class BackupAutoSavePreferencesPanel extends JPanel {
 		backupPanelLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.1 };
 		backupPanelLayout.columnWidths = new int[] { 7, 150, 5, 100, 7 };
 		backupPanel.setLayout(backupPanelLayout);
-		backupPanel.setBorder(BorderFactory.createTitledBorder("Backup"));
+		backupPanel.setBorder(BorderFactory.createTitledBorder(Resources.getString("Backup"))); //$NON-NLS-1$
 
 		maxProjectBackupsSpinner = new JSpinner(new SpinnerNumberModel(MAX_PROJECT_BACKUPS.get(preferences), 10, 1000, 1));
-		backupPanel.add(new JLabel("Max. project backups"), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		backupPanel.add(new JLabel(Resources.getString("MaxProjectBackups")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		backupPanel.add(maxProjectBackupsSpinner, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		maxSyncBackupsSpinner = new JSpinner(new SpinnerNumberModel(MAX_SYNC_BACKUPS.get(preferences), 10, 1000, 1));
-		backupPanel.add(new JLabel("Max. sync backups"), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		backupPanel.add(new JLabel(Resources.getString("MaxSyncBackups")), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		backupPanel.add(maxSyncBackupsSpinner, new GridBagConstraints(3, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		JPanel autoSavePanel = new JPanel();
@@ -99,11 +100,11 @@ public class BackupAutoSavePreferencesPanel extends JPanel {
 		autoSavePanelLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.1 };
 		autoSavePanelLayout.columnWidths = new int[] { 7, 150, 5, 100, 5, 100 };
 		autoSavePanel.setLayout(autoSavePanelLayout);
-		autoSavePanel.setBorder(BorderFactory.createTitledBorder("Auto-Save"));
+		autoSavePanel.setBorder(BorderFactory.createTitledBorder(Resources.getString("AutoSave"))); //$NON-NLS-1$
 
-		autoSaveChangesEnabledCheckBox = new JCheckBox("Automatically save changes"); //$NON-NLS-1$
+		autoSaveChangesEnabledCheckBox = new JCheckBox(Resources.getString("AutomaticallySaveChanges")); //$NON-NLS-1$
 		autoSaveChangesEnabledCheckBox.setSelected(AUTO_SAVE_CHANGES_ENABLED.get(preferences));
-		autoSavePanel.add(new JLabel("Enable Auto-Save"), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		autoSavePanel.add(new JLabel(Resources.getString("EnableAutoSave")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		autoSavePanel.add(autoSaveChangesEnabledCheckBox, new GridBagConstraints(3, 1, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 		autoSaveChangesEnabledCheckBox.addActionListener(new ActionListener() {
 
@@ -115,18 +116,18 @@ public class BackupAutoSavePreferencesPanel extends JPanel {
 
 		autoSaveIntervalSpinner = new JSpinner(new SpinnerNumberModel(AUTO_SAVE_INTERVAL.get(preferences), MIN_AUTO_SAVE_INTERVAL, MAX_AUTO_SAVE_INTERVAL, 1));
 		autoSaveIntervalSpinner.setEnabled(autoSaveChangesEnabledCheckBox.isSelected());
-		autoSavePanel.add(new JLabel("Auto-Save interval"), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		autoSavePanel.add(new JLabel(Resources.getString("AutoSaveInterval")), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		autoSavePanel.add(autoSaveIntervalSpinner, new GridBagConstraints(3, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-		autoSavePanel.add(new JLabel("Seconds"), new GridBagConstraints(5, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		autoSavePanel.add(new JLabel(Resources.getString("Seconds")), new GridBagConstraints(5, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 
-		autoSaveSyncStep2EnabledCheckBox = new JCheckBox("Automatically save project after synchronizing"); //$NON-NLS-1$
+		autoSaveSyncStep2EnabledCheckBox = new JCheckBox(Resources.getString("AutomaticallySaveProjectAfterSynchronizing")); //$NON-NLS-1$
 		autoSaveSyncStep2EnabledCheckBox.setSelected(AUTO_SAVE_SYNC_STEP_2_ENABLED.get(preferences));
-		autoSavePanel.add(new JLabel("Auto-Save after sync"), new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		autoSavePanel.add(new JLabel(Resources.getString("AutoSaveAfterSync")), new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		autoSavePanel.add(autoSaveSyncStep2EnabledCheckBox, new GridBagConstraints(3, 5, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-		autoSaveExitEnabledCheckBox = new JCheckBox("Automatically save project at exit"); //$NON-NLS-1$
+		autoSaveExitEnabledCheckBox = new JCheckBox(Resources.getString("AutomaticallySaveProjectAtExit")); //$NON-NLS-1$
 		autoSaveExitEnabledCheckBox.setSelected(AUTO_SAVE_EXIT_ENABLED.get(preferences));
-		autoSavePanel.add(new JLabel("Auto-Save at exit"), new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		autoSavePanel.add(new JLabel(Resources.getString("AutoSaveAtExit")), new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		autoSavePanel.add(autoSaveExitEnabledCheckBox, new GridBagConstraints(3, 7, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 	}
