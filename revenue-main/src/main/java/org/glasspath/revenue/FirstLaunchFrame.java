@@ -62,7 +62,7 @@ import org.glasspath.common.swing.file.chooser.FileChooser;
 import org.glasspath.common.swing.preferences.CurrencyAndSymbolPreferenceComboBox;
 import org.glasspath.common.swing.preferences.LanguagePreferenceComboBox;
 import org.glasspath.common.swing.preferences.UnitOfMeasurementPreferenceComboBox;
-import org.glasspath.common.swing.resources.Resources;
+import org.glasspath.common.swing.resources.CommonResources;
 import org.glasspath.common.swing.theme.Theme;
 import org.glasspath.common.swing.theme.ThemeChooserPanel;
 import org.glasspath.revenue.icons.Icons;
@@ -141,7 +141,7 @@ public class FirstLaunchFrame {
 
 		footer.add(Box.createHorizontalGlue());
 
-		okButton = new JButton(Resources.getString("Ok")); //$NON-NLS-1$
+		okButton = new JButton(CommonResources.getString("Ok")); //$NON-NLS-1$
 		footer.add(okButton);
 		okButton.addActionListener(new ActionListener() {
 
@@ -153,7 +153,7 @@ public class FirstLaunchFrame {
 
 		footer.add(Box.createRigidArea(new Dimension(5, 5)));
 
-		cancelButton = new JButton(Resources.getString("Cancel")); //$NON-NLS-1$
+		cancelButton = new JButton(CommonResources.getString("Cancel")); //$NON-NLS-1$
 		footer.add(cancelButton);
 		cancelButton.addActionListener(new ActionListener() {
 
