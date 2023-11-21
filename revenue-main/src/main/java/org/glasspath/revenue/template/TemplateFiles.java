@@ -178,7 +178,7 @@ public class TemplateFiles {
 			return "Word Template";
 
 		case FILE_TYPE_ODT:
-			return "Open Office Template";
+			return "OpenOffice Template";
 
 		default:
 			return "Unknown";

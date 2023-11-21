@@ -51,7 +51,6 @@ import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
 import fr.opensagres.xdocreport.template.TemplateEngineKind;
 import fr.opensagres.xdocreport.template.formatter.FieldsMetadata;
 
-@SuppressWarnings("nls")
 public class InvoiceTemplateUtils extends KeyUtils {
 
 	private InvoiceTemplateUtils() {
