@@ -222,13 +222,13 @@ public class FirstLaunchFrame {
 		}
 
 		if (!projectLocationValid) {
-			statusLabel.setIcon(org.glasspath.common.icons.Icons.alertLarge);
+			statusLabel.setIcon(org.glasspath.common.icons.Icons.alertOrangeLarge);
 			statusLabel.setText("Project location is not valid");
 		} else if (!projecNameValid) {
-			statusLabel.setIcon(org.glasspath.common.icons.Icons.alertLarge);
+			statusLabel.setIcon(org.glasspath.common.icons.Icons.alertOrangeLarge);
 			statusLabel.setText("Project name is not valid");
 		} else if (contentPanel.themeChooserPanel.isDarkThemeSelected()) {
-			statusLabel.setIcon(org.glasspath.common.icons.Icons.alertLarge);
+			statusLabel.setIcon(org.glasspath.common.icons.Icons.alertOrangeLarge);
 			statusLabel.setText("Your theme will be applied the next time the application is launched");
 		} else {
 			statusLabel.setIcon(null);
