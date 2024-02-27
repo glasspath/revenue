@@ -161,7 +161,7 @@ public abstract class CsvImporter {
 					if (s.matches(dateFormat[0])) {
 
 						DateFormat format = new SimpleDateFormat(dateFormat[1]);
-						format.setTimeZone(DateUtils.TIME_ZONE);
+						format.setTimeZone(DateUtils.DEFAULT_TIME_ZONE);
 
 						return format.parse(s);
 
