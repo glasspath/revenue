@@ -110,7 +110,7 @@ public class FieldFormatPanel extends JPanel {
 	public static final Date SAMPLE_DATE_1;
 	public static final Date SAMPLE_DATE_2;
 	static {
-		Calendar calendar = Calendar.getInstance(DateUtils.DEFAULT_TIME_ZONE);
+		Calendar calendar = Calendar.getInstance(DateUtils.GMT_TIME_ZONE);
 		// calendar.set(2012, 3, 2);
 		calendar.set(DateUtils.getYear(), 3, 2, 8, 30);
 		SAMPLE_DATE_1 = calendar.getTime();
