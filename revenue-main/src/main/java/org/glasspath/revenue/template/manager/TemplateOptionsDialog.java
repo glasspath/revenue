@@ -35,8 +35,8 @@ import javax.swing.JComponent;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.FrameContext;
 import org.glasspath.common.swing.dialog.DefaultDialog;
+import org.glasspath.common.swing.resources.CommonResources;
 import org.glasspath.revenue.icons.Icons;
-import org.glasspath.revenue.resources.Resources;
 
 public class TemplateOptionsDialog extends DefaultDialog {
 
@@ -71,7 +71,7 @@ public class TemplateOptionsDialog extends DefaultDialog {
 
 		
 		getFooter().remove(getOkButton());
-		getCancelButton().setText(Resources.getString("Close"));
+		getCancelButton().setText(CommonResources.getString("Close"));
 
 		pack();
 		setLocationRelativeTo(context.getFrame());

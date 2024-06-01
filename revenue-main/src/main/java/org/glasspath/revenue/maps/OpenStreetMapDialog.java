@@ -45,6 +45,7 @@ import org.glasspath.common.swing.FrameContext;
 import org.glasspath.common.swing.SwingUtils;
 import org.glasspath.common.swing.border.HidpiMatteBorder;
 import org.glasspath.common.swing.dialog.DefaultDialog;
+import org.glasspath.common.swing.resources.CommonResources;
 import org.glasspath.common.swing.theme.Theme;
 import org.glasspath.revenue.icons.Icons;
 import org.glasspath.revenue.resources.Resources;
@@ -143,7 +144,7 @@ public class OpenStreetMapDialog extends DefaultDialog {
 		remove(getHeaderSeparator());
 		remove(getFooterSeparator());
 		getFooter().remove(getOkButton());
-		getCancelButton().setText(Resources.getString("Close")); //$NON-NLS-1$
+		getCancelButton().setText(CommonResources.getString("Close")); //$NON-NLS-1$
 
 		pack();
 		setLocationRelativeTo(context.getFrame());
