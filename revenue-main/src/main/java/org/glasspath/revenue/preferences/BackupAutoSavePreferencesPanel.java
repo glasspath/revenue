@@ -38,6 +38,7 @@ import javax.swing.SpinnerNumberModel;
 
 import org.glasspath.common.os.preferences.BoolPref;
 import org.glasspath.common.os.preferences.IntPref;
+import org.glasspath.common.swing.resources.CommonResources;
 import org.glasspath.revenue.resources.Resources;
 
 public class BackupAutoSavePreferencesPanel extends JPanel {
@@ -81,7 +82,7 @@ public class BackupAutoSavePreferencesPanel extends JPanel {
 		backupPanelLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.1 };
 		backupPanelLayout.columnWidths = new int[] { 7, 150, 5, 100, 7 };
 		backupPanel.setLayout(backupPanelLayout);
-		backupPanel.setBorder(BorderFactory.createTitledBorder(Resources.getString("Backup"))); //$NON-NLS-1$
+		backupPanel.setBorder(BorderFactory.createTitledBorder(CommonResources.getString("Backup"))); //$NON-NLS-1$
 
 		maxProjectBackupsSpinner = new JSpinner(new SpinnerNumberModel(MAX_PROJECT_BACKUPS.get(preferences), 10, 1000, 1));
 		backupPanel.add(new JLabel(Resources.getString("MaxProjectBackups")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$

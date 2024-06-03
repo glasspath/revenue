@@ -45,8 +45,8 @@ import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.preferences.CurrencyAndSymbolPreferenceComboBox;
 import org.glasspath.common.swing.preferences.LanguagePreferenceComboBox;
 import org.glasspath.common.swing.preferences.UnitOfMeasurementPreferenceComboBox;
+import org.glasspath.common.swing.resources.CommonResources;
 import org.glasspath.common.swing.theme.Theme;
-import org.glasspath.revenue.resources.Resources;
 
 public class GeneralPreferencesPanel extends JPanel {
 
@@ -105,7 +105,7 @@ public class GeneralPreferencesPanel extends JPanel {
 						languageTag.startsWith("nl")); //$NON-NLS-1$
 			}
 		};
-		regionalSettingsPanel.add(new JLabel(Resources.getString("Language")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
+		regionalSettingsPanel.add(new JLabel(CommonResources.getString("Language")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		regionalSettingsPanel.add(languageComboBox, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		languageComboBox.addActionListener(new ActionListener() {
 

@@ -51,6 +51,7 @@ import org.glasspath.common.os.preferences.Pref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.preferences.LanguagePreferenceComboBox;
 import org.glasspath.common.swing.preferences.PreferencesUtils;
+import org.glasspath.common.swing.resources.CommonResources;
 import org.glasspath.revenue.resources.Resources;
 
 public class FieldFormatPanel extends JPanel {
@@ -189,7 +190,7 @@ public class FieldFormatPanel extends JPanel {
 		setLayout(layout);
 
 		LanguagePreferenceComboBox languageComboBox = new LanguagePreferenceComboBox(provider, LANGUAGE.key, LANGUAGE.defaultValue);
-		add(new JLabel(Resources.getString("Language")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
+		add(new JLabel(CommonResources.getString("Language")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(languageComboBox, new GridBagConstraints(3, 1, 5, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); // $NON-NLS-1$
 		languageComboBox.addActionListener(new ActionListener() {
 

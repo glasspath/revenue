@@ -32,7 +32,7 @@ import javax.swing.JCheckBox;
 import org.glasspath.common.date.DateUtils;
 import org.glasspath.common.date.Time;
 import org.glasspath.common.format.FormatUtils;
-import org.glasspath.revenue.resources.Resources;
+import org.glasspath.common.swing.resources.CommonResources;
 
 public abstract class CsvImporter {
 
@@ -207,13 +207,13 @@ public abstract class CsvImporter {
 
 			if (defaultValue) {
 
-				if (Resources.getString("No").toLowerCase().equals(s) || "no".equals(s) || "false".equals(s) || "0".equals(s)) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+				if (CommonResources.getString("No").toLowerCase().equals(s) || "no".equals(s) || "false".equals(s) || "0".equals(s)) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 					return false;
 				}
 
 			} else {
 
-				if (Resources.getString("Yes").toLowerCase().equals(s) || "yes".equals(s) || "true".equals(s) || "1".equals(s)) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+				if (CommonResources.getString("Yes").toLowerCase().equals(s) || "yes".equals(s) || "true".equals(s) || "1".equals(s)) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 					return true;
 				}
 
