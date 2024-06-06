@@ -125,7 +125,7 @@ public class FieldFormatPanel extends JPanel {
 	public static final int DECIMAL_FORMAT_SYMBOLS_DOT_COMMA = 3;
 	public static final int DECIMAL_FORMAT_SYMBOLS_COMMA = 4;
 	public static final String[] DECIMAL_FORMAT_SYMBOLS_SAMPLES = new String[] {
-			"Automatic",
+			CommonResources.getString("Automatic"), //$NON-NLS-1$
 			"1,234,567.89", //$NON-NLS-1$
 			"1234567.89", //$NON-NLS-1$
 			"1.234.567,89", //$NON-NLS-1$
@@ -200,15 +200,15 @@ public class FieldFormatPanel extends JPanel {
 			}
 		});
 
-		add(new JLabel("Date format"), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
+		add(new JLabel(Resources.getString("DateFormat")), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createComboBox(provider, DATE_FORMAT, DATE_FORMATS, new DateFormatListCellRenderer(provider)), new GridBagConstraints(3, 3, 5, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 
-		add(new JLabel("Time format"), new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
+		add(new JLabel(Resources.getString("TimeFormat")), new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createComboBox(provider, TIME_FORMAT, TIME_FORMATS, new TimeFormatListCellRenderer(provider)), new GridBagConstraints(3, 5, 5, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 
 		JComboBox<String> decimalSymbolsComboBox = PreferencesUtils.createComboBox(provider, DECIMAL_FORMAT_SYMBOLS, DECIMAL_FORMAT_SYMBOLS_SAMPLES);
-		add(new JLabel("Decimal symbols"), new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
-		add(decimalSymbolsComboBox, new GridBagConstraints(3, 7, 5, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); // $NON-NLS-1$
+		add(new JLabel(Resources.getString("DecimalSymbols")), new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
+		add(decimalSymbolsComboBox, new GridBagConstraints(3, 7, 5, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		decimalSymbolsComboBox.addActionListener(new ActionListener() {
 
 			@Override
@@ -227,8 +227,7 @@ public class FieldFormatPanel extends JPanel {
 		add(PreferencesUtils.createComboBox(provider, HOUR_RATE_FORMAT, DECIMAL_FORMATS, new DecimalFormatListCellRenderer(provider)), new GridBagConstraints(5, 11, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		add(PreferencesUtils.createTextField(provider, HOUR_RATE_APPEND_TEXT), new GridBagConstraints(7, 11, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 
-		// TODO: Change resource key
-		add(new JLabel(Resources.getString("KilometersTotal")), new GridBagConstraints(1, 13, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JLabel(Resources.getString("MileageTotal")), new GridBagConstraints(1, 13, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createTextField(provider, MILEAGE_TOTAL_PREPEND_TEXT, JTextField.RIGHT), new GridBagConstraints(3, 13, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		add(PreferencesUtils.createComboBox(provider, MILEAGE_TOTAL_FORMAT, DECIMAL_FORMATS, new DecimalFormatListCellRenderer(provider)), new GridBagConstraints(5, 13, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 		add(PreferencesUtils.createTextField(provider, MILEAGE_TOTAL_APPEND_TEXT), new GridBagConstraints(7, 13, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
@@ -345,7 +344,7 @@ public class FieldFormatPanel extends JPanel {
 			return decimalFormat;
 
 		} catch (Exception e) {
-			Common.LOGGER.error("Exception while creating DecimalFormat instance for format: " + format, e);
+			Common.LOGGER.error("Exception while creating DecimalFormat instance for format: " + format, e); //$NON-NLS-1$
 		}
 
 		// TODO? Return null?
@@ -412,7 +411,7 @@ public class FieldFormatPanel extends JPanel {
 
 			if (value instanceof String) {
 				DecimalFormat decimalFormat = getDecimalFormat((String) value, provider.getPreferences());
-				setText("100" + decimalFormat.getDecimalFormatSymbols().getDecimalSeparator() + "0 = " + decimalFormat.format(DECIMAL_FORMAT_SAMPLE_1) + " \t| 12" + decimalFormat.getDecimalFormatSymbols().getDecimalSeparator() + "3456 = " + decimalFormat.format(DECIMAL_FORMAT_SAMPLE_2)); //$NON-NLS-1$
+				setText("100" + decimalFormat.getDecimalFormatSymbols().getDecimalSeparator() + "0 = " + decimalFormat.format(DECIMAL_FORMAT_SAMPLE_1) + " \t| 12" + decimalFormat.getDecimalFormatSymbols().getDecimalSeparator() + "3456 = " + decimalFormat.format(DECIMAL_FORMAT_SAMPLE_2)); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			}
 
 			return this;

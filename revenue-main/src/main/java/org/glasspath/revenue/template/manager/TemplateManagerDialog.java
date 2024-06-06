@@ -44,6 +44,7 @@ import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.FrameContext;
 import org.glasspath.common.swing.dialog.AboutDialog.IAbout;
 import org.glasspath.common.swing.file.manager.FileManagerDialog;
+import org.glasspath.revenue.resources.Resources;
 import org.glasspath.revenue.template.TemplateFiles;
 import org.glasspath.revenue.template.manager.CompanyOptionsPanel.CompanyNamesProvider;
 
@@ -65,8 +66,8 @@ public class TemplateManagerDialog extends FileManagerDialog {
 		this.about = about;
 		this.companyNamesProvider = companyNamesProvider;
 
-		setTitle("Template Manager");
-		addButton.setText("Add template from library");
+		setTitle(Resources.getString("TemplateManager")); //$NON-NLS-1$
+		addButton.setText(Resources.getString("AddTemplateFromLibrary")); //$NON-NLS-1$
 
 		List<Category> categories = new ArrayList<>();
 		categories.add(TemplateFiles.INVOICE_TEMPLATES);
@@ -146,11 +147,11 @@ public class TemplateManagerDialog extends FileManagerDialog {
 			optionsPanel.add(optionsTabbedPane, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 8, 0, 8), 0, 0));
 
 			if (selectedCategory == TemplateFiles.INVOICE_TEMPLATES) {
-				optionsTabbedPane.addTab("Invoice Options", createOptionsTab(new InvoiceTemplateOptionsPanel(provider)));
+				optionsTabbedPane.addTab(Resources.getString("InvoiceOptions"), createOptionsTab(new InvoiceTemplateOptionsPanel(provider))); //$NON-NLS-1$
 			} else if (selectedCategory == TemplateFiles.REPORT_TEMPLATES) {
-				optionsTabbedPane.addTab("Report Options", createOptionsTab(new ReportTemplateOptionsPanel(provider)));
+				optionsTabbedPane.addTab(Resources.getString("ReportOptions"), createOptionsTab(new ReportTemplateOptionsPanel(provider))); //$NON-NLS-1$
 			} else if (selectedCategory == TemplateFiles.TIME_SHEET_TEMPLATES) {
-				optionsTabbedPane.addTab("Time Sheet Options", createOptionsTab(new TimeSheetTemplateOptionsPanel(provider)));
+				optionsTabbedPane.addTab(Resources.getString("TimeSheetOptions"), createOptionsTab(new TimeSheetTemplateOptionsPanel(provider))); //$NON-NLS-1$
 			} else if (selectedCategory == TemplateFiles.INVOICE_EMAIL_TEMPLATES) {
 				// No options yet
 			} else if (selectedCategory == TemplateFiles.REPORT_EMAIL_TEMPLATES) {
@@ -159,8 +160,8 @@ public class TemplateManagerDialog extends FileManagerDialog {
 				// No options yet
 			}
 
-			optionsTabbedPane.addTab("Field Formatting", createOptionsTab(new FieldFormatPanel(provider)));
-			optionsTabbedPane.addTab("My Company Details", createOptionsTab(new CompanyOptionsPanel(provider, companyNamesProvider)));
+			optionsTabbedPane.addTab(Resources.getString("FieldFormatting"), createOptionsTab(new FieldFormatPanel(provider))); //$NON-NLS-1$
+			optionsTabbedPane.addTab(Resources.getString("MyCompanyDetails"), createOptionsTab(new CompanyOptionsPanel(provider, companyNamesProvider))); //$NON-NLS-1$
 
 		}
 

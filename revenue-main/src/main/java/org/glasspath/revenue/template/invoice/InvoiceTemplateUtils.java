@@ -43,6 +43,8 @@ import org.glasspath.aerialist.template.TemplateMetadata;
 import org.glasspath.aerialist.template.TemplateMetadata.CategoryMetadata;
 import org.glasspath.aerialist.template.TemplateMetadata.FieldMetadata;
 import org.glasspath.aerialist.template.TemplateMetadata.TableMetadata;
+import org.glasspath.common.swing.resources.CommonResources;
+import org.glasspath.revenue.resources.Resources;
 import org.glasspath.revenue.template.KeyUtils;
 import org.glasspath.revenue.template.TemplateUtils;
 
@@ -61,16 +63,16 @@ public class InvoiceTemplateUtils extends KeyUtils {
 
 		TemplateMetadata templateMetadata = new TemplateMetadata();
 
-		CategoryMetadata templateFields = new CategoryMetadata("");
+		CategoryMetadata templateFields = new CategoryMetadata(""); //$NON-NLS-1$
 		templateMetadata.setTemplateFields(templateFields);
 
 		templateFields.getChildren().add(TemplateUtils.createMyCompanyTemplateMetadata());
 		templateFields.getChildren().add(TemplateUtils.createClientTemplateMetadata());
 
-		CategoryMetadata invoiceMetadata = new CategoryMetadata("Invoice");
+		CategoryMetadata invoiceMetadata = new CategoryMetadata(Resources.getString("Invoice")); //$NON-NLS-1$
 		templateFields.getChildren().add(invoiceMetadata);
 
-		CategoryMetadata invoiceDetailsMetadata = new CategoryMetadata("Invoice details");
+		CategoryMetadata invoiceDetailsMetadata = new CategoryMetadata(Resources.getString("InvoiceDetails")); //$NON-NLS-1$
 		invoiceMetadata.getChildren().add(invoiceDetailsMetadata);
 
 		invoiceDetailsMetadata.getChildren().add(new FieldMetadata(description(NUMBER), invoiceKey(NUMBER)));
@@ -85,7 +87,7 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		invoiceDetailsMetadata.getChildren().add(new FieldMetadata(description(VAT), invoiceKey(VAT)));
 		invoiceDetailsMetadata.getChildren().add(new FieldMetadata(description(TOTAL_INCL), invoiceKey(TOTAL_INCL)));
 
-		TableMetadata invoiceLinesTableMetadata = new TableMetadata("Invoice lines table");
+		TableMetadata invoiceLinesTableMetadata = new TableMetadata(Resources.getString("InvoiceLinesTable")); //$NON-NLS-1$
 		invoiceMetadata.getChildren().add(invoiceLinesTableMetadata);
 
 		invoiceLinesTableMetadata.getChildren().add(new FieldMetadata(description(DESCRIPTION), invoiceLineKey(DESCRIPTION)));
@@ -95,7 +97,7 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		invoiceLinesTableMetadata.getChildren().add(new FieldMetadata(description(VAT_RATE), invoiceLineKey(VAT_RATE)));
 		invoiceLinesTableMetadata.getChildren().add(new FieldMetadata(description(VAT), invoiceLineKey(VAT)));
 
-		TableMetadata vatRatesTableMetadata = new TableMetadata("VAT rates table");
+		TableMetadata vatRatesTableMetadata = new TableMetadata(Resources.getString("VATRatesTable")); //$NON-NLS-1$
 		invoiceMetadata.getChildren().add(vatRatesTableMetadata);
 
 		vatRatesTableMetadata.getChildren().add(new FieldMetadata(description(DESCRIPTION), vatRateKey(DESCRIPTION)));
@@ -106,7 +108,7 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		invoiceMetadata.getChildren().add(TemplateUtils.createMileagesTableTemplateMetada());
 		invoiceMetadata.getChildren().add(TemplateUtils.createCallsTableTemplateMetada());
 
-		CategoryMetadata visibilityFields = new CategoryMetadata("");
+		CategoryMetadata visibilityFields = new CategoryMetadata(""); //$NON-NLS-1$
 		templateMetadata.setVisibilityFields(visibilityFields);
 
 		visibilityFields.getChildren().add(new FieldMetadata(description(HOURS_INCLUDED), key(HOURS_INCLUDED)));
@@ -121,18 +123,18 @@ public class InvoiceTemplateUtils extends KeyUtils {
 
 		menu.add(TemplateUtils.createMyCompanyInsertMenu(context));
 
-		JMenu invoiceMenu = new JMenu("Invoice");
+		JMenu invoiceMenu = new JMenu(Resources.getString("Invoice")); //$NON-NLS-1$
 		menu.add(invoiceMenu);
 
-		invoiceMenu.add(new InsertElementAction(context, createInvoiceDetailsTable(), "Invoice details table", Icons.tablePlus));
-		invoiceMenu.add(new InsertElementAction(context, createInvoiceLinesTable(), "Invoice lines table", Icons.tablePlus));
-		invoiceMenu.add(new InsertElementAction(context, createInvoiceTotalsTable(), "Invoice totals table", Icons.tablePlus));
+		invoiceMenu.add(new InsertElementAction(context, createInvoiceDetailsTable(), Resources.getString("InvoiceDetailsTable"), Icons.tablePlus)); //$NON-NLS-1$
+		invoiceMenu.add(new InsertElementAction(context, createInvoiceLinesTable(), Resources.getString("InvoiceLinesTable"), Icons.tablePlus)); //$NON-NLS-1$
+		invoiceMenu.add(new InsertElementAction(context, createInvoiceTotalsTable(), Resources.getString("InvoiceTotalsTable"), Icons.tablePlus)); //$NON-NLS-1$
 
 		invoiceMenu.addSeparator();
 
-		invoiceMenu.add(new InsertElementAction(context, createHoursTable(), "Hours table", Icons.tablePlus));
-		invoiceMenu.add(new InsertElementAction(context, createMileagesTable(), "Mileages table", Icons.tablePlus));
-		invoiceMenu.add(new InsertElementAction(context, createCallsTable(), "Calls table", Icons.tablePlus));
+		invoiceMenu.add(new InsertElementAction(context, createHoursTable(), Resources.getString("HoursTable"), Icons.tablePlus)); //$NON-NLS-1$
+		invoiceMenu.add(new InsertElementAction(context, createMileagesTable(), Resources.getString("MileagesTable"), Icons.tablePlus)); //$NON-NLS-1$
+		invoiceMenu.add(new InsertElementAction(context, createCallsTable(), Resources.getString("CallsTable"), Icons.tablePlus)); //$NON-NLS-1$
 
 	}
 
@@ -147,19 +149,19 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		table.getColStyles().add(AerialistUtils.createColStyle(2, 140));
 		table.getColStyles().add(AerialistUtils.createColStyle(3, 100));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Invoice number:", 1, 1, Alignment.DEFAULT.stringValue, 12, false, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("InvoiceNumber") + ":", 1, 1, Alignment.DEFAULT.stringValue, 12, false, null)); //$NON-NLS-1$ //$NON-NLS-2$
 		table.getTableCells().add(AerialistUtils.createTableCell(invoiceKey(NUMBER), 1, 2, Alignment.DEFAULT.stringValue, 12, false, tKey(invoiceKey(NUMBER))));
-		table.getTableCells().add(AerialistUtils.createTableCell("Period:", 1, 3, Alignment.DEFAULT.stringValue, 12, false, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Period") + ":", 1, 3, Alignment.DEFAULT.stringValue, 12, false, null)); //$NON-NLS-1$ //$NON-NLS-2$
 		table.getTableCells().add(AerialistUtils.createTableCell(invoiceKey(PERIOD), 1, 4, Alignment.RIGHT.stringValue, 12, false, tKey(invoiceKey(PERIOD))));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Client number:", 2, 1, Alignment.DEFAULT.stringValue, 12, false, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("ClientNumber") + ":", 2, 1, Alignment.DEFAULT.stringValue, 12, false, null)); //$NON-NLS-1$ //$NON-NLS-2$
 		table.getTableCells().add(AerialistUtils.createTableCell(clientKey(NUMBER), 2, 2, Alignment.DEFAULT.stringValue, 12, false, tKey(clientKey(FORMATTED_NUMBER))));
-		table.getTableCells().add(AerialistUtils.createTableCell("Invoice date:", 2, 3, Alignment.DEFAULT.stringValue, 12, false, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("InvoiceDate") + ":", 2, 3, Alignment.DEFAULT.stringValue, 12, false, null)); //$NON-NLS-1$ //$NON-NLS-2$
 		table.getTableCells().add(AerialistUtils.createTableCell(invoiceKey(DATE), 2, 4, Alignment.RIGHT.stringValue, 12, false, tKey(invoiceKey(DATE))));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Reference:", 3, 1, Alignment.DEFAULT.stringValue, 12, false, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Reference") + ":", 3, 1, Alignment.DEFAULT.stringValue, 12, false, null)); //$NON-NLS-1$ //$NON-NLS-2$
 		table.getTableCells().add(AerialistUtils.createTableCell(invoiceKey(REFERENCE), 3, 2, Alignment.DEFAULT.stringValue, 12, false, tKey(invoiceKey(REFERENCE))));
-		table.getTableCells().add(AerialistUtils.createTableCell("Due date:", 3, 3, Alignment.DEFAULT.stringValue, 12, false, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("DueDate") + ":", 3, 3, Alignment.DEFAULT.stringValue, 12, false, null)); //$NON-NLS-1$ //$NON-NLS-2$
 		table.getTableCells().add(AerialistUtils.createTableCell(invoiceKey(DUE_DATE), 3, 4, Alignment.RIGHT.stringValue, 12, false, tKey(invoiceKey(DUE_DATE))));
 
 		return table;
@@ -184,12 +186,12 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		table.getRowStyles().add(AerialistUtils.createRowStyle(0, 0, ColorUtils.toHex(TemplateUtils.TABLE_HEADER_ROW_COLOR)));
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 2, ColorUtils.toHex(TemplateUtils.TABLE_ALTERNATING_ROW_COLOR)));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Description", 1, 1, Alignment.DEFAULT.stringValue, 12, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Quantity", 1, 2, Alignment.RIGHT.stringValue, 12, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Price", 1, 3, Alignment.RIGHT.stringValue, 12, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("VAT Rate", 1, 4, Alignment.RIGHT.stringValue, 12, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("VAT", 1, 5, Alignment.RIGHT.stringValue, 12, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Amount", 1, 6, Alignment.RIGHT.stringValue, 12, true, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Description"), 1, 1, Alignment.DEFAULT.stringValue, 12, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Quantity"), 1, 2, Alignment.RIGHT.stringValue, 12, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Price"), 1, 3, Alignment.RIGHT.stringValue, 12, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("VatRate"), 1, 4, Alignment.RIGHT.stringValue, 12, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Vat"), 1, 5, Alignment.RIGHT.stringValue, 12, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Amount"), 1, 6, Alignment.RIGHT.stringValue, 12, true, null)); //$NON-NLS-1$
 
 		table.getTableCells().add(AerialistUtils.createTableCell(key(DESCRIPTION), 2, 1, Alignment.DEFAULT.stringValue, 11, false, tKey(invoiceLineKey(DESCRIPTION))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(QUANTITY), 2, 2, Alignment.RIGHT.stringValue, 11, false, tKey(invoiceLineKey(QUANTITY))));
@@ -211,11 +213,11 @@ public class InvoiceTemplateUtils extends KeyUtils {
 
 		table.getColStyles().add(AerialistUtils.createColStyle(1, 360));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Subtotal", 1, 1, Alignment.RIGHT.stringValue, 12, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("###", 1, 2, Alignment.RIGHT.stringValue, 12, true, tKey(invoiceKey(TOTAL_EXCL))));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Subtotal"), 1, 1, Alignment.RIGHT.stringValue, 12, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell("###", 1, 2, Alignment.RIGHT.stringValue, 12, true, tKey(invoiceKey(TOTAL_EXCL)))); //$NON-NLS-1$
 
 		TableCell tableCell = new TableCell();
-		tableCell.setText("VAT ??");
+		tableCell.setText(Resources.getString("Vat") + " ??"); //$NON-NLS-1$ //$NON-NLS-2$
 		tableCell.setRow(2);
 		tableCell.setCol(1);
 		tableCell.setAlignment(Alignment.RIGHT.stringValue);
@@ -236,10 +238,10 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		tableCell.getStyles().add(textStyle);
 
 		table.getTableCells().add(tableCell);
-		table.getTableCells().add(AerialistUtils.createTableCell("###", 2, 2, Alignment.RIGHT.stringValue, 12, true, tKey(vatRateKey(AMOUNT))));
+		table.getTableCells().add(AerialistUtils.createTableCell("###", 2, 2, Alignment.RIGHT.stringValue, 12, true, tKey(vatRateKey(AMOUNT)))); //$NON-NLS-1$
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Total", 3, 1, Alignment.RIGHT.stringValue, 12, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("###", 3, 2, Alignment.RIGHT.stringValue, 12, true, tKey(invoiceKey(TOTAL_INCL))));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Total"), 3, 1, Alignment.RIGHT.stringValue, 12, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell("###", 3, 2, Alignment.RIGHT.stringValue, 12, true, tKey(invoiceKey(TOTAL_INCL)))); //$NON-NLS-1$
 
 		return table;
 
@@ -264,17 +266,17 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		table.getRowStyles().add(AerialistUtils.createRowStyle(0, 0, ColorUtils.toHex(TemplateUtils.TABLE_HEADER_ROW_COLOR)));
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 2, ColorUtils.toHex(TemplateUtils.TABLE_ALTERNATING_ROW_COLOR)));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Date", 1, 1, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("From", 1, 2, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("To", 1, 3, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Total", 1, 4, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Rate", 1, 5, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Amount", 1, 6, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Comments", 1, 7, Alignment.DEFAULT.stringValue, 11, true, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Date"), 1, 1, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("From"), 1, 2, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("To"), 1, 3, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Total"), 1, 4, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Rate"), 1, 5, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Amount"), 1, 6, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Comments"), 1, 7, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Date", 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(hourKey(DATE_FROM))));
-		table.getTableCells().add(AerialistUtils.createTableCell("From", 2, 2, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_FROM))));
-		table.getTableCells().add(AerialistUtils.createTableCell("To", 2, 3, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_TO))));
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Date"), 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(hourKey(DATE_FROM)))); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("From"), 2, 2, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_FROM)))); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("To"), 2, 3, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_TO)))); //$NON-NLS-1$
 		table.getTableCells().add(AerialistUtils.createTableCell(key(TOTAL), 2, 4, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TOTAL_FOR_INVOICE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(RATE), 2, 5, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(RATE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(AMOUNT), 2, 6, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(AMOUNT))));
@@ -302,14 +304,14 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		table.getRowStyles().add(AerialistUtils.createRowStyle(0, 0, ColorUtils.toHex(TemplateUtils.TABLE_HEADER_ROW_COLOR)));
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 2, ColorUtils.toHex(TemplateUtils.TABLE_ALTERNATING_ROW_COLOR)));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Date", 1, 1, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Route", 1, 2, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Total", 1, 3, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Rate", 1, 4, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Amount", 1, 5, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Comments", 1, 6, Alignment.DEFAULT.stringValue, 11, true, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Date"), 1, 1, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Route"), 1, 2, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Total"), 1, 3, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Rate"), 1, 4, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Amount"), 1, 5, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Comments"), 1, 6, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Date", 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(mileageKey(DATE_FROM))));
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Date"), 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(mileageKey(DATE_FROM)))); //$NON-NLS-1$
 		table.getTableCells().add(AerialistUtils.createTableCell(key(ROUTE), 2, 2, Alignment.DEFAULT.stringValue, 9, false, tKey(mileageKey(ROUTE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(TOTAL), 2, 3, Alignment.RIGHT.stringValue, 9, false, tKey(mileageKey(TOTAL_FOR_INVOICE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(RATE), 2, 4, Alignment.RIGHT.stringValue, 9, false, tKey(mileageKey(RATE))));
@@ -340,14 +342,14 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		table.getRowStyles().add(AerialistUtils.createRowStyle(0, 0, ColorUtils.toHex(TemplateUtils.TABLE_HEADER_ROW_COLOR)));
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 2, ColorUtils.toHex(TemplateUtils.TABLE_ALTERNATING_ROW_COLOR)));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Date", 1, 1, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Time", 1, 2, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Name", 1, 3, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Number", 1, 4, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Total", 1, 5, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Rate", 1, 6, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Amount", 1, 7, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Comments", 1, 8, Alignment.DEFAULT.stringValue, 11, true, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Date"), 1, 1, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Time"), 1, 2, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Name"), 1, 3, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Number"), 1, 4, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Total"), 1, 5, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Rate"), 1, 6, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Amount"), 1, 7, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Comments"), 1, 8, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
 
 		table.getTableCells().add(AerialistUtils.createTableCell(key(DATE), 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(callKey(DATE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(TIME), 2, 2, Alignment.RIGHT.stringValue, 9, false, tKey(callKey(TIME))));

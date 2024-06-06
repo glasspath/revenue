@@ -68,8 +68,8 @@ public class InvoiceTemplateOptionsPanel extends JPanel {
 	public static final int CUSTOM_INVOICE_LINE_POSITION_BOTTOM = 0;
 	public static final int CUSTOM_INVOICE_LINE_POSITION_TOP = 1;
 	public static final String[] CUSTOM_INVOICE_LINE_POSITION_OPTIONS_LIST = {
-			"Place at bottom",
-			"PLace at top"
+			Resources.getString("PlaceAtBottom"), //$NON-NLS-1$
+			Resources.getString("PLaceAtTop") //$NON-NLS-1$
 	};
 
 	public static final int SORTING_DATE_TIME_ASCENDING = 0;
@@ -105,25 +105,25 @@ public class InvoiceTemplateOptionsPanel extends JPanel {
 		layout.columnWidths = new int[] { 7, 140, 5, 20, 20, 3, 20, 7 };
 		setLayout(layout);
 
-		add(new JLabel("Hours grouping"), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JLabel(Resources.getString("HoursGrouping")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createComboBox(provider, HOUR_GROUPING, GROUP_HOURS_OPTIONS_LIST), new GridBagConstraints(3, 1, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); // $NON-NLS-1$
 		add(PreferencesUtils.createCheckBox(provider, EMPTY_LINE_AFTER_HOURS, Resources.getString("AddEmptyLine")), new GridBagConstraints(6, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 
-		add(new JLabel("Hours text"), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JLabel(Resources.getString("HoursText")), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createTextField(provider, HOUR_PREPEND_TEXT), new GridBagConstraints(3, 3, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-		add(new JLabel("Mileage grouping"), new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JLabel(Resources.getString("MileageGrouping")), new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createComboBox(provider, MILEAGE_GROUPING, GROUP_MILEAGES_OPTIONS_LIST), new GridBagConstraints(3, 5, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); // $NON-NLS-1$
 		add(PreferencesUtils.createCheckBox(provider, EMPTY_LINE_AFTER_MILEAGES, Resources.getString("AddEmptyLine")), new GridBagConstraints(6, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 
-		add(new JLabel("Mileage text"), new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JLabel(Resources.getString("MileageText")), new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createTextField(provider, MILEAGE_PREPEND_TEXT), new GridBagConstraints(3, 7, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-		add(new JLabel("Calls grouping"), new GridBagConstraints(1, 9, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JLabel(Resources.getString("CallsGrouping")), new GridBagConstraints(1, 9, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createComboBox(provider, CALL_GROUPING, GROUP_CALLS_OPTIONS_LIST), new GridBagConstraints(3, 9, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); // $NON-NLS-1$
 		add(PreferencesUtils.createCheckBox(provider, EMPTY_LINE_AFTER_CALLS, Resources.getString("AddEmptyLine")), new GridBagConstraints(6, 9, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 
-		add(new JLabel("Calls text"), new GridBagConstraints(1, 11, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JLabel(Resources.getString("CallsText")), new GridBagConstraints(1, 11, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createTextField(provider, CALL_PREPEND_TEXT), new GridBagConstraints(3, 11, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		add(new JLabel(Resources.getString("CustomInvoiceLines")), new GridBagConstraints(1, 13, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$

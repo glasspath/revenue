@@ -76,9 +76,9 @@ public class ReportTemplateOptionsPanel extends JPanel {
 
 	public static final IntPref SORTING = new IntPref("sorting", SORTING_DATE_TIME_ASCENDING); //$NON-NLS-1$
 
-	public static final Pref UNSPECIFIED_CLIENTS = new Pref("unspecifiedClients", "No client specified"); //$NON-NLS-1$
-	public static final Pref UNSPECIFIED_COMPANIES = new Pref("unspecifiedCompanies", "No company specified"); //$NON-NLS-1$
-	public static final Pref UNSPECIFIED_PROJECTS = new Pref("unspecifiedProjects", "No project specified"); //$NON-NLS-1$
+	public static final Pref UNSPECIFIED_CLIENTS = new Pref("unspecifiedClients", Resources.getString("NoClientSpecified")); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final Pref UNSPECIFIED_COMPANIES = new Pref("unspecifiedCompanies", Resources.getString("NoCompanySpecified")); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final Pref UNSPECIFIED_PROJECTS = new Pref("unspecifiedProjects", Resources.getString("NoProjectSpecified")); //$NON-NLS-1$ //$NON-NLS-2$
 	public static final BoolPref INCLUDE_INVOICES = new BoolPref("includeInvoices", true); //$NON-NLS-1$
 	public static final BoolPref INCLUDE_EXPENSES = new BoolPref("includeExpenses", true); //$NON-NLS-1$
 	public static final BoolPref INCLUDE_QUOTES = new BoolPref("includeQuotes", true); //$NON-NLS-1$
@@ -107,16 +107,16 @@ public class ReportTemplateOptionsPanel extends JPanel {
 		add(new JLabel(Resources.getString("Sorting")), new GridBagConstraints(1, 7, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createComboBox(provider, SORTING, SORTING_OPTIONS_LIST), new GridBagConstraints(3, 7, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-		add(new JLabel("Unspecified clients"), new GridBagConstraints(1, 9, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
+		add(new JLabel(Resources.getString("UnspecifiedClients")), new GridBagConstraints(1, 9, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createTextField(provider, UNSPECIFIED_CLIENTS), new GridBagConstraints(3, 9, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-		add(new JLabel("Unspecified companies"), new GridBagConstraints(1, 11, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
+		add(new JLabel(Resources.getString("UnspecifiedCompanies")), new GridBagConstraints(1, 11, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createTextField(provider, UNSPECIFIED_COMPANIES), new GridBagConstraints(3, 11, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-		add(new JLabel("Unspecified projects"), new GridBagConstraints(1, 13, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
+		add(new JLabel(Resources.getString("UnspecifiedProjects")), new GridBagConstraints(1, 13, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createTextField(provider, UNSPECIFIED_PROJECTS), new GridBagConstraints(3, 13, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-		add(new JLabel("Include"), new GridBagConstraints(1, 15, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JLabel(Resources.getString("Include")), new GridBagConstraints(1, 15, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 
 		add(PreferencesUtils.createCheckBox(provider, INCLUDE_INVOICES, Resources.getString("CategoryInvoices")), new GridBagConstraints(3, 15, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createCheckBox(provider, INCLUDE_EXPENSES, Resources.getString("CategoryExpenses")), new GridBagConstraints(3, 17, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$

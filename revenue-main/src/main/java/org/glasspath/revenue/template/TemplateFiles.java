@@ -47,6 +47,7 @@ import org.glasspath.communique.editor.EmailEditorContext;
 import org.glasspath.communique.editor.EmailEditorPanel;
 import org.glasspath.revenue.ProjectUtils;
 import org.glasspath.revenue.icons.Icons;
+import org.glasspath.revenue.resources.Resources;
 import org.glasspath.revenue.template.invoice.InvoiceTemplateUtils;
 import org.glasspath.revenue.template.report.ReportTemplateUtils;
 import org.glasspath.revenue.template.timesheet.TimeSheetTemplateUtils;
@@ -74,12 +75,12 @@ public class TemplateFiles {
 
 	public static final List<String> LINKED_FILE_EXTENSIONS = Arrays.asList(TEMPLATE_PREFERENCES_EXTENSION);
 
-	public static final Category INVOICE_TEMPLATES = new Category("Invoice templates", DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS);
-	public static final Category REPORT_TEMPLATES = new Category("Report templates", DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS);
-	public static final Category TIME_SHEET_TEMPLATES = new Category("Time sheet templates", DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS);
-	public static final Category INVOICE_EMAIL_TEMPLATES = new Category("Invoice email templates", EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS);
-	public static final Category REPORT_EMAIL_TEMPLATES = new Category("Report email templates", EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS);
-	public static final Category TIME_SHEET_EMAIL_TEMPLATES = new Category("Time sheet email templates", EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS);
+	public static final Category INVOICE_TEMPLATES = new Category(Resources.getString("InvoiceTemplates"), DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
+	public static final Category REPORT_TEMPLATES = new Category(Resources.getString("ReportTemplates"), DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
+	public static final Category TIME_SHEET_TEMPLATES = new Category(Resources.getString("TimeSheetTemplates"), DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
+	public static final Category INVOICE_EMAIL_TEMPLATES = new Category(Resources.getString("InvoiceEmailTemplates"), EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
+	public static final Category REPORT_EMAIL_TEMPLATES = new Category(Resources.getString("ReportEmailTemplates"), EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
+	public static final Category TIME_SHEET_EMAIL_TEMPLATES = new Category(Resources.getString("TimeSheetEmailTemplates"), EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
 
 	private TemplateFiles() {
 
@@ -169,19 +170,19 @@ public class TemplateFiles {
 		switch (getFileType(file)) {
 
 		case FILE_TYPE_GPDX:
-			return "Template";
+			return Resources.getString("Template"); //$NON-NLS-1$
 
 		case FILE_TYPE_GPEX:
-			return "Email Template";
+			return Resources.getString("EmailTemplate"); //$NON-NLS-1$
 
 		case FILE_TYPE_DOCX:
-			return "Word Template";
+			return Resources.getString("WordTemplate"); //$NON-NLS-1$
 
 		case FILE_TYPE_ODT:
-			return "OpenOffice Template";
+			return Resources.getString("OpenOfficeTemplate"); //$NON-NLS-1$
 
 		default:
-			return "Unknown";
+			return Resources.getString("Unknown"); //$NON-NLS-1$
 
 		}
 
@@ -245,13 +246,13 @@ public class TemplateFiles {
 
 			// Try the default way
 			if (!documentOpened) {
-				DesktopUtils.open(file, context.getFrame(), "Document could not be opened", "The document could not be opened..");
+				DesktopUtils.open(file, context.getFrame(), Resources.getString("DocumentCouldNotBeOpened"), Resources.getString("TheDocumentCouldNotBeOpened")); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			break;
 
 		case FILE_TYPE_ODT:
-			DesktopUtils.open(file, context.getFrame(), "Document could not be opened", "The document could not be opened..");
+			DesktopUtils.open(file, context.getFrame(), Resources.getString("DocumentCouldNotBeOpened"), Resources.getString("TheDocumentCouldNotBeOpened")); //$NON-NLS-1$ //$NON-NLS-2$
 			break;
 
 		default:

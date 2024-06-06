@@ -36,11 +36,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.glasspath.common.Compare;
-import org.glasspath.common.format.FormatUtils;
 import org.glasspath.common.locale.LocaleUtils;
-import org.glasspath.common.locale.LocaleUtils.CurrencyCode;
-import org.glasspath.common.locale.LocaleUtils.SystemOfUnits;
-import org.glasspath.common.os.preferences.Pref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.preferences.CurrencyAndSymbolPreferenceComboBox;
 import org.glasspath.common.swing.preferences.LanguagePreferenceComboBox;
@@ -50,14 +46,9 @@ import org.glasspath.common.swing.theme.Theme;
 
 public class GeneralPreferencesPanel extends JPanel {
 
-	public static final Pref LANGUAGE = new Pref("language", ""); //$NON-NLS-1$ //$NON-NLS-2$
-	public static final Pref CURRENCY = new Pref("currency", ""); //$NON-NLS-1$ //$NON-NLS-2$
-	public static final Pref CURRENCY_SYMBOL = new Pref("currencySymbol", ""); //$NON-NLS-1$ //$NON-NLS-2$
-	public static final Pref UNIT_OF_MEASUREMENT = new Pref("unitOfMeasurement", ""); //$NON-NLS-1$ //$NON-NLS-2$
-	public static final Pref THEME = new Pref("theme", Theme.THEME_DEFAULT.getId()); //$NON-NLS-1$
 	public static final String[] THEMES_LIST = new String[] {
-			"Light",
-			"Dark"
+			CommonResources.getString("Light"), //$NON-NLS-1$
+			CommonResources.getString("Dark") //$NON-NLS-1$
 	};
 
 	private final Preferences preferences;
@@ -66,11 +57,11 @@ public class GeneralPreferencesPanel extends JPanel {
 	private final UnitOfMeasurementPreferenceComboBox unitOfMeasurementComboBox;
 	private final JComboBox<String> themeComboBox;
 
-	private String previousLanguage = LANGUAGE.defaultValue;
-	private String previousCurrency = CURRENCY.defaultValue;
-	private String previousCurrencySymbol = CURRENCY_SYMBOL.defaultValue;
-	private String previousUnitOfMeasurement = UNIT_OF_MEASUREMENT.defaultValue;
-	private String previousTheme = THEME.defaultValue;
+	private String previousLanguage = GeneralPreferences.LANGUAGE.defaultValue;
+	private String previousCurrency = GeneralPreferences.CURRENCY.defaultValue;
+	private String previousCurrencySymbol = GeneralPreferences.CURRENCY_SYMBOL.defaultValue;
+	private String previousUnitOfMeasurement = GeneralPreferences.UNIT_OF_MEASUREMENT.defaultValue;
+	private String previousTheme = GeneralPreferences.THEME.defaultValue;
 
 	public GeneralPreferencesPanel(Preferences preferences) {
 
@@ -94,9 +85,9 @@ public class GeneralPreferencesPanel extends JPanel {
 		regionalSettingsPanelLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.1, 0.0 };
 		regionalSettingsPanelLayout.columnWidths = new int[] { 7, 150, 5, 250, 7 };
 		regionalSettingsPanel.setLayout(regionalSettingsPanelLayout);
-		regionalSettingsPanel.setBorder(BorderFactory.createTitledBorder("Regional settings"));
+		regionalSettingsPanel.setBorder(BorderFactory.createTitledBorder(CommonResources.getString("RegionalSettings"))); //$NON-NLS-1$
 
-		languageComboBox = new LanguagePreferenceComboBox(preferencesProvider, LANGUAGE.key, LANGUAGE.defaultValue, LocaleUtils.BASIC_LANGUAGE_TAGS, false) {
+		languageComboBox = new LanguagePreferenceComboBox(preferencesProvider, GeneralPreferences.LANGUAGE.key, GeneralPreferences.LANGUAGE.defaultValue, LocaleUtils.BASIC_LANGUAGE_TAGS, false) {
 
 			@Override
 			protected boolean isLanguageSupported(String languageTag) {
@@ -115,14 +106,14 @@ public class GeneralPreferencesPanel extends JPanel {
 			}
 		});
 
-		currencyComboBox = new CurrencyAndSymbolPreferenceComboBox(preferencesProvider, CURRENCY.key, CURRENCY.defaultValue, CURRENCY_SYMBOL.key, CURRENCY_SYMBOL.defaultValue, false);
+		currencyComboBox = new CurrencyAndSymbolPreferenceComboBox(preferencesProvider, GeneralPreferences.CURRENCY.key, GeneralPreferences.CURRENCY.defaultValue, GeneralPreferences.CURRENCY_SYMBOL.key, GeneralPreferences.CURRENCY_SYMBOL.defaultValue, false);
 		currencyComboBox.setBorder(BorderFactory.createCompoundBorder(currencyComboBox.getBorder(), BorderFactory.createEmptyBorder(0, 0, 0, 3)));
-		regionalSettingsPanel.add(new JLabel("Currency & Symbol"), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		regionalSettingsPanel.add(new JLabel(CommonResources.getString("CurrencySymbol")), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		regionalSettingsPanel.add(currencyComboBox, new GridBagConstraints(3, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-		unitOfMeasurementComboBox = new UnitOfMeasurementPreferenceComboBox(preferencesProvider, UNIT_OF_MEASUREMENT.key, UNIT_OF_MEASUREMENT.defaultValue, false);
+		unitOfMeasurementComboBox = new UnitOfMeasurementPreferenceComboBox(preferencesProvider, GeneralPreferences.UNIT_OF_MEASUREMENT.key, GeneralPreferences.UNIT_OF_MEASUREMENT.defaultValue, false);
 		unitOfMeasurementComboBox.setBorder(BorderFactory.createCompoundBorder(unitOfMeasurementComboBox.getBorder(), BorderFactory.createEmptyBorder(0, 0, 0, 3)));
-		regionalSettingsPanel.add(new JLabel("Unit of measurement"), new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		regionalSettingsPanel.add(new JLabel(CommonResources.getString("UnitOfMeasurement")), new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		regionalSettingsPanel.add(unitOfMeasurementComboBox, new GridBagConstraints(3, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 		JPanel appearancePanel = new JPanel();
@@ -134,20 +125,20 @@ public class GeneralPreferencesPanel extends JPanel {
 		appearancePanelLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.1, 0.0 };
 		appearancePanelLayout.columnWidths = new int[] { 7, 150, 5, 250, 7 };
 		appearancePanel.setLayout(appearancePanelLayout);
-		appearancePanel.setBorder(BorderFactory.createTitledBorder("Appearance"));
+		appearancePanel.setBorder(BorderFactory.createTitledBorder(CommonResources.getString("Appearance"))); //$NON-NLS-1$
 
 		themeComboBox = new JComboBox<>(THEMES_LIST);
-		appearancePanel.add(new JLabel("Theme"), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+		appearancePanel.add(new JLabel(CommonResources.getString("Theme")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		appearancePanel.add(themeComboBox, new GridBagConstraints(3, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-		if (Theme.THEME_DARK.getId().equals(THEME.get(preferences))) {
+		if (Theme.THEME_DARK.getId().equals(GeneralPreferences.THEME.get(preferences))) {
 			themeComboBox.setSelectedIndex(1);
 		}
 
-		previousLanguage = LANGUAGE.get(preferences);
-		previousCurrency = CURRENCY.get(preferences);
-		previousCurrencySymbol = CURRENCY_SYMBOL.get(preferences);
-		previousUnitOfMeasurement = UNIT_OF_MEASUREMENT.get(preferences);
-		previousTheme = THEME.get(preferences);
+		previousLanguage = GeneralPreferences.LANGUAGE.get(preferences);
+		previousCurrency = GeneralPreferences.CURRENCY.get(preferences);
+		previousCurrencySymbol = GeneralPreferences.CURRENCY_SYMBOL.get(preferences);
+		previousUnitOfMeasurement = GeneralPreferences.UNIT_OF_MEASUREMENT.get(preferences);
+		previousTheme = GeneralPreferences.THEME.get(preferences);
 
 		selectedLocaleChanged();
 
@@ -178,89 +169,24 @@ public class GeneralPreferencesPanel extends JPanel {
 		unitOfMeasurementComboBox.commit();
 
 		if (themeComboBox.getSelectedIndex() == 1) {
-			preferences.put(THEME.key, Theme.THEME_DARK.getId());
+			preferences.put(GeneralPreferences.THEME.key, Theme.THEME_DARK.getId());
 		} else {
-			preferences.remove(THEME.key);
+			preferences.remove(GeneralPreferences.THEME.key);
 		}
 
-		applyRegionalSettings(preferences);
+		GeneralPreferences.applyRegionalSettings(preferences);
 
-		String newLanguage = LANGUAGE.get(preferences);
-		String newCurrency = CURRENCY.get(preferences);
-		String newCurrencySymbol = CURRENCY_SYMBOL.get(preferences);
-		String newUnitOfMeasurement = UNIT_OF_MEASUREMENT.get(preferences);
-		String newTheme = THEME.get(preferences);
+		String newLanguage = GeneralPreferences.LANGUAGE.get(preferences);
+		String newCurrency = GeneralPreferences.CURRENCY.get(preferences);
+		String newCurrencySymbol = GeneralPreferences.CURRENCY_SYMBOL.get(preferences);
+		String newUnitOfMeasurement = GeneralPreferences.UNIT_OF_MEASUREMENT.get(preferences);
+		String newTheme = GeneralPreferences.THEME.get(preferences);
 
 		return !Compare.string(newLanguage, previousLanguage)
 				|| !Compare.string(newCurrency, previousCurrency)
 				|| !Compare.string(newCurrencySymbol, previousCurrencySymbol)
 				|| !Compare.string(newUnitOfMeasurement, previousUnitOfMeasurement)
 				|| !Compare.string(newTheme, previousTheme);
-
-	}
-
-	public static Locale getLocale(Preferences preferences) {
-
-		Locale locale = LocaleUtils.getLocaleForTag(LANGUAGE.get(preferences));
-		if (locale == null) {
-			locale = LocaleUtils.getDefaultLocale();
-		}
-
-		return locale;
-
-	}
-
-	public static CurrencyCode getCurrencyCode(Preferences preferences, Locale locale) {
-
-		CurrencyCode currencyCode = null;
-
-		String currency = CURRENCY.get(preferences);
-		if (currency != null && currency.length() > 0) {
-			currencyCode = LocaleUtils.getCurrencyCode(currency);
-		}
-
-		if (currencyCode == null) {
-			currencyCode = LocaleUtils.getCurrencyCodeForLocale(locale);
-		}
-
-		return currencyCode;
-
-	}
-
-	public static SystemOfUnits getSystemOfUnits(Preferences preferences, Locale locale) {
-
-		SystemOfUnits systemOfUnits = null;
-
-		String systemOfUnitsCode = UNIT_OF_MEASUREMENT.get(preferences);
-		if (systemOfUnitsCode != null && systemOfUnitsCode.length() > 0) {
-			systemOfUnits = LocaleUtils.getSystemOfUnits(systemOfUnitsCode);
-		}
-
-		if (systemOfUnits == null) {
-			systemOfUnits = LocaleUtils.getSystemOfUnitsForLocale(locale);
-		}
-
-		return systemOfUnits;
-
-	}
-
-	public static void applyRegionalSettings(Preferences preferences) {
-
-		Locale locale = getLocale(preferences);
-
-		String currencySymbol = CURRENCY_SYMBOL.get(preferences);
-		if (currencySymbol != null && currencySymbol.length() > 0) {
-			FormatUtils.setDefaultCurrencySymbol(currencySymbol);
-		} else {
-
-			CurrencyCode currencyCode = getCurrencyCode(preferences, locale);
-			if (currencyCode != null) {
-				FormatUtils.setDefaultCurrencySymbol(currencyCode.symbol);
-			}
-
-		}
-
-		FormatUtils.setDefaultSystemOfUnits(getSystemOfUnits(preferences, locale));
 
 	}
 

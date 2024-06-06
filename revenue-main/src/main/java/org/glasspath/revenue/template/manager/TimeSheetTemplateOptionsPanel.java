@@ -47,7 +47,7 @@ public class TimeSheetTemplateOptionsPanel extends JPanel {
 
 	public static final IntPref SORTING = new IntPref("sorting", SORTING_DATE_TIME_ASCENDING); //$NON-NLS-1$
 
-	public static final Pref UNSPECIFIED_PROJECTS = new Pref("unspecifiedProjects", "No project specified"); //$NON-NLS-1$
+	public static final Pref UNSPECIFIED_PROJECTS = new Pref("unspecifiedProjects", Resources.getString("NoProjectSpecified")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public static final BoolPref INCLUDE_HOURS = new BoolPref("includeHours", true); //$NON-NLS-1$
 	public static final BoolPref INCLUDE_MILEAGE = new BoolPref("includeMileage", true); //$NON-NLS-1$
@@ -68,7 +68,7 @@ public class TimeSheetTemplateOptionsPanel extends JPanel {
 		add(new JLabel("Unspecified projects"), new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createTextField(provider, UNSPECIFIED_PROJECTS), new GridBagConstraints(3, 3, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-		add(new JLabel("Include"), new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+		add(new JLabel(Resources.getString("Include")), new GridBagConstraints(1, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 
 		add(PreferencesUtils.createCheckBox(provider, INCLUDE_HOURS, Resources.getString("CategoryHours")), new GridBagConstraints(3, 5, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 		add(PreferencesUtils.createCheckBox(provider, INCLUDE_MILEAGE, Resources.getString("CategoryMileages")), new GridBagConstraints(3, 7, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$

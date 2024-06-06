@@ -41,6 +41,7 @@ import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.color.ColorUtils;
 import org.glasspath.common.swing.preferences.PreferencesUtils;
 import org.glasspath.common.swing.theme.Theme;
+import org.glasspath.revenue.resources.Resources;
 
 public class OptionsPanelsHeader extends JPanel {
 
@@ -55,7 +56,7 @@ public class OptionsPanelsHeader extends JPanel {
 		layout.columnWidths = new int[] { 7, 140, 5, 200, 12 };
 		setLayout(layout);
 
-		JCheckBox enableCheckBox = PreferencesUtils.createCheckBox(provider, TEMPLATE_SPECIFIC_OPTIONS_ENABLED, "Enable template specific options");
+		JCheckBox enableCheckBox = PreferencesUtils.createCheckBox(provider, TEMPLATE_SPECIFIC_OPTIONS_ENABLED, Resources.getString("EnableTemplateSpecificOptions")); //$NON-NLS-1$
 		add(enableCheckBox, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); // $NON-NLS-1$
 		enableCheckBox.addActionListener(new ActionListener() {
 
@@ -66,7 +67,7 @@ public class OptionsPanelsHeader extends JPanel {
 		});
 		enableCheckBox.putClientProperty(PreferencesUtils.PROPERTY_IGNORE_STATE_CHANGED, Boolean.TRUE);
 
-		JLabel editGlobalOptionsLabel = new JLabel("Configure global template options");
+		JLabel editGlobalOptionsLabel = new JLabel(Resources.getString("ConfigureGlobalTemplateOptions")); //$NON-NLS-1$
 		editGlobalOptionsLabel.setIcon(Icons.cogBlue);
 		editGlobalOptionsLabel.setForeground(Theme.isDark() ? ColorUtils.BLUE : ColorUtils.DARK_BLUE);
 		editGlobalOptionsLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

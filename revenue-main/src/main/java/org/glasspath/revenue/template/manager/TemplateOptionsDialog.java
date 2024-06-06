@@ -37,6 +37,7 @@ import org.glasspath.common.swing.FrameContext;
 import org.glasspath.common.swing.dialog.DefaultDialog;
 import org.glasspath.common.swing.resources.CommonResources;
 import org.glasspath.revenue.icons.Icons;
+import org.glasspath.revenue.resources.Resources;
 
 public class TemplateOptionsDialog extends DefaultDialog {
 
@@ -44,8 +45,8 @@ public class TemplateOptionsDialog extends DefaultDialog {
 
 		super(context);
 
-		setTitle("Template options");
-		getHeader().setTitle("Template options");
+		setTitle(Resources.getString("TemplateOptions")); //$NON-NLS-1$
+		getHeader().setTitle(Resources.getString("TemplateOptions")); //$NON-NLS-1$
 		getHeader().setIcon(Icons.cogBoxXLarge);
 		setPreferredSize(DIALOG_SIZE_SQUARE);
 		setKeyListenerEnabled(false);
@@ -57,7 +58,7 @@ public class TemplateOptionsDialog extends DefaultDialog {
 			getContentPanel().add(optionsComponent, BorderLayout.CENTER);
 		}
 
-		JButton resetButton = new JButton("Reset");
+		JButton resetButton = new JButton(CommonResources.getString("Reset")); //$NON-NLS-1$
 		resetButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -71,7 +72,7 @@ public class TemplateOptionsDialog extends DefaultDialog {
 
 		
 		getFooter().remove(getOkButton());
-		getCancelButton().setText(CommonResources.getString("Close"));
+		getCancelButton().setText(CommonResources.getString("Close")); //$NON-NLS-1$
 
 		pack();
 		setLocationRelativeTo(context.getFrame());

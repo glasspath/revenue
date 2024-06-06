@@ -37,6 +37,7 @@ import javax.swing.JPanel;
 import org.glasspath.common.os.preferences.IntPref;
 import org.glasspath.common.os.preferences.PreferencesProvider;
 import org.glasspath.common.swing.preferences.PreferencesUtils;
+import org.glasspath.common.swing.resources.CommonResources;
 import org.glasspath.revenue.icons.Icons;
 import org.glasspath.revenue.resources.Resources;
 
@@ -62,7 +63,7 @@ public class CompanyOptionsPanel extends JPanel {
 
 		add(new JLabel(Resources.getString("Company")), new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 
-		JButton editCompaniesButton = new JButton("My company details");
+		JButton editCompaniesButton = new JButton(Resources.getString("MyCompanyDetails")); //$NON-NLS-1$
 		editCompaniesButton.setIcon(Icons.accountBox);
 		add(editCompaniesButton, new GridBagConstraints(3, 3, 3, 1, 0.0, 0.0, GridBagConstraints.WEST, GridBagConstraints.VERTICAL, new Insets(0, 0, 0, 0), 0, 0));
 		editCompaniesButton.addActionListener(new ActionListener() {
@@ -85,7 +86,7 @@ public class CompanyOptionsPanel extends JPanel {
 		}
 
 		List<String> companyNames = companyNamesProvider.getCompanyNames();
-		companyNames.add(0, "Automatic");
+		companyNames.add(0, CommonResources.getString("Automatic")); //$NON-NLS-1$
 
 		companiesComboBox = PreferencesUtils.createComboBox(preferencesProvider, COMPANY_INDEX, companyNames.toArray(new String[0]));
 		companiesComboBox.setEnabled(preferencesProvider.isEnabled());
