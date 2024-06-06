@@ -274,9 +274,9 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Amount"), 1, 6, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
 		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Comments"), 1, 7, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
 
-		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Date"), 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(hourKey(DATE_FROM)))); //$NON-NLS-1$
-		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("From"), 2, 2, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_FROM)))); //$NON-NLS-1$
-		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("To"), 2, 3, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_TO)))); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell("Date", 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(hourKey(DATE_FROM)))); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell("From", 2, 2, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_FROM)))); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell("To", 2, 3, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_TO)))); //$NON-NLS-1$
 		table.getTableCells().add(AerialistUtils.createTableCell(key(TOTAL), 2, 4, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TOTAL_FOR_INVOICE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(RATE), 2, 5, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(RATE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(AMOUNT), 2, 6, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(AMOUNT))));
@@ -311,7 +311,7 @@ public class InvoiceTemplateUtils extends KeyUtils {
 		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Amount"), 1, 5, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
 		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Comments"), 1, 6, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
 
-		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Date"), 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(mileageKey(DATE_FROM)))); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell("Date", 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(mileageKey(DATE_FROM)))); //$NON-NLS-1$
 		table.getTableCells().add(AerialistUtils.createTableCell(key(ROUTE), 2, 2, Alignment.DEFAULT.stringValue, 9, false, tKey(mileageKey(ROUTE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(TOTAL), 2, 3, Alignment.RIGHT.stringValue, 9, false, tKey(mileageKey(TOTAL_FOR_INVOICE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(RATE), 2, 4, Alignment.RIGHT.stringValue, 9, false, tKey(mileageKey(RATE))));

@@ -60,17 +60,16 @@ public class TemplateOptionsDialog extends DefaultDialog {
 
 		JButton resetButton = new JButton(CommonResources.getString("Reset")); //$NON-NLS-1$
 		resetButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				provider.clearPreferences();
 			}
 		});
-		
+
 		getFooter().add(Box.createRigidArea(new Dimension(getHelpButton().isVisible() ? 5 : 0, 5)), 1);
 		getFooter().add(resetButton, 2);
 
-		
 		getFooter().remove(getOkButton());
 		getCancelButton().setText(CommonResources.getString("Close")); //$NON-NLS-1$
 

@@ -45,6 +45,8 @@ import org.glasspath.aerialist.template.TemplateMetadata;
 import org.glasspath.aerialist.template.TemplateMetadata.CategoryMetadata;
 import org.glasspath.aerialist.template.TemplateMetadata.FieldMetadata;
 import org.glasspath.aerialist.template.TemplateMetadata.TableMetadata;
+import org.glasspath.common.swing.resources.CommonResources;
+import org.glasspath.revenue.resources.Resources;
 import org.glasspath.revenue.template.KeyUtils;
 import org.glasspath.revenue.template.TemplateUtils;
 
@@ -53,7 +55,6 @@ import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
 import fr.opensagres.xdocreport.template.TemplateEngineKind;
 import fr.opensagres.xdocreport.template.formatter.FieldsMetadata;
 
-@SuppressWarnings("nls")
 public class TimeSheetTemplateUtils extends KeyUtils {
 
 	// Ratio 3:2
@@ -68,16 +69,16 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 
 		TemplateMetadata templateMetadata = new TemplateMetadata();
 
-		CategoryMetadata templateFields = new CategoryMetadata("");
+		CategoryMetadata templateFields = new CategoryMetadata(""); //$NON-NLS-1$
 		templateMetadata.setTemplateFields(templateFields);
 
 		templateFields.getChildren().add(TemplateUtils.createMyCompanyTemplateMetadata());
 		templateFields.getChildren().add(TemplateUtils.createClientTemplateMetadata());
 
-		CategoryMetadata timesheetMetadata = new CategoryMetadata("Time sheet");
+		CategoryMetadata timesheetMetadata = new CategoryMetadata(Resources.getString("TimeSheet")); //$NON-NLS-1$
 		templateFields.getChildren().add(timesheetMetadata);
 
-		CategoryMetadata invoiceDetailsMetadata = new CategoryMetadata("Time sheet details");
+		CategoryMetadata invoiceDetailsMetadata = new CategoryMetadata(Resources.getString("TimeSheetDetails")); //$NON-NLS-1$
 		timesheetMetadata.getChildren().add(invoiceDetailsMetadata);
 
 		invoiceDetailsMetadata.getChildren().add(new FieldMetadata(description(YEAR), timeSheetKey(YEAR)));
@@ -91,7 +92,7 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 		timesheetMetadata.getChildren().add(TemplateUtils.createMileagesTableTemplateMetada());
 		timesheetMetadata.getChildren().add(TemplateUtils.createCallsTableTemplateMetada());
 
-		CategoryMetadata visibilityFields = new CategoryMetadata("");
+		CategoryMetadata visibilityFields = new CategoryMetadata(""); //$NON-NLS-1$
 		templateMetadata.setVisibilityFields(visibilityFields);
 
 		visibilityFields.getChildren().add(new FieldMetadata(description(HOURS_INCLUDED), key(HOURS_INCLUDED)));
@@ -104,7 +105,7 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 
 	public static TableMetadata createTotalsTableTemplateMetada() {
 
-		TableMetadata totalsTableMetadata = new TableMetadata("Totals table");
+		TableMetadata totalsTableMetadata = new TableMetadata(Resources.getString("TotalsTable")); //$NON-NLS-1$
 
 		totalsTableMetadata.getChildren().add(new FieldMetadata(description(PROJECT), totalKey(PROJECT)));
 		totalsTableMetadata.getChildren().add(new FieldMetadata(description(HOURS), totalKey(HOURS)));
@@ -119,10 +120,10 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 
 		menu.add(TemplateUtils.createMyCompanyInsertMenu(context));
 
-		JMenu timeSheetMenu = new JMenu("Time sheet");
+		JMenu timeSheetMenu = new JMenu(Resources.getString("TimeSheet")); //$NON-NLS-1$
 		menu.add(timeSheetMenu);
 
-		timeSheetMenu.add(new InsertElementAction(context, createTotalsTable(), "Totals table", Icons.tablePlus));
+		timeSheetMenu.add(new InsertElementAction(context, createTotalsTable(), Resources.getString("TotalsTable"), Icons.tablePlus)); //$NON-NLS-1$
 		timeSheetMenu.add(new InsertElementAction(context, createPreviewImage(), description(PREVIEW_IMAGE), Icons.imagePlus) {
 
 			@Override
@@ -131,9 +132,9 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 				super.actionPerformed(e);
 			}
 		});
-		timeSheetMenu.add(new InsertElementAction(context, createHoursTable(), "Hours table", Icons.tablePlus));
-		timeSheetMenu.add(new InsertElementAction(context, createMileagesTable(), "Mileages table", Icons.tablePlus));
-		timeSheetMenu.add(new InsertElementAction(context, createCallsTable(), "Calls table", Icons.tablePlus));
+		timeSheetMenu.add(new InsertElementAction(context, createHoursTable(), Resources.getString("HoursTable"), Icons.tablePlus)); //$NON-NLS-1$
+		timeSheetMenu.add(new InsertElementAction(context, createMileagesTable(), Resources.getString("MileagesTable"), Icons.tablePlus)); //$NON-NLS-1$
+		timeSheetMenu.add(new InsertElementAction(context, createCallsTable(), Resources.getString("CallsTable"), Icons.tablePlus)); //$NON-NLS-1$
 
 	}
 
@@ -165,7 +166,7 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 0, ColorUtils.toHex(TemplateUtils.TABLE_HEADER_ROW_COLOR)));
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 2, ColorUtils.toHex(TemplateUtils.TABLE_ALTERNATING_ROW_COLOR)));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Project", 1, 1, Alignment.DEFAULT.stringValue, 11, true, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Project"), 1, 1, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
 		table.getTableCells().add(AerialistUtils.createTableCell("Hours", 1, 2, Alignment.RIGHT.stringValue, 11, true, null));
 		table.getTableCells().add(AerialistUtils.createTableCell("Mileage", 1, 3, Alignment.RIGHT.stringValue, 11, true, null));
 		table.getTableCells().add(AerialistUtils.createTableCell("Calls", 1, 4, Alignment.RIGHT.stringValue, 11, true, null));
@@ -175,7 +176,7 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 		table.getTableCells().add(AerialistUtils.createTableCell(key(MILEAGE), 2, 3, Alignment.RIGHT.stringValue, 9, false, tKey(totalKey(MILEAGE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(CALLS), 2, 4, Alignment.RIGHT.stringValue, 9, false, tKey(totalKey(CALLS))));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Total", 3, 1, Alignment.RIGHT.stringValue, 11, true, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Total"), 3, 1, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
 		table.getTableCells().add(AerialistUtils.createTableCell(key(HOURS), 3, 2, Alignment.RIGHT.stringValue, 11, true, tKey(timeSheetTotalKey(HOURS))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(MILEAGE), 3, 3, Alignment.RIGHT.stringValue, 11, true, tKey(timeSheetTotalKey(MILEAGE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(CALLS), 3, 4, Alignment.RIGHT.stringValue, 11, true, tKey(timeSheetTotalKey(CALLS))));
@@ -202,16 +203,16 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 0, ColorUtils.toHex(TemplateUtils.TABLE_HEADER_ROW_COLOR)));
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 2, ColorUtils.toHex(TemplateUtils.TABLE_ALTERNATING_ROW_COLOR)));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Date", 1, 1, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("From", 1, 2, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("To", 1, 3, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Project", 1, 4, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Total", 1, 5, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Comments", 1, 6, Alignment.DEFAULT.stringValue, 11, true, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Date"), 1, 1, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("From"), 1, 2, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("To"), 1, 3, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Project"), 1, 4, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Total"), 1, 5, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Comments"), 1, 6, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Date", 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(hourKey(DATE_FROM))));
-		table.getTableCells().add(AerialistUtils.createTableCell("From", 2, 2, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_FROM))));
-		table.getTableCells().add(AerialistUtils.createTableCell("To", 2, 3, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_TO))));
+		table.getTableCells().add(AerialistUtils.createTableCell("Date", 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(hourKey(DATE_FROM)))); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell("From", 2, 2, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_FROM)))); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell("To", 2, 3, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TIME_TO)))); //$NON-NLS-1$
 		table.getTableCells().add(AerialistUtils.createTableCell(key(PROJECT), 2, 4, Alignment.DEFAULT.stringValue, 9, false, tKey(hourKey(PROJECT))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(TOTAL), 2, 5, Alignment.RIGHT.stringValue, 9, false, tKey(hourKey(TOTAL_FOR_INVOICE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(COMMENTS), 2, 6, Alignment.DEFAULT.stringValue, 9, false, tKey(hourKey(COMMENTS))));
@@ -237,13 +238,13 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 0, ColorUtils.toHex(TemplateUtils.TABLE_HEADER_ROW_COLOR)));
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 2, ColorUtils.toHex(TemplateUtils.TABLE_ALTERNATING_ROW_COLOR)));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Date", 1, 1, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Route", 1, 2, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Project", 1, 3, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Total", 1, 4, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Comments", 1, 5, Alignment.DEFAULT.stringValue, 11, true, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Date"), 1, 1, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Route"), 1, 2, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Project"), 1, 3, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Total"), 1, 4, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Comments"), 1, 5, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Date", 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(mileageKey(DATE_FROM))));
+		table.getTableCells().add(AerialistUtils.createTableCell("Date", 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(mileageKey(DATE_FROM)))); //$NON-NLS-1$
 		table.getTableCells().add(AerialistUtils.createTableCell(key(ROUTE), 2, 2, Alignment.DEFAULT.stringValue, 9, false, tKey(mileageKey(ROUTE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(PROJECT), 2, 3, Alignment.DEFAULT.stringValue, 9, false, tKey(mileageKey(PROJECT))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(TOTAL), 2, 4, Alignment.RIGHT.stringValue, 9, false, tKey(mileageKey(TOTAL_FOR_INVOICE))));
@@ -271,12 +272,12 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 0, ColorUtils.toHex(TemplateUtils.TABLE_HEADER_ROW_COLOR)));
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 2, ColorUtils.toHex(TemplateUtils.TABLE_ALTERNATING_ROW_COLOR)));
 
-		table.getTableCells().add(AerialistUtils.createTableCell("Date", 1, 1, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Time", 1, 2, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Name", 1, 3, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Company", 1, 4, Alignment.DEFAULT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Total", 1, 5, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Comments", 1, 6, Alignment.DEFAULT.stringValue, 11, true, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Date"), 1, 1, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Time"), 1, 2, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Name"), 1, 3, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Company"), 1, 4, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Total"), 1, 5, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Comments"), 1, 6, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
 
 		table.getTableCells().add(AerialistUtils.createTableCell(key(DATE), 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(callKey(DATE))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(TIME), 2, 2, Alignment.RIGHT.stringValue, 9, false, tKey(callKey(TIME))));
@@ -300,7 +301,7 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 		metadata.addFieldAsList(totalKey(CALLS));
 
 		// XDocReport doesn't support dot in image key
-		metadata.addFieldAsImage(timeSheetKey(PREVIEW_IMAGE).replace(".", ""));
+		metadata.addFieldAsImage(timeSheetKey(PREVIEW_IMAGE).replace(".", "")); //$NON-NLS-1$ //$NON-NLS-2$
 
 		TemplateUtils.addHourXDocMetadata(metadata);
 		TemplateUtils.addMileageXDocMetadata(metadata);
