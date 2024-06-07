@@ -66,6 +66,7 @@ import org.glasspath.common.swing.resources.CommonResources;
 import org.glasspath.common.swing.theme.Theme;
 import org.glasspath.common.swing.theme.ThemeChooserPanel;
 import org.glasspath.revenue.icons.Icons;
+import org.glasspath.revenue.resources.Resources;
 
 public class FirstLaunchFrame {
 
@@ -232,7 +233,7 @@ public class FirstLaunchFrame {
 			statusLabel.setText("Your theme will be applied the next time the application is launched");
 		} else {
 			statusLabel.setIcon(null);
-			statusLabel.setText("");
+			statusLabel.setText(""); //$NON-NLS-1$
 		}
 
 		okButton.setEnabled(projectLocationValid && projecNameValid);
@@ -279,7 +280,7 @@ public class FirstLaunchFrame {
 				// TODO: Check if project was successfully created? For now we prefer
 				// to launch Revenue (will show a message if project cannot be opened)
 
-				statusLabel.setText("Launching Revenue..");
+				statusLabel.setText(Resources.getString("LaunchingRevenue")); //$NON-NLS-1$
 
 				listener.submit(frame, projectDir);
 
@@ -344,13 +345,13 @@ public class FirstLaunchFrame {
 			currencyComboBox = new CurrencyAndSymbolPreferenceComboBox(preferencesProvider, "currency", "", "currencySymbol", "", false); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			currencyComboBox.setBorder(BorderFactory.createCompoundBorder(currencyComboBox.getBorder(), BorderFactory.createEmptyBorder(0, 0, 0, 3)));
 
-			add(new JLabel("Currency & Symbol"), new GridBagConstraints(4, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			add(new JLabel(CommonResources.getString("CurrencySymbol")), new GridBagConstraints(4, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 			add(currencyComboBox, new GridBagConstraints(4, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 			unitOfMeasurementComboBox = new UnitOfMeasurementPreferenceComboBox(preferencesProvider, "unitOfMeasurement", "", false); //$NON-NLS-1$ //$NON-NLS-2$
 			unitOfMeasurementComboBox.setBorder(BorderFactory.createCompoundBorder(unitOfMeasurementComboBox.getBorder(), BorderFactory.createEmptyBorder(0, 0, 0, 3)));
 
-			add(new JLabel("Unit of measurement"), new GridBagConstraints(6, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			add(new JLabel(CommonResources.getString("UnitOfMeasurement")), new GridBagConstraints(6, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 			add(unitOfMeasurementComboBox, new GridBagConstraints(6, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 			// TODO: LanguageComboBox is causing layout problems, this is a workaround..
@@ -364,7 +365,7 @@ public class FirstLaunchFrame {
 			languageComboBoxWrapper.setLayout(new BorderLayout());
 			languageComboBoxWrapper.add(languageComboBox, BorderLayout.CENTER);
 
-			add(new JLabel("Language"), new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			add(new JLabel(CommonResources.getString("Language")), new GridBagConstraints(2, 3, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 			add(languageComboBoxWrapper, new GridBagConstraints(2, 5, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 			// TODO: LanguageComboBox is causing layout problems, this is a workaround..
@@ -424,7 +425,7 @@ public class FirstLaunchFrame {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 
-					String dirPath = FileChooser.browseForDir(frame, preferences, "lastSelectedProjectLocation", null);
+					String dirPath = FileChooser.browseForDir(frame, preferences, "lastSelectedProjectLocation", null); //$NON-NLS-1$
 					if (dirPath != null) {
 						projectLocationTextField.setText(dirPath);
 					}
@@ -435,8 +436,8 @@ public class FirstLaunchFrame {
 			projectPathPanel.add(new JLabel("Project location"), new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 			projectPathPanel.add(projectLocationTextField, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
-			projectNameTextField = new JTextField("Glasspath Revenue Files");
-			projectPathPanel.add(new JLabel("Project name"), new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			projectNameTextField = new JTextField(Resources.getString("GlasspathRevenueFiles")); //$NON-NLS-1$
+			projectPathPanel.add(new JLabel(Resources.getString("ProjectName")), new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 			projectPathPanel.add(new JLabel("/"), new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 			projectPathPanel.add(projectNameTextField, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
