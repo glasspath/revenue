@@ -167,9 +167,9 @@ public class TimeSheetTemplateUtils extends KeyUtils {
 		table.getRowStyles().add(AerialistUtils.createRowStyle(1, 2, ColorUtils.toHex(TemplateUtils.TABLE_ALTERNATING_ROW_COLOR)));
 
 		table.getTableCells().add(AerialistUtils.createTableCell(CommonResources.getString("Project"), 1, 1, Alignment.DEFAULT.stringValue, 11, true, null)); //$NON-NLS-1$
-		table.getTableCells().add(AerialistUtils.createTableCell("Hours", 1, 2, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Mileage", 1, 3, Alignment.RIGHT.stringValue, 11, true, null));
-		table.getTableCells().add(AerialistUtils.createTableCell("Calls", 1, 4, Alignment.RIGHT.stringValue, 11, true, null));
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Hours"), 1, 2, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Mileage"), 1, 3, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
+		table.getTableCells().add(AerialistUtils.createTableCell(Resources.getString("Calls"), 1, 4, Alignment.RIGHT.stringValue, 11, true, null)); //$NON-NLS-1$
 
 		table.getTableCells().add(AerialistUtils.createTableCell(key(PROJECT), 2, 1, Alignment.DEFAULT.stringValue, 9, false, tKey(totalKey(PROJECT))));
 		table.getTableCells().add(AerialistUtils.createTableCell(key(HOURS), 2, 2, Alignment.RIGHT.stringValue, 9, false, tKey(totalKey(HOURS))));

@@ -96,7 +96,7 @@ public class FirstLaunchFrame {
 
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setTitle("Welcome to Glasspath - Revenue");
+		frame.setTitle(Resources.getString("WelcomeToGlasspathRevenue")); //$NON-NLS-1$
 		frame.setIconImages(Icons.appIcon);
 		frame.setResizable(false); // TODO: Disabled because the frame was being sent to the back quite often -> Enabled again after adding frame.toFront()
 		frame.setSize(800, 600);
@@ -224,13 +224,13 @@ public class FirstLaunchFrame {
 
 		if (!projectLocationValid) {
 			statusLabel.setIcon(org.glasspath.common.icons.Icons.alertOrangeLarge);
-			statusLabel.setText("Project location is not valid");
+			statusLabel.setText(Resources.getString("ProjectLocationIsNotValid")); //$NON-NLS-1$
 		} else if (!projecNameValid) {
 			statusLabel.setIcon(org.glasspath.common.icons.Icons.alertOrangeLarge);
-			statusLabel.setText("Project name is not valid");
+			statusLabel.setText(Resources.getString("ProjectNameIsNotValid")); //$NON-NLS-1$
 		} else if (contentPanel.themeChooserPanel.isDarkThemeSelected()) {
 			statusLabel.setIcon(org.glasspath.common.icons.Icons.alertOrangeLarge);
-			statusLabel.setText("Your theme will be applied the next time the application is launched");
+			statusLabel.setText(Resources.getString("YourThemeWillBeAppliedTheNextTimeTheApplicationIsLaunched")); //$NON-NLS-1$
 		} else {
 			statusLabel.setIcon(null);
 			statusLabel.setText(""); //$NON-NLS-1$
@@ -268,7 +268,7 @@ public class FirstLaunchFrame {
 		contentPanel.currencyComboBox.commit();
 		contentPanel.unitOfMeasurementComboBox.commit();
 
-		statusLabel.setText("Creating Project..");
+		statusLabel.setText(Resources.getString("CreatingProject")); //$NON-NLS-1$
 
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -433,7 +433,7 @@ public class FirstLaunchFrame {
 				}
 			});
 
-			projectPathPanel.add(new JLabel("Project location"), new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+			projectPathPanel.add(new JLabel(Resources.getString("ProjectLocation")), new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0)); //$NON-NLS-1$
 			projectPathPanel.add(projectLocationTextField, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
 			projectNameTextField = new JTextField(Resources.getString("GlasspathRevenueFiles")); //$NON-NLS-1$

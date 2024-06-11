@@ -246,13 +246,13 @@ public class TemplateFiles {
 
 			// Try the default way
 			if (!documentOpened) {
-				DesktopUtils.open(file, context.getFrame(), Resources.getString("DocumentCouldNotBeOpened"), Resources.getString("TheDocumentCouldNotBeOpened")); //$NON-NLS-1$ //$NON-NLS-2$
+				DesktopUtils.open(file, context.getFrame(), Resources.getString("DocumentCannotBeOpened"), Resources.getString("TheDocumentCannotBeOpened")); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			break;
 
 		case FILE_TYPE_ODT:
-			DesktopUtils.open(file, context.getFrame(), Resources.getString("DocumentCouldNotBeOpened"), Resources.getString("TheDocumentCouldNotBeOpened")); //$NON-NLS-1$ //$NON-NLS-2$
+			DesktopUtils.open(file, context.getFrame(), Resources.getString("DocumentCannotBeOpened"), Resources.getString("TheDocumentCannotBeOpened")); //$NON-NLS-1$ //$NON-NLS-2$
 			break;
 
 		default:
