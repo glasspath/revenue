@@ -115,6 +115,7 @@ public class Icons {
 	public static final SvgIcon fileContrast = new SvgIcon(getSvg("file.svg"));
 	public static final SvgIcon fileGreen = new SvgIcon(getSvg("file.svg"));
 	public static final SvgIcon fileOutlineContrast = new SvgIcon(getSvg("file-outline.svg"));
+	public static final SvgIcon fileRed = new SvgIcon(getSvg("file.svg"));
 	public static final SvgIcon fileReplaceOutlineBlueXXLarge = new SvgIcon(56, 0, getSvg("file-replace-outline.svg"));
 	public static final SvgIcon fileReplaceOutlineGreenXXLarge = new SvgIcon(56, 0, getSvg("file-replace-outline.svg"));
 	public static final SvgIcon fileReplaceOutlinePurpleXXLarge = new SvgIcon(56, 0, getSvg("file-replace-outline.svg"));
@@ -203,6 +204,7 @@ public class Icons {
 		fileContrast.setColorFilter(SvgIcon.CONTRAST_DARK);
 		fileGreen.setColorFilter(SvgIcon.GREEN);
 		fileOutlineContrast.setColorFilter(SvgIcon.CONTRAST_DARK);
+		fileRed.setColorFilter(SvgIcon.RED);
 		fileReplaceOutlineBlueXXLarge.setColorFilter(SvgIcon.BLUE);
 		fileReplaceOutlineGreenXXLarge.setColorFilter(SvgIcon.GREEN);
 		fileReplaceOutlinePurpleXXLarge.setColorFilter(SvgIcon.PURPLE);
