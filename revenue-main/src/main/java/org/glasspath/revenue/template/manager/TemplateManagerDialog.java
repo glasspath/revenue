@@ -72,6 +72,7 @@ public class TemplateManagerDialog extends FileManagerDialog {
 		List<Category> categories = new ArrayList<>();
 		categories.add(TemplateFiles.INVOICE_TEMPLATES);
 		categories.add(TemplateFiles.INVOICE_EMAIL_TEMPLATES);
+		categories.add(TemplateFiles.INVOICE_REMINDER_EMAIL_TEMPLATES);
 		categories.add(TemplateFiles.REPORT_TEMPLATES);
 		categories.add(TemplateFiles.REPORT_EMAIL_TEMPLATES);
 		categories.add(TemplateFiles.TIME_SHEET_TEMPLATES);
@@ -153,6 +154,8 @@ public class TemplateManagerDialog extends FileManagerDialog {
 			} else if (selectedCategory == TemplateFiles.TIME_SHEET_TEMPLATES) {
 				optionsTabbedPane.addTab(Resources.getString("TimeSheetOptions"), createOptionsTab(new TimeSheetTemplateOptionsPanel(provider))); //$NON-NLS-1$
 			} else if (selectedCategory == TemplateFiles.INVOICE_EMAIL_TEMPLATES) {
+				// No options yet
+			} else if (selectedCategory == TemplateFiles.INVOICE_REMINDER_EMAIL_TEMPLATES) {
 				// No options yet
 			} else if (selectedCategory == TemplateFiles.REPORT_EMAIL_TEMPLATES) {
 				// No options yet

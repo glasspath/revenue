@@ -79,6 +79,7 @@ public class TemplateFiles {
 	public static final Category REPORT_TEMPLATES = new Category(Resources.getString("ReportTemplates"), DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
 	public static final Category TIME_SHEET_TEMPLATES = new Category(Resources.getString("TimeSheetTemplates"), DOCUMENT_TEMPLATE_FILE_FILTER, DOCUMENT_TEMPLATE_PREFERRED_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
 	public static final Category INVOICE_EMAIL_TEMPLATES = new Category(Resources.getString("InvoiceEmailTemplates"), EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
+	public static final Category INVOICE_REMINDER_EMAIL_TEMPLATES = new Category(Resources.getString("ReminderTemplates"), EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
 	public static final Category REPORT_EMAIL_TEMPLATES = new Category(Resources.getString("ReportEmailTemplates"), EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
 	public static final Category TIME_SHEET_EMAIL_TEMPLATES = new Category(Resources.getString("TimeSheetEmailTemplates"), EMAIL_TEMPLATE_FILE_FILTER, LINKED_FILE_EXTENSIONS); //$NON-NLS-1$
 
@@ -94,6 +95,7 @@ public class TemplateFiles {
 			REPORT_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.REPORT_TEMPLATES_DIR));
 			TIME_SHEET_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.TIME_SHEET_TEMPLATES_DIR));
 			INVOICE_EMAIL_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.INVOICE_EMAIL_TEMPLATES_DIR));
+			INVOICE_REMINDER_EMAIL_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.INVOICE_REMINDER_EMAIL_TEMPLATES_DIR));
 			REPORT_EMAIL_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.REPORT_EMAIL_TEMPLATES_DIR));
 			TIME_SHEET_EMAIL_TEMPLATES.setSourceDirectory(new File(applicationDir, ProjectUtils.TIME_SHEET_EMAIL_TEMPLATES_DIR));
 
@@ -103,6 +105,7 @@ public class TemplateFiles {
 			REPORT_TEMPLATES.setSourceDirectory(null);
 			TIME_SHEET_TEMPLATES.setSourceDirectory(null);
 			INVOICE_EMAIL_TEMPLATES.setSourceDirectory(null);
+			INVOICE_REMINDER_EMAIL_TEMPLATES.setSourceDirectory(null);
 			REPORT_EMAIL_TEMPLATES.setSourceDirectory(null);
 			TIME_SHEET_EMAIL_TEMPLATES.setSourceDirectory(null);
 
@@ -118,6 +121,7 @@ public class TemplateFiles {
 			REPORT_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.REPORT_TEMPLATES_DIR));
 			TIME_SHEET_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.TIME_SHEET_TEMPLATES_DIR));
 			INVOICE_EMAIL_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.INVOICE_EMAIL_TEMPLATES_DIR));
+			INVOICE_REMINDER_EMAIL_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.INVOICE_REMINDER_EMAIL_TEMPLATES_DIR));
 			REPORT_EMAIL_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.REPORT_EMAIL_TEMPLATES_DIR));
 			TIME_SHEET_EMAIL_TEMPLATES.setDirectory(new File(projectDir, ProjectUtils.TIME_SHEET_EMAIL_TEMPLATES_DIR));
 
@@ -127,6 +131,7 @@ public class TemplateFiles {
 			REPORT_TEMPLATES.setDirectory(null);
 			TIME_SHEET_TEMPLATES.setDirectory(null);
 			INVOICE_EMAIL_TEMPLATES.setDirectory(null);
+			INVOICE_REMINDER_EMAIL_TEMPLATES.setDirectory(null);
 			REPORT_EMAIL_TEMPLATES.setDirectory(null);
 			TIME_SHEET_EMAIL_TEMPLATES.setDirectory(null);
 
@@ -304,6 +309,8 @@ public class TemplateFiles {
 		editorContext.setSendButtonVisible(false);
 
 		if (category == INVOICE_EMAIL_TEMPLATES) {
+			editorContext.setTemplateMetadata(InvoiceTemplateUtils.createInvoiceTemplateMetadata());
+		} else if (category == INVOICE_REMINDER_EMAIL_TEMPLATES) {
 			editorContext.setTemplateMetadata(InvoiceTemplateUtils.createInvoiceTemplateMetadata());
 		} else if (category == REPORT_EMAIL_TEMPLATES) {
 			editorContext.setTemplateMetadata(ReportTemplateUtils.createReportTemplateMetadata());

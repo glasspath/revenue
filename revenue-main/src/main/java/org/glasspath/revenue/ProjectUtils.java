@@ -24,7 +24,6 @@ package org.glasspath.revenue;
 
 import java.io.File;
 import java.io.PrintWriter;
-import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -51,6 +50,7 @@ public class ProjectUtils {
 	public static final String TIME_SHEET_TEMPLATES_DIR = "templates/timesheet";
 	public static final String EMAIL_TEMPLATES_DIR = "templates/email";
 	public static final String INVOICE_EMAIL_TEMPLATES_DIR = "templates/email/invoice";
+	public static final String INVOICE_REMINDER_EMAIL_TEMPLATES_DIR = "templates/email/reminder";
 	public static final String REPORT_EMAIL_TEMPLATES_DIR = "templates/email/report";
 	public static final String TIME_SHEET_EMAIL_TEMPLATES_DIR = "templates/email/timesheet";
 	public static final String BACKUP_DIR = "backup";
@@ -67,6 +67,7 @@ public class ProjectUtils {
 			TIME_SHEET_TEMPLATES_DIR,
 			EMAIL_TEMPLATES_DIR,
 			INVOICE_EMAIL_TEMPLATES_DIR,
+			INVOICE_REMINDER_EMAIL_TEMPLATES_DIR,
 			REPORT_EMAIL_TEMPLATES_DIR,
 			TIME_SHEET_EMAIL_TEMPLATES_DIR,
 			BACKUP_DIR,
@@ -142,6 +143,9 @@ public class ProjectUtils {
 						// TODO: return null?
 					}
 					if (!copyBundledFile(applicationDir, projectDir, INVOICE_EMAIL_TEMPLATES_DIR, "Basic invoice email template 01.gpex")) {
+						// TODO: return null?
+					}
+					if (!copyBundledFile(applicationDir, projectDir, INVOICE_REMINDER_EMAIL_TEMPLATES_DIR, "Basic reminder email template 01.gpex")) {
 						// TODO: return null?
 					}
 					if (!copyBundledFile(applicationDir, projectDir, REPORT_EMAIL_TEMPLATES_DIR, "Basic report email template 01.gpex")) {
